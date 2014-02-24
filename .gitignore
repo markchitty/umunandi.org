@@ -3,4 +3,5 @@
 /sql-dump-*.sql
 /db-sync
 /content/upgrade/
+syncdb
 .DS_Store
