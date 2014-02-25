@@ -10,7 +10,7 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define( 'DB_NAME', 'myfriend_wp_umunandi' );
 	define( 'DB_USER', 'myfriend_wpuser' );
 	define( 'DB_PASSWORD', 'w]qr5Ia)B1Kt' );
-	define( 'DB_HOST', 'localhost' ); // Probably 'localhost'
+	define( 'DB_HOST', '127.0.0.1' ); // Probably 'localhost'
 }
 
 // ========================
