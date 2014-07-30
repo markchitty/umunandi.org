@@ -20,10 +20,10 @@ module.exports = function(grunt) {
           ]
         },
         options: {
-          compress: true,
+          compress: false,
           // LESS source map
           // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-          sourceMap: true,
+          sourceMap: false,
           sourceMapFilename: 'assets/css/main.min.css.map',
           sourceMapRootpath: '/content/themes/umunandi/'
         }
@@ -34,17 +34,17 @@ module.exports = function(grunt) {
         files: {
           'assets/js/scripts.min.js': [
             'assets/js/plugins/bootstrap/transition.js',
-            'assets/js/plugins/bootstrap/alert.js',
-            'assets/js/plugins/bootstrap/button.js',
-            'assets/js/plugins/bootstrap/carousel.js',
+            // 'assets/js/plugins/bootstrap/alert.js',
+            // 'assets/js/plugins/bootstrap/button.js',
+            // 'assets/js/plugins/bootstrap/carousel.js',
             'assets/js/plugins/bootstrap/collapse.js',
-            'assets/js/plugins/bootstrap/dropdown.js',
-            'assets/js/plugins/bootstrap/modal.js',
-            'assets/js/plugins/bootstrap/tooltip.js',
-            'assets/js/plugins/bootstrap/popover.js',
-            'assets/js/plugins/bootstrap/scrollspy.js',
-            'assets/js/plugins/bootstrap/tab.js',
-            'assets/js/plugins/bootstrap/affix.js',
+            // 'assets/js/plugins/bootstrap/dropdown.js',
+            // 'assets/js/plugins/bootstrap/modal.js',
+            // 'assets/js/plugins/bootstrap/tooltip.js',
+            // 'assets/js/plugins/bootstrap/popover.js',
+            // 'assets/js/plugins/bootstrap/scrollspy.js',
+            // 'assets/js/plugins/bootstrap/tab.js',
+            // 'assets/js/plugins/bootstrap/affix.js',
             'assets/js/plugins/*.js',
             'assets/js/_*.js'
           ]
@@ -89,6 +89,7 @@ module.exports = function(grunt) {
           'assets/css/main.min.css',
           'assets/js/scripts.min.js',
           'templates/*.php',
+          'lib/*.php',
           '*.php'
         ]
       }
