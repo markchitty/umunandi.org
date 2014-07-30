@@ -18,19 +18,29 @@
 
 // Use this variable to set up the common and page specific functions. If you 
 // rename this variable, you will also need to rename the namespace below.
-var Roots = {
+var Umunandi = {
+
   // All pages
   common: {
     init: function() {
-      // JavaScript to be fired on all pages
+      $('a[href="#"]').click(function(e) { e.preventDefault(); });               // Globally limit javascript click actions
+      $.scrollTo(0);                                                             // Reset the screen to (0,0)
     }
   },
+
   // Home page
   home: {
     init: function() {
-      // JavaScript to be fired on the home page
+
+      // ScrollTo behaviour
+      $('.next-page').click(function() { $.scrollTo('.navbar', 600); });
+
+      // Stellar parallax behaviour
+      $.stellar({ horizontalScrolling: false });
+
     }
   },
+
   // About us page, note the change from about-us to about_us.
   about_us: {
     init: function() {
@@ -43,7 +53,7 @@ var Roots = {
 // Add additional events for more control over timing e.g. a finalize event
 var UTIL = {
   fire: function(func, funcname, args) {
-    var namespace = Roots;
+    var namespace = Umunandi;
     funcname = (funcname === undefined) ? 'init' : funcname;
     if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
       namespace[func][funcname](args);
