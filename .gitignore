@@ -4,6 +4,7 @@
 /db-sync
 /content/upgrade/
 /content/wfcache/
+/content/plugins/wordfence/tmp/
 /.bak
-syncdb
+syncdb*
 .DS_Store
