@@ -3,6 +3,7 @@
 /sql-dump-*.sql
 /db-sync
 /content/upgrade/
+/content/wfcache/
 /.bak
 syncdb
 .DS_Store
