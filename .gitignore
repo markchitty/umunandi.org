@@ -8,4 +8,5 @@ web-root/content/plugins/wordfence/tmp/
 web-root/syncdb
 web-root/.bak
 resources/
+*sublime-*
 .DS_Store
