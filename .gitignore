@@ -7,4 +7,5 @@ web-root/content/wfcache/
 web-root/content/plugins/wordfence/tmp/
 web-root/syncdb
 web-root/.bak
+resources/
 .DS_Store
