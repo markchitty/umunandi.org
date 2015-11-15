@@ -132,6 +132,20 @@
           setTimeout(function () { that.$element.trigger('slid.bs.carousel') }, 0)
         })
         .emulateTransitionEnd($active.css('transition-duration').slice(0, -1) * 1000)
+
+    // IE 7/8/9 support - https://gist.github.com/barryvdh/6155151#file-carousel-js-L141-L151
+    } else if(this.$element.hasClass('slide')) {
+        this.$element.trigger(e)
+        if (e.isDefaultPrevented()) return
+        $active.animate({left: (direction == 'right' ? '100%' : '-100%')}, 600, function(){
+            $active.removeClass('active')
+            that.sliding = false
+            setTimeout(function () { that.$element.trigger('slid') }, 0)
+        })
+        $next.addClass(type).css({left: (direction == 'right' ? '-100%' : '100%')}).animate({left: 0}, 600,  function(){
+            $next.removeClass(type).addClass('active')
+        })
+
     } else {
       $active.removeClass('active')
       $next.addClass('active')
