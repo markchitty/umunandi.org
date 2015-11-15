@@ -1,0 +1,91 @@
+.wp-admin.post-type-ovc .wp-list-table {
+  table-layout: auto;
+}
+.wp-admin.post-type-ovc #screen-meta-links {
+  display: none;
+}
+.wp-admin.post-type-ovc #poststuff {
+  position: relative;
+  max-width: 1024px;
+}
+.wp-admin.post-type-ovc #poststuff #title {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent !important;
+  box-shadow: none;
+  padding: 0 !important;
+  color: #333;
+  font-size: 30px !important;
+}
+.wp-admin.post-type-ovc #poststuff #title.new {
+  color: #ccc;
+}
+.wp-admin.post-type-ovc #title-prompt-text {
+  display: none;
+}
+.wp-admin.post-type-ovc #submitdiv {
+  position: absolute;
+  right: 0;
+  top: 1.6em;
+  min-width: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
+}
+.wp-admin.post-type-ovc #submitdiv .handlediv,
+.wp-admin.post-type-ovc #submitdiv .hndle,
+.wp-admin.post-type-ovc #submitdiv #minor-publishing {
+  display: none;
+}
+.wp-admin.post-type-ovc #submitdiv #major-publishing-actions {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+.wp-admin.post-type-ovc #submitdiv #delete-action {
+  margin-right: 1em;
+}
+.wp-admin.post-type-ovc #acf_88 {
+  float: left;
+}
+.wp-admin.post-type-ovc #acf_68 {
+  margin-left: 330px;
+}
+.wp-admin.post-type-ovc #acf_89 {
+  clear: both;
+}
+.wp-admin.post-type-ovc #acf-last_name,
+.wp-admin.post-type-ovc #acf-born,
+.wp-admin.post-type-ovc #acf-first_name,
+.wp-admin.post-type-ovc #acf-sex {
+  display: inline-block;
+  width: 49%;
+}
+.wp-admin.post-type-ovc #acf-first_name,
+.wp-admin.post-type-ovc #acf-sex {
+  margin-right: 2%;
+}
+.wp-admin.post-type-ovc #acf-head_shot .no-image {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 30px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.wp-admin.post-type-ovc #acf-head_shot .no-image p {
+  text-align: center;
+  padding: 30px;
+  line-height: 3;
+}
+.acf_postbox p.label {
+  margin-bottom: 0.2em;
+}
+.acf_postbox > .inside > .field {
+  padding: 5px 0;
+}
+.acf-date_picker {
+  overflow: hidden;
+}
+.acf-date_picker input {
+  height: 27px;
+}
