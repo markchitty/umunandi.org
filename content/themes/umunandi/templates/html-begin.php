@@ -12,11 +12,13 @@
 </head>
 
 <body <?php body_class(); ?>>
+<a name="top" id="top"></a>
 
-  <!--[if lt IE 8]>
-    <div class="alert alert-warning">
-      <?php _e('You are using an outdated browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'roots'); ?>
-    </div>
-  <![endif]-->
+<!--[if lt IE 8]>
+  <div class="alert alert-warning">
+    <?php _e('You are using an outdated browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'roots'); ?>
+  </div>
+<![endif]-->
 
-  <?php do_action('get_header'); ?>
+<?php do_action('get_header'); ?>
+
