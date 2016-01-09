@@ -1,63 +1,68 @@
-umunandi.org website development notes
-======================================
+umunandi.org website
+====================
 
-This project uses [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV)
-(Varying Vagrant Vagrants) as the development environment. VVV is an open source
-Vagrant configuration focused on WordPress development.
+umunandi.org is the website for **Umunandi**, a UK based charity supporting orphans and vulnerable children in Zambia.
 
-The project setup script is designed for Mac OSX. It could be ported to Windows,
-but I don't use Windows so that's a job for someone else.
+The website is built on WordPress, running
+
++ WordPress-Skeleton ([https://github.com/markjaquith/WordPress-Skeleton](https://github.com/markjaquith/WordPress-Skeleton))
+  - Copied not cloned - don't want the history
++ Roots theme ([http://roots.io](http://roots.io) & [https://github.com/roots/roots](https://github.com/roots/roots))
+  - Copied not cloned - don't want the history or to contribute directly
+  - Renamed to Umunandi
++ WordPress as a submodule
+
+Development environment
+-----------------------
+
++ Vagrant ([http://www.vagrantup.com](http://www.vagrantup.com))
+  - Virtual machine configuration tool
++ VirtualBox ([https://www.virtualbox.org](https://www.virtualbox.org))
+  - Virtual machine container (like an open source version of VMWare)
++ VVV = Varying Vagrant Vagrants ([https://github.com/Varying-Vagrant-Vagrants/VVV](https://github.com/Varying-Vagrant-Vagrants/VVV))
+  - an open source Vagrant configuration focused on WordPress development.
 
 Dependencies
 ------------
 
-Install the following:
-+ [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - Virtual machine container
-+ [Vagrant](http://www.vagrantup.com) - Virtual machine environment confirguration tool
+Follow the instructions at [https://github.com/Varying-Vagrant-Vagrants/VVV](https://github.com/Varying-Vagrant-Vagrants/VVV)
+and install the following:
+
+1. [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - Virtual machine container
+1. [Vagrant](http://www.vagrantup.com) - Virtual machine environment confirguration tool
+1. [vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) plugin
+    - `vagrant plugin install vagrant-hostsupdater`
+1. [vagrant-triggers](https://github.com/emyl/vagrant-triggers) plugin
+    - `vagrant plugin install vagrant-triggers`
 
 Setup
 -----
 
-Clone
-[VVV](https://github.com/Varying-Vagrant-Vagrants/VVV)
+1. Create the following folder structure for the project in a suitable location on your machine  
+    `┗ umunandi`  
+    `  ┣ umunandi.org`  
+    `  ┗ vvv`
+1. Make sure you're in the parent `umunandi/` folder
+    - `cd umunandi`
+1. Clone Varying Vagrant Vagrants into `umunandi/vvv`
+    - `git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv`
+1. Clone this umunandi.org repo into `umunandi/umunandi.org`
+    - `git clone git://github.com/markchitty/umunandi.org umunandi.org`
+1. Run the umunandi.dev setup script. This configures VVV to set up the umunandi.dev development site.
+    - `./umunandi.org/vvv-setup/umunandi.dev.sh`
+    - You should see 5 additional directories appear in the `umunandi/vvv` folder
+1. Switch to the `umunandi/vvv` directory and run `vagrant up` to provision the dev machine. This may take some time (minutes)
+   to download the VM image and configure it.
+    - `cd vvv`
+    - `vagrant up`
 
-Local dev environment runs on VVV virtual server in ~/Dropbox/Dev/Tools/vagrant. Run
+Run `vagrant` to output further vagrant help info.
 
-`vagrant up`
-
-to start the dev machine.
-
-`vagrant`
-
-will output all the vagrant help info.
-
-VVV setup of VirtualBox VM tailored for Wordpress hosting. Customisations:
-
-+ **`vagrant/www`**  
-  Create the following empty folders to prevent installation of these Wordpress instances  
-  ┣ `wordpress-default`  
-  ┣ `wordpress-develop`  
-  ┗ `wordpress-trunk`
-+ **`vagrant/Customfile`**  
-  Maps host path `../Projects/umunandi.org/umunandi.org-website`
-  to VM path `/srv/www/umunandi/`
-+ **`vagrant/umunandi-config`**  
-  Contains hosts, MySQL and nginx setup instructions to create umunandi.dev website
-
-/umunandi.org-website = git repositry based on
-
-+ WordPress-Skeleton
-  - https://github.com/markjaquith/WordPress-Skeleton
-  - Copied not cloned - don't want the history
-+ Roots theme
-  - http://roots.io & https://github.com/roots/roots
-  - Copied not cloned - don't want the history or to contribute directly
-  - Renamed to Umunandi
-+ WordPress as a submodule
-+ Production server at umunandi.org set as remote for pushing to
 
 Managed deployment configuration
 --------------------------------
+The production server at umunandi.org is set as a git remote for pushing to
+
 + **Git repository on server** - http://toroid.org/ams/git-website-howto
 + **Public SSH key on server** - http://smbjorklund.no/ssh-login-without-password-using-os-x
 + **Post-receive git hook** - http://serverfault.com/questions/458942/git-website-delopyment-including-submodules
