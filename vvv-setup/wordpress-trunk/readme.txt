@@ -1,0 +1,1 @@
+This folder is empty to prevent the VVV provision.sh script installing WordPress here
