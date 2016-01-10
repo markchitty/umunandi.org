@@ -49,6 +49,25 @@ $ cd umunandi
 
 Run `vagrant` to output further vagrant help info.
 
+## Updating WordPress
+WordPress-Skeleton references the WordPress codebase as a git submodule. To update WordPress **don't** use the built-in admin Update feature. Instead, use git to update the submodule to the latest version tag - useful instructions [here](http://ryansechrest.com/2014/04/update-deploy-wordpress-git-submodule/) and [here](https://blog.sourcetreeapp.com/2012/02/01/using-submodules-and-subrepositories/).
+
+**Note:** backup the DB before embarking on this.
+
+```
+$ cd umunandi.org/web-root/wp
+$ git fetch --tags
+
+From https://github.com/WordPress/WordPress
+ * [new tag]         3.7.2      -> 3.7.2
+ * [new tag]         3.8.2      -> 3.8.2
+
+$ git checkout 3.8.2
+```
+
+This will show up in the umunandi.org (parent) repo as an uncomitted change to the submodule's tracked commit. Commit this change.
+
+Finally, log in to the local WordPress admin pages and click the Update DB button. Hopefully everything won't blow up at this point.
 
 ## Managed deployment configuration
 
