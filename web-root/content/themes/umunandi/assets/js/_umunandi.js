@@ -1,11 +1,3 @@
-// @codekit-prepend 'plugins/bootstrap/transition.js';
-// @codekit-prepend 'plugins/bootstrap/collapse.js';
-// @codekit-prepend 'plugins/bootstrap/affix.js';
-// @codekit-prepend 'plugins/bootstrap/carousel.js',
-// @codekit-prepend 'plugins/jquery.fadeOnScroll.js';
-// @codekit-prepend 'plugins/jquery.scrollTo.js';
-// @codekit-prepend 'plugins/jquery.stellar.js';
-
 // 'assets/js/plugins/bootstrap/alert.js',
 // 'assets/js/plugins/bootstrap/button.js',
 // 'assets/js/plugins/bootstrap/dropdown.js',

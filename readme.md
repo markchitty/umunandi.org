@@ -1,5 +1,3 @@
-![Umunandi logo](http://umunandi.dev/content/themes/umunandi/assets/img/umunandi-logo-370.png)
-
 # umunandi.org website
 
 umunandi.org is the website for **Umunandi**, a UK based charity supporting orphans and vulnerable children in Zambia.
@@ -26,33 +24,34 @@ Follow the instructions at <https://github.com/Varying-Vagrant-Vagrants/VVV> and
 
 ## Setup
 
-Create this folder structure for the project and then cd into the parent folder
+Create a parent folder for the project and `cd` into it
 
 ```
-┗ umunandi
-  ┣ umunandi.org
-  ┗ vvv
-  
+$ mkdir umunandi
 $ cd umunandi
 ```
 
-1. Clone Varying Vagrant Vagrants into /vvv
-    - `$ git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv`
-1. Clone this umunandi.org repo into /umunandi.org
-    - `$ git clone git://github.com/markchitty/umunandi.org umunandi.org`
-1. Run the umunandi.dev setup script. This configures VVV to set up the umunandi.dev development site.
-    - `$ ./umunandi.org/vvv-setup/umunandi.dev.sh`
-    - You should see 5 additional directories appear in the /vvv folder
-1. Provision the dev machine. This may take some time (minutes)
-   to download the VM image and configure it.
-    - `$ cd vvv; vagrant up`
+1. Clone Varying Vagrant Vagrants into *./vvv*  
+`$ git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv`
+1. Clone this umunandi.org repo into *./umunandi.org*  
+`$ git clone git://github.com/markchitty/umunandi.org umunandi.org`
+1. Run the umunandi.dev setup script. This configures VVV to set up the umunandi.dev development site.  
+`$ ./umunandi.org/vvv-setup/umunandi.dev.sh`  
+5 additional directories will appear in the vvv folder
+1. Provision the dev machine. This may take some time (minutes) to download the VM image and configure it.  
+`$ cd vvv; vagrant up`  
+The vagrant provisioning script will ask you for your password so that it can update your hosts file with local DNS entries for *umunandi.dev*. Run `vagrant` to output further vagrant help info.
+1. Point your browser to <http://umunandi.dev> to browse the website. The WordPress admin page is available at <http://umunandi.dev/wp-admin>.
+2. The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses grunt to build js and less. To install and run grunt:
 
-Run `vagrant` to output further vagrant help info.
+```
+$ cd ./umunandi.org/web-root/content/themes/umunandi
+$ npm install   // installs grunt
+$ grunt watch   // watch task dynamically recompiles less and js assets
+```
 
 ## Updating WordPress
-WordPress-Skeleton references the WordPress codebase as a git submodule. To update WordPress **don't** use the built-in admin Update feature. Instead, use git to update the submodule to the latest version tag - useful instructions [here](http://ryansechrest.com/2014/04/update-deploy-wordpress-git-submodule/) and [here](https://blog.sourcetreeapp.com/2012/02/01/using-submodules-and-subrepositories/).
-
-**Note:** backup the DB before embarking on this.
+WordPress-Skeleton references the WordPress codebase as a git submodule. To update WordPress **don't** use the built-in admin Update feature. Instead, use git to update the submodule to the latest version tag - useful instructions [here](http://ryansechrest.com/2014/04/update-deploy-wordpress-git-submodule/) and [here](https://blog.sourcetreeapp.com/2012/02/01/using-submodules-and-subrepositories/). **Note:** back up the DB first.
 
 ```
 $ cd umunandi.org/web-root/wp
@@ -67,11 +66,11 @@ $ git checkout 3.8.2
 
 This will show up in the umunandi.org (parent) repo as an uncomitted change to the submodule's tracked commit. Commit this change.
 
-Finally, log in to the local WordPress admin pages and click the Update DB button. Hopefully everything won't blow up at this point.
+Finally, log in to the local WordPress admin pages and click the Update DB button that you should be redirected to. Hopefully everything won't blow up at this point.
 
 ## Managed deployment configuration
 
-The production server at umunandi.org is set as a git remote for pushing to
+The production server at umunandi.org is set as a git remote for pushing to.
 
 + **Git repository on server** - <http://toroid.org/ams/git-website-howto>
 + **Public SSH key on server** - <http://smbjorklund.no/ssh-login-without-password-using-os-x>
