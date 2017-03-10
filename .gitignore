@@ -5,8 +5,10 @@ web-root/db-sync
 web-root/content/upgrade/
 web-root/content/wfcache/
 web-root/content/plugins/wordfence/tmp/
+web-root/content/debug.log
 web-root/syncdb
 web-root/.bak
 resources/
 *sublime-*
-.DS_Store
+*.DS_Store
+*Thumbs.db
