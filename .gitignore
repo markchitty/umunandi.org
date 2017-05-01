@@ -8,7 +8,9 @@ web-root/content/plugins/wordfence/tmp/
 web-root/content/debug.log
 web-root/syncdb
 web-root/.bak
-resources/
+node_modules
+
+*.map
 *sublime-*
 *.DS_Store
 *Thumbs.db
