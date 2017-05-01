@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    uglify: {
+    concat: {
       dist: {
         files: {
           'assets/js/scripts.min.js': [
@@ -39,8 +39,8 @@ module.exports = function(grunt) {
             // 'assets/js/plugins/bootstrap/modal.js',
             // 'assets/js/plugins/bootstrap/tooltip.js',
             // 'assets/js/plugins/bootstrap/popover.js',
-            // 'assets/js/plugins/bootstrap/scrollspy.js',
             // 'assets/js/plugins/bootstrap/tab.js',
+            // 'assets/js/plugins/bootstrap/scrollspy.js',
             'assets/js/plugins/bootstrap/carousel.js',
             'assets/js/plugins/bootstrap/collapse.js',
             'assets/js/plugins/bootstrap/transition.js',
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         options: {
           // JS source map: to enable, uncomment the lines below and update sourceMappingURL based on your install
           // sourceMap: 'assets/js/scripts.min.js.map',
-          // sourceMappingURL: '/app/themes/roots/assets/js/scripts.min.js.map'
+          // sourceMappingURL: '/content/themes/umunandi/assets/js/scripts.min.js.map'
         }
       }
     },
@@ -71,27 +71,29 @@ module.exports = function(grunt) {
           'assets/less/*.less',
           'assets/less/bootstrap/*.less'
         ],
-        tasks: ['less', 'version']
+        tasks: ['less', 'version'],
       },
       js: {
         files: [
           '<%= jshint.all %>'
         ],
-        tasks: ['jshint', 'uglify', 'version']
+        tasks: [/*'jshint',*/ 'concat', 'version']
+      },
+      php: {
+        files: [
+          'templates/**/*.php',
+          'lib/*.php',
+          'functions/*.php',
+          '*.php',
+          '!lib/scripts.php'
+        ],
+        options: { livereload: true }
       },
       livereload: {
-        // Browser live reloading
-        // https://github.com/gruntjs/grunt-contrib-watch#live-reloading
-        options: {
-          livereload: true
-        },
         files: [
           'assets/css/main.min.css',
-          'assets/js/scripts.min.js',
-          'templates/*.php',
-          'lib/*.php',
-          '*.php'
-        ]
+        ],
+        options: { livereload: true }
       }
     },
     clean: {
@@ -105,7 +107,7 @@ module.exports = function(grunt) {
   // Load tasks
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-wp-version');
@@ -114,7 +116,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'clean',
     'less',
-    'uglify',
+    'concat',
     'version'
   ]);
   grunt.registerTask('dev', [

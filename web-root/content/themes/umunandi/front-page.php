@@ -1,42 +1,21 @@
-  <div class="section parallax-container">
+<?php
+$args = array(
+  'post_type'      => 'page',
+  'posts_per_page' => -1,
+  'post_parent'    => $post->ID,
+  'order'          => 'ASC',
+  'orderby'        => 'menu_order'
+);
+$front_page_sections = new WP_Query($args);
+?>
+<section class="section">
+  <?php get_template_part('templates/front-page-carousel'); ?>
+</section>
 
-    <div id="carousel-ovcs" class="carousel slide container" data-interval="12000">
-
-      <!-- Slides -->
-      <div class="carousel-inner">
-      <?php global $OVCs; $featured_kids = $OVCs->featured_kids(); ?>
-      <?php while($featured_kids->have_posts()) : $featured_kids->the_post(); ?>
-        <div class="item <?php echo $featured_kids->current_post == 0 ? 'active' : '' ?>" id="<?php echo $post->post_name ?>">
-          <div class="carousel-content">
-            <div class="kid-face"><?php echo wp_get_image_tag(get_field('head_shot'), 'square-300', false, get_the_title()) ?></div>
-            <div class="kid-info">
-              <h2 class="kid-info--name"><?php the_title() ?></h2>
-              <div class="kid-info--story"><?php the_field('story') ?></div>
-              <div class="kid-info--sponsor"><a href="sponsor" class="btn btn-default">Sponsor a child like <?php the_field('first_name') ?></a></div>
-            </div>
-          </div>
-        </div>
-      <?php endwhile; ?>
-      </div><!-- /.carousel-inner -->
-
-      <!-- Controls -->
-      <ol class="carousel-indicators">
-      <?php $featured_kids->rewind_posts(); while($featured_kids->have_posts()) : $featured_kids->the_post(); ?>
-        <li data-target="#carousel-ovcs" data-slide-to="<?php echo $featured_kids->current_post ?>"
-        class="<?php echo $featured_kids->current_post == 0 ? 'active' : '' ?>"></li>
-      <?php endwhile; wp_reset_postdata(); ?>
-      </ol>
-
-      <a class="carousel-control left " href="#carousel-ovcs" data-slide="prev"><span class="icon-arrow-left3" ></span></a>
-      <a class="carousel-control right" href="#carousel-ovcs" data-slide="next"><span class="icon-arrow-right3"></span></a>
-
-    </div><!-- /.carousel -->
-
-    <div class="carousel-progress-bar"><div class="progress"></div></div>
-
-  </div><!-- /.section -->
-
-  <div class="page-content">
-  <?php get_template_part('templates/content', 'page'); ?>
+<?php while ($front_page_sections->have_posts()) : $front_page_sections->the_post(); ?>
+<section class="section <?= $post->post_name ?>" <?= umunandi_featured_image_bg_style() ?>>
+  <div class="container">
+    <?php the_content(); ?>
   </div>
-  
+</section>
+<?php endwhile; wp_reset_postdata(); ?>

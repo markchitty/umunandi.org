@@ -1,0 +1,89 @@
+.menu, .sub-menu { &:extend(.nav); }
+
+.nav-main {
+  line-height: @navbar-height - 2;
+  z-index: @zindex-navbar-fixed;
+  border-width: 0;
+  background: @body-bg;
+  box-shadow: rgba(0,0,0,0.08) 0 2px;
+
+  .navbar-header { margin: 0; }
+  .navbar-nav    { margin-top: 2px; }
+  .logo-link     { display: block; }
+
+  .umunandi-svg {
+    @logo-height : 38px;
+    display: block;
+    height: @logo-height;
+    margin: (@navbar-height - @logo-height)/2 0;
+  }
+
+  .navbar-nav {
+    > li > a {
+      padding: 3px 0 2px;
+      background-color: transparent;
+      font: 600 @font-size-base @font-family-nav;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: all 0.1s;
+    }
+
+    > li:not(.link-btn) {
+      &        > a { color: @nav-link-color; }
+      &:hover  > a { color: @nav-link-hover-color; }
+      &.active > a { color: @uGreen; }
+    }
+
+    .btn {
+      padding: 3px @padding-base-horizontal 2px;
+    }
+
+    @media @mq-sm {
+      > li { float: none; display: inline-block; }
+      .btn { display: block; }
+    }
+
+    > li:not(:first-child) {
+      @media @mq-sm { margin-left: @navbar-padding-horizontal * 1.3; }
+      @media @mq-md { margin-left: @navbar-padding-horizontal * 2; }
+    }
+
+    // Collapsed mobile nav
+    @media @mq-upto-sm {
+      > li            { text-align: center; line-height: normal; }
+      > li > a        { padding-top: 10px; padding-bottom: 10px; }
+      > li.active > a { background-color: #f4f4f4; }
+      .btn            { display: inline-block; }
+    }
+  }
+
+  .navbar-toggle {
+    padding: @grid-gutter-width/2;
+    margin: 0 -@grid-gutter-width/2 0 0;
+    border: 0;
+
+    .icon-bar {
+      height: 4px;
+      border-radius: 4px;
+      transition: all 0.15s;
+      background-color: @uGreen;
+    }
+    
+    &.collapsed .icon-bar { background-color: @nav-link-color; }
+  }
+
+  // Enlarge logo on hover
+  // Note: Both .umunandi-svg and its container .logo-link use transform:scale
+  // - the separate rules decouple floating scaling from hover scaling
+  .umunandi-svg {
+    @media @mq-xs {
+      &:hover { transform: scale(1.1); }
+      &       { transition: transform 0.15s; }
+    }
+  }
+
+  // Fixed nav - small screens - slides up out of the way on scroll
+  @media @mq-upto-sm { 
+    &.page-scrolled { transform: translateY(-(@navbar-height + 3)); }
+  }
+}

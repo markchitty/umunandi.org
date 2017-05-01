@@ -1,0 +1,43 @@
+// Typography
+@font-family-base             : 'Quicksand', 'Open Sans', sans-serif;
+@font-size-base               : 15px;
+@font-size-small-screen       : 14px;
+@line-height-base             : 1.4;
+@font-family-title            : 'Martel', serif;
+@font-family-nav              : 'Nunito', 'Open Sans', sans-serif;
+
+// Colours
+@body-bg                      : #fcfcfc;
+@footer-bg                    : #444;
+@uGreen                       : #006800;
+@uGreenLite                   : lighten(desaturate(@uGreen, 10%), 5%);
+@offWhite                     : #ffe;
+@brand-primary                : @uGreen;
+@nav-link-color               : #888;
+@nav-link-hover-color         : #444;
+
+// Components
+@btn-border-width             : 2px;
+@btn-default-border           : @uGreenLite;
+@navbar-border-radius         : 0;
+
+// Layout
+@floating-nav-top             : @line-height-computed/2;
+@section-padding              : 40px;
+@padding-base-vertical        : 5px;
+@padding-small-vertical       : 4px;
+
+// Media queries
+@mq-xs                        : ~"(min-width: @{screen-xs})";      // 480px  and up
+@mq-sm                        : ~"(min-width: @{screen-sm})";      // 768px  and up
+@mq-md                        : ~"(min-width: @{screen-md})";      // 992px  and up
+@mq-lg                        : ~"(min-width: @{screen-lg})";      // 1200px and up
+@mq-upto-xs                   : ~"(max-width: @{screen-xs-min})";  // up to 480px
+@mq-upto-sm                   : ~"(max-width: @{screen-xs-max})";  // up to 767px
+@mq-upto-md                   : ~"(max-width: @{screen-sm-max})";  // up to 991px
+@mq-900h                      : ~"(min-height: 900px)";
+@mq-land                      : ~"(orientation:landscape)";
+@mq-port                      : ~"(orientation:portrait)";
+@mq-2to3                      : ~"(max-aspect-ratio: 2/3)";
+
+@base-url                     : '/content/themes/umunandi/assets';

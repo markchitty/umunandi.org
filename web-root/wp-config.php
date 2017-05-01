@@ -81,3 +81,7 @@ if ( file_exists( dirname( __FILE__ ) . '/memcached.php' ) )
 if ( !defined( 'ABSPATH' ) )
 	define( 'ABSPATH', dirname( __FILE__ ) . '/wp/' );
 require_once( ABSPATH . 'wp-settings.php' );
+
+// Useful config stuff from https://timnash.co.uk/wordpress-version-control-tips/
+define( 'AUTOMATIC_UPDATER_DISABLED', true );  // No automatic updates - messes with WP as git submodule
+define( 'DISALLOW_FILE_EDIT', true );          // Disable file editing from wp-admin

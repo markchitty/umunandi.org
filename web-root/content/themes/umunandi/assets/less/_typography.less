@@ -1,0 +1,35 @@
+
+body {
+  @media @mq-upto-sm { font-size: 14px; }
+}
+
+h6, .h6 {
+  font: 600 13px/2 @font-family-nav;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.split-line(@color: #ccc) {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+
+  &:before, &:after {
+    content: "";
+    display: inline-block;
+    width: 50%;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    background-color: @color;
+  }
+
+  &:before { right: 0.5em; margin-left:  -50%; }
+  &:after  {  left: 0.5em; margin-right: -50%; }
+}
+
+h2 {
+  font-family: @font-family-title;
+  font-size: 60px;
+}

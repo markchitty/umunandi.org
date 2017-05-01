@@ -1,0 +1,26 @@
+.btn {
+  font-family: @font-family-nav;
+  text-transform: uppercase;
+  border-width: @btn-border-width;
+  padding: @padding-base-vertical - 1 @padding-base-horizontal;
+  .transition(all 0.15s);
+
+  &-default {
+    color: @uGreenLite;
+    background: transparent;
+  }
+
+  &:focus, &.focus {
+    &, &:active, &.active { .focus; }
+  }
+}
+
+
+.btn-hover() {
+  border-color: @uGreen;
+  background-color: @uGreen !important;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn:hover { .btn-hover; }

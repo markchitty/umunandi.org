@@ -1,0 +1,48 @@
+// Floating nav - iPad and above
+.nav-main {
+  &.floating {
+    @media @mq-sm {
+      position: absolute;
+      top: @floating-nav-top;
+      background-color: transparent;
+      box-shadow: none;
+
+      .umunandi-svg-fill { fill: #fff; }
+
+      .btn {
+        border-color: @uGreen;
+        background: @uGreen;
+        color: #fff;
+
+        &:hover {
+          border-color: @uGreenLite;
+          background: @uGreenLite !important;
+        }
+      }
+
+      .navbar-nav > li:not(.link-btn) {
+        & > a {
+          color: #fff;
+          border: 2px solid transparent;
+          border-width: 2px 0;
+          opacity: 0.6;
+        }
+        &:hover > a, &.active > a {
+          opacity: 1;
+          border-bottom-color: inherit;
+        }
+      }
+    }
+
+    @media @mq-md {
+      .logo-link  { transform: scale(1.3); }
+      .navbar-nav { transform: translateY(5px); }
+    }
+  }
+
+  &, .logo-link, .primary-nav {
+    transition-property: height, visiblility, transform, background-color;
+    transition-duration: 0.3s;
+    transform-origin: top left;
+  }
+}

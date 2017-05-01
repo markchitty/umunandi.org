@@ -19,4 +19,9 @@ require_once locate_template('/lib/scripts.php');         // Scripts and stylesh
 require_once locate_template('/lib/custom.php');          // Custom functions
 
 // Umunandi theme functions
-require_once locate_template('/functions-umunandi.php');  // Umunandi functions
+require_once locate_template('/functions/lib/simple_html_dom.php');
+require_once locate_template('/functions/admin.php');
+require_once locate_template('/functions/nav.php');
+require_once locate_template('/functions/content.php');
+require_once locate_template('/functions/shortcodes.php');
+require_once locate_template('/functions/scripts_styles.php');

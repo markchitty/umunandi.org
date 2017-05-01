@@ -1,0 +1,18 @@
+.widget_nav_menu {
+  position: relative;
+
+  a:hover { text-decoration: none; }
+
+  .menu > li > a { .h6; margin: 0; }
+
+  .sub-menu > li > a {
+    display: inline-block;
+    padding-top:    0.225em;
+    padding-bottom: 0.225em;
+    font-weight: 300;
+    color: inherit;
+    transition: all 0.1s;
+
+    @media @mq-md { font-size: 18px; }
+  }
+}

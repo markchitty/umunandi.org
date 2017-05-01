@@ -1,0 +1,104 @@
+@footer-text-color      : #bbb;
+@footer-text-color-warn : #d99d26;
+@footer-text-color-dark : #828882;
+@footer-bg-color        : #444a44;
+
+.footer {
+  position: relative;
+  color: @footer-text-color;
+  background: #444a44 url("@{base-url}/img/footer-top.png") repeat-x 0% 0%;
+
+  h3 {
+    .h6;
+    margin: 0;
+    @media @mq-sm { margin-bottom: 5px; }
+  }
+
+  h3, .menu > li > a { color: @footer-text-color-dark; }
+
+  &-body {
+    position: relative;
+    padding-top: 33px;
+  }
+
+  .widget { margin-bottom: @line-height-computed; }
+
+  a       { color: inherit; }
+  a:hover { color: lighten(@footer-text-color, 15%) !important; }
+
+  .vcard {
+    .org { .sr-only; }
+    .email { display: block; }
+    .adr span { display: block; }
+    .email, & + .notes { margin-top: @font-size-base; }
+  }
+
+  .subscribe {
+    @media @mq-sm {
+      padding-left: 0;
+      text-align: right;
+    }
+  }
+
+  .btn { color: @footer-bg-color; }
+
+  .email:hover + span .btn,
+  .email:focus + span .btn,
+  .btn:focus, .btn:hover {
+    .btn-hover;
+  }
+
+  .mailchimp-form {
+    margin-top: @line-height-computed;
+
+    .submit-icon:before {
+      font-size: 19px;
+      line-height: 1;
+      padding-bottom: 1px;
+      vertical-align: bottom;
+    }
+
+    .response, div.mce_inline_error {
+      margin-top: @line-height-computed/2;
+      font-size: @font-size-small;
+    }
+
+    div.mce_inline_error, #mce-error-response { color: @footer-text-color-warn; }
+  }
+}
+
+// At narrow width (mobile devices) .mailchimp-form drops out
+// of its container (.subscribe) and goes full width
+@media @mq-upto-xs {
+  .mailchimp-form {
+    position: absolute;
+    left: 0;
+    bottom: 15px;
+    padding: 0 @grid-gutter-width/2;
+  }
+  .subscribe { position: static; }
+  .footer-body { padding-bottom: 45px; }
+}
+
+.footer-footer {
+  padding: @line-height-computed/2 0;
+  background-color: rgba(0,0,0,0.08);
+  color: @footer-text-color-dark;
+  font-size: @font-size-small;
+  text-align: center;
+
+  @media @mq-sm {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: right;
+
+    .charity-number {
+      display: inline-block;
+      line-height: 1;
+      padding-left: @padding-base-horizontal;
+      margin-left: @padding-base-horizontal;
+      border-left: 1px solid darken(@footer-text-color, 30%);
+    }
+  }
+}

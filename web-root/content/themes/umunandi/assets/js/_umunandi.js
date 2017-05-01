@@ -32,8 +32,30 @@ var Umunandi = {
   // All pages
   common: {
     init: function() {
-      $('a[href="#"]').click(function(e) { e.preventDefault(); });               // Globally limit javascript click actions
-      $.scrollTo(0);                                                             // Reset the screen to (0,0)
+      $('a[href="#"]').click(function(e) { e.preventDefault(); });  // Globally limit javascript click actions
+      $.scrollTo(0);                                                // Reset the screen to (0,0)
+
+      var lastScrollTop = 0;
+      var $navBar = $('.js-navMain');
+
+      function toggleNavOnScroll() {
+        var curScrollTop = $(window).scrollTop();
+        if (Math.abs(lastScrollTop - curScrollTop) <= 5) return;
+        var isPageScrolled =  curScrollTop > lastScrollTop
+                           && curScrollTop > $navBar.outerHeight()
+                           && $('.navbar-collapse.in').length === 0;
+        $navBar.toggleClass('page-scrolled', isPageScrolled);
+        lastScrollTop = curScrollTop;
+      }
+
+      $(window).scroll($.debounce(10, toggleNavOnScroll));
+
+      // Toggle floating/fixed navbar when scrolled past
+      var $navBar = $('.js-navMain');
+      var fixY = $navBar.offset().top;
+      $(document).scroll(function() {
+        $navBar.toggleClass('floating', $(this).scrollTop() <= fixY);
+      });
     }
   },
 
@@ -45,39 +67,23 @@ var Umunandi = {
       $('[data-scrollto]').off().on('click', function(e) {
         e.preventDefault();
         var $this = $(this);
-        $.scrollTo($this.attr('href'), $this.data().scrollto);
-      });
-
-      // Stellar parallax behaviour
-      $('.parallax-bg-img').not('.fullpage-img').height(function(i,h) {
-        var $this      = $(this),
-            pllxOffset = $this.data('stellar-vertical-offset'),
-            pllxRatio  = $this.data('stellar-ratio'),
-            pageH      = $('body').height() - pllxOffset,
-            sectH      = $this.closest('.parallax-container').outerHeight();
-        return pageH - ((pageH - sectH) * pllxRatio);
-        return pageH - ((pageH - sectH) * pllxRatio);
-      })
-      $.stellar({ horizontalScrolling: false });
-
-      // Fade in/out main nav
-      $('.js-fadeOnScroll').fadeOnScroll({
-        elemToWatch  : '.wrap',
-        fadeOutStart : 1,
-        fadeOutEnd   : 33
+        var scrollOpts = { duration: $this.data().scrollto };
+        $.scrollTo($this.attr('href'), scrollOpts);
       });
 
       // Animate progress bar when carousel slides
-      var $bar = $('.carousel-progress-bar .progress'),
-          $crsl = $('#carousel-ovcs'),
-          transCss = 'transition: width ' + ($crsl.data('interval') - 600) + 'ms linear; ';
-      $('<style />').text('.carousel-progress-bar .progress.max { -webkit-' + transCss + transCss + '}').appendTo('head');
+      var progressBarSelector = '.js-carouselProgressBar .progress',
+          $bar = $(progressBarSelector),
+          $crsl = $('.js-carouselOvcs'),
+          transitionCss = progressBarSelector + '.max { transition: width '
+                        + ($crsl.data('interval') - 600) + 'ms linear; }';
+      $('<style />').text(transitionCss).appendTo('head');
       $crsl
         .on('slide.bs.carousel', function () { $bar.removeClass('max'); })
         .on('slid.bs.carousel',  function () { $bar.addClass('max'); })
         .hover(
-          function() { $crsl.trigger('slide.bs.carousel') },
-          function() { $crsl.trigger('slid.bs.carousel') }
+          function() { $crsl.trigger('slide.bs.carousel'); },
+          function() { $crsl.trigger('slid.bs.carousel'); }
         )
         .fadeOnScroll({ dontFade : true })
         .on('enteredView.fadeOnScroll', function() { $(this).carousel('cycle').trigger('slid.bs.carousel'); })
@@ -85,34 +91,25 @@ var Umunandi = {
 
       // Normalise carousel slide heights
       $(window).on('resize orientationchange', function () {
-        var items = $('#carousel-ovcs .item'), maxH = 0;
+        var items = $('.js-carouselOvcs .item'), maxH = 0;
         items.css('min-height', '');
         items.each(function() { if ($(this).height() > maxH) maxH = $(this).height(); });
         items.each(function() { $(this).css('min-height', maxH + 'px'); });
       }).resize();
 
-      // $crsl.hover(
-      //   function() { clearInterval(barInterval); },
-      //   function() { barInterval = setInterval(progressBarCarousel, 10); }
-      // );
-      // $crsl.carousel()
-      // function progressBarCarousel() {
-      //   $bar.css({ width: percent+'%' });
-      //   percent += 1 / time;
-      //   if (percent >= 100) {
-      //     percent = 0;
-      //     $crsl.carousel('next');
-      //   }      
-      // }
-      // var barInterval = setInterval(progressBarCarousel, 10);
-
     }
   },
 
   // About us page, note the change from about-us to about_us.
-  about_us: {
+  test_page: {
     init: function() {
-      // JavaScript to be fired on the about us page
+      dimsum.configure({
+        format: 'text',
+        flavor: 'jabberwocky',
+        sentences_per_paragraph: [4, 10],
+        words_per_sentence: [4, 12],
+        commas_per_sentence: [0, 2]
+      });
     }
   }
 };

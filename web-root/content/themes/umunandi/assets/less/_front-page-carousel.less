@@ -1,0 +1,62 @@
+.carousel                { width: auto;
+  @carousel-ctrl-spacing : 110px;
+  @media @mq-sm          { max-width: @container-sm + @carousel-ctrl-spacing;
+                           padding: 0 (@grid-gutter-width + @carousel-ctrl-spacing)/2; }
+  @media @mq-md          { max-width: @container-md + @carousel-ctrl-spacing; }
+  @media @mq-lg          { max-width: @container-lg + @carousel-ctrl-spacing; }
+  &-inner                { text-align: center; 
+    @media @mq-xs        { text-align: left; }
+    > .next              { left:  110%; }
+    > .prev              { left: -110%; }
+    > .next.left,
+    > .prev.right        { left: 0; }
+    > .active.left       { left: -110%; }
+    > .active.right      { left:  110%; }
+  }
+  &-control              { color: #999; background-image: none !important; text-shadow: none; text-align: left; padding: 0 18px; 
+    &:hover              { color: #666; }
+    &.left               { left:  0; }
+    &.right              { right: 0; text-align: right; direction: rtl; }
+    > span               { top: 70px; position: absolute; 
+      @media @mq-xs      { top: initial; bottom: 10px; }
+      @media @mq-sm      { top: 123px; bottom: initial; }
+      @media @mq-md      { top: 150px; }
+    }
+    > span:before        { font-size: 33px; padding: 0;
+      @media @mq-sm      { font-size: 50px; margin-top: -25px; }
+    }
+  }
+  &-indicators           { bottom: -26px; margin-bottom: 0;
+    li                   { border: 0; background-color: #ccc; }
+    li.active            { background-color: #aaa; }
+  }
+  &-progress-bar         { height: 3px; background: #ddd; width: 100%; position: relative; top: @section-padding; 
+    @media @mq-lg        { top: @section-padding*2; }
+    .progress            { height: 3px; background: #aaa; width: 0; }
+    .progress.max        { width: 100%; } // transition rule for animating progress bar is setup by js
+  }
+  .kid-face              { width: 160px; height: 160px; border-width: 2px; margin-bottom: 1.2em; 
+    @media @mq-xs        { float: left; margin-right: 1.2em; margin-bottom: 0; }
+    @media @mq-sm        { width: 240px; height: 240px; margin-right: 2em; }
+    @media @mq-md        { width: 300px; height: 300px; }
+  }
+  .kid-info              { 
+    @media @mq-upto-sm   { padding-bottom: 70px; }
+    @media @mq-sm        { overflow: auto; }
+    &--name              { font-size: 22px; margin-top: 0;
+      @media @mq-sm      { font-size: 26px; }
+      @media @mq-md      { font-size: 32px; }
+    }
+    &--story             { font-size: 14px; overflow: auto; 
+      @media @mq-xs      { font-size: 15px; }
+      @media @mq-sm      { font-size: 16px; }
+      @media @mq-md      { font-size: 20px; }
+    }
+    &--sponsor           { padding: 1.2em 0;
+      @media @mq-upto-sm { text-align: center; position: absolute; width: 100%; bottom: 0; }
+      .btn               { padding: 4px 10px;
+        @media @mq-md    { padding: 8px 12px; }
+      }
+    }
+  }
+}

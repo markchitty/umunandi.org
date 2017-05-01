@@ -38,13 +38,14 @@ class Roots_Vcard_Widget extends WP_Widget {
     'region'         => 'State/Region',
     'postal_code'    => 'Zipcode/Postal Code',
     'tel'            => 'Telephone',
-    'email'          => 'Email'
+    'email'          => 'Email',
+    'notes'          => 'Notes'
   );
 
   function __construct() {
     $widget_ops = array('classname' => 'widget_roots_vcard', 'description' => __('Use this widget to add a vCard', 'roots'));
 
-    $this->WP_Widget('widget_roots_vcard', __('Roots: vCard', 'roots'), $widget_ops);
+    parent::__construct('widget_roots_vcard', __('Roots: vCard', 'roots'), $widget_ops);
     $this->alt_option_name = 'widget_roots_vcard';
 
     add_action('save_post', array(&$this, 'flush_widget_cache'));
@@ -83,17 +84,18 @@ class Roots_Vcard_Widget extends WP_Widget {
       echo $before_title, $title, $after_title;
     }
   ?>
-    <p class="vcard">
-      <a class="fn org url" href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a><br>
+    <div class="vcard">
+      <a class="fn org url" href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a>
       <span class="adr">
-        <span class="street-address"><?php echo $instance['street_address']; ?></span><br>
-        <span class="locality"><?php echo $instance['locality']; ?></span>,
+        <span class="street-address"><?php echo $instance['street_address']; ?></span>
+        <span class="locality"><?php echo $instance['locality']; ?></span>
         <span class="region"><?php echo $instance['region']; ?></span>
-        <span class="postal-code"><?php echo $instance['postal_code']; ?></span><br>
+        <span class="postal-code"><?php echo $instance['postal_code']; ?></span>
       </span>
-      <span class="tel"><span class="value"><?php echo $instance['tel']; ?></span></span><br>
+      <span class="tel"><span class="value"><?php echo $instance['tel']; ?></span></span>
       <a class="email" href="mailto:<?php echo $instance['email']; ?>"><?php echo $instance['email']; ?></a>
-    </p>
+    </div>
+    <div class="notes"><?php echo do_shortcode($instance['notes']); ?></div>
   <?php
     echo $after_widget;
 

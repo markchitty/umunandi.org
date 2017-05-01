@@ -1,0 +1,26 @@
+.share-icons.addthis_toolbox {
+  .share-icon:before {
+    font-size: 15px;
+  }
+
+  .share-link {
+    display: inline-block; 
+    width: 27px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 50%;
+    color: @nav-link-color;
+    padding: 0px;
+
+    & + .share-link { margin-left: 10px; }
+
+    &:hover {
+      color: #fff;
+      &.addthis_button_facebook { background: #3b5998; border-color: #3b5998; }
+      &.addthis_button_twitter  { background: #55acee; border-color: #55acee; }
+      &.addthis_button_expanded { background: #d7492e; border-color: #d7492e; }
+    }
+  }
+}
