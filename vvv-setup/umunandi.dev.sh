@@ -5,8 +5,8 @@
 
 # DIR vars
 SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
-VVV_DIR=$(cd "$SCRIPT_DIR/../../vvv"; pwd)
-WEB_ROOT=$(cd "$SCRIPT_DIR/../web-root"; pwd)
+REPO_ROOT=$(cd "$SCRIPT_DIR/.."; pwd)
+VVV_DIR=$(cd "$REPO_ROOT/../vvv"; pwd)
 VVV_WEB_ROOT="$VVV_DIR/www"
 
 # Copy wordpress-* folders to vvv/www to prevent installation of vvv's default Wordpress instances
@@ -17,15 +17,9 @@ cp -R $SCRIPT_DIR/wordpress-* "$VVV_WEB_ROOT"
 # To make this happen, copy the umunandi-config folder (and contents) to vvv/www
 cp -R "$SCRIPT_DIR/umunandi-config" "$VVV_WEB_ROOT"
 
-# Ignore vvv-hosts - we don't need the domains this adds to our hosts file
-mv "$VVV_WEB_ROOT/vvv-hosts" "$VVV_WEB_ROOT/vvv-hosts.ignore"
-
-# Create the host web-root folder which will be mapped to the VM web-root folder
-mkdir "$VVV_WEB_ROOT/umunandi"
-
 # Map the host path umunandi.org/web-root to the VM web-root folder created above.
 # We do this by creating a file vvv/www/Customfile which contains the vagrant config
 # instruction below. VVV runs this file automatically as part of its setup script.
 CUSTOMFILE="$VVV_DIR/Customfile"
-CUSTOMFILE_CONFIG="config.vm.synced_folder \"$WEB_ROOT\", \"/srv/www/umunandi/\", :owner => \"www-data\", :mount_options => [ \"dmode=775\", \"fmode=774\" ]"
+CUSTOMFILE_CONFIG="config.vm.synced_folder \"$REPO_ROOT\", \"/home/vagrant/umunandi.dev/\", :owner => \"www-data\", :mount_options => [ \"dmode=775\", \"fmode=774\" ]"
 echo "$CUSTOMFILE_CONFIG" > "$CUSTOMFILE"
