@@ -1,18 +1,41 @@
-web-root/local-config.php
-web-root/sql-dump-*.sql
-web-root/db-sync
-web-root/content/plugins/*
-web-root/content/upgrade/
-web-root/content/uploads/*
-web-root/content/wfcache/
-web-root/content/debug.log
-web-root/syncdb
-web-root/.bak
+# Application
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+web/app/mu-plugins/*/
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/wfcache
+web/app/debug.log
+
+# Umunandi
+!web/app/plugins/ovc/
+
+# WordPress
+web/wp
+web/.htaccess
+
+# WP-CLI
+db-sync
+sql-dump-*.sql
+
+# Dotenv
+.env
+.env.*
+!.env.dev
+
+# Vendor (e.g. Composer)
+vendor/*
+!vendor/.gitkeep
+
+# Node Package Manager
 node_modules
 
-!web-root/content/plugins/ovc/
+# Vagrant
+bin
+.vagrant
 
+# Filesytem annoyances
 *.map
-*sublime-*
 *.DS_Store
 *Thumbs.db
