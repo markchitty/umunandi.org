@@ -5854,7 +5854,7 @@ h2 {
 .footer {
   position: relative;
   color: #bbb;
-  background: #444a44 url("/content/themes/umunandi/assets/img/footer-top.png") repeat-x 0% 0%;
+  background: #444a44 url("/app/themes/umunandi/assets/img/footer-top.png") repeat-x 0% 0%;
 }
 .footer h3 {
   font-family: inherit;
@@ -6011,7 +6011,7 @@ h2 {
   background-image: linear-gradient(to top, #a98457, #b5956c, #7f8b5b, #88a270, #f0e5c9 60%, #fff6e7);
 }
 .home .header:after {
-  background: transparent url("/content/themes/umunandi/assets/img/brush-edge-1.png") no-repeat 0% 100%;
+  background: transparent url("/app/themes/umunandi/assets/img/brush-edge-1.png") no-repeat 0% 100%;
   background-size: 100% 30px;
 }
 @media (max-aspect-ratio: 2/3) {
@@ -6096,7 +6096,7 @@ h2 {
   left: 0;
   opacity: 0.4;
   border: 1px solid transparent;
-  border-image: url("/content/themes/umunandi/assets/img/box-2.png") 25 25 35 25 stretch;
+  border-image: url("/app/themes/umunandi/assets/img/box-2.png") 25 25 35 25 stretch;
   border-width: 0.45em 0.55em 0.65em 0.45em;
   border-image-outset: 0.5;
 }
@@ -6108,7 +6108,7 @@ h2 {
   bottom: 0;
   left: 0;
   z-index: -1;
-  background: url("/content/themes/umunandi/assets/img/paint-texture.png") no-repeat;
+  background: url("/app/themes/umunandi/assets/img/paint-texture.png") no-repeat;
   background-size: 100% 100%;
   opacity: 0.8;
 }
@@ -6171,7 +6171,7 @@ h2 {
     margin-left: 35vw;
     padding: 0;
     border: 12px solid transparent;
-    border-image: url("/content/themes/umunandi/assets/img/sketch-box.svg") 5% 3% 6% 3% stretch;
+    border-image: url("/app/themes/umunandi/assets/img/sketch-box.svg") 5% 3% 6% 3% stretch;
     border-image-outset: 0.3 1;
   }
   .home-banner .tagline h2:before,
@@ -6288,7 +6288,7 @@ h2 {
   text-shadow: rgba(0, 0, 0, 0.3) 0 0 5px;
   background-color: rgba(255, 255, 255, 0.1);
   border: 10px solid transparent;
-  border-image: url("/content/themes/umunandi/assets/img/sketch-box.svg") 5% 3% 6% 3% stretch;
+  border-image: url("/app/themes/umunandi/assets/img/sketch-box.svg") 5% 3% 6% 3% stretch;
   border-image-outset: 0.4;
 }
 .explainer .term,

@@ -25,7 +25,7 @@ module.exports = function(grunt) {
           // To enable, set sourceMap to true and update sourceMapRootpath based on your install
           sourceMap: false,
           sourceMapFilename: 'assets/css/main.min.css.map',
-          sourceMapRootpath: '/content/themes/umunandi/'
+          sourceMapRootpath: '/app/themes/umunandi/'
         }
       }
     },
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         options: {
           // JS source map: to enable, uncomment the lines below and update sourceMappingURL based on your install
           // sourceMap: 'assets/js/scripts.min.js.map',
-          // sourceMappingURL: '/content/themes/umunandi/assets/js/scripts.min.js.map'
+          // sourceMappingURL: '/app/themes/umunandi/assets/js/scripts.min.js.map'
         }
       }
     },
