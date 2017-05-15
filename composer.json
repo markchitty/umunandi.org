@@ -32,7 +32,8 @@
     "wpackagist-plugin/widget-css-classes": "1.4",
     "wpackagist-plugin/wordfence": "~6.3",
     "wpackagist-plugin/wp-mail-smtp": "~0.10",
-    "wpackagist-plugin/litespeed-cache": "~1.0"
+    "wpackagist-plugin/litespeed-cache": "~1.0",
+    "wpackagist-plugin/wp-optimize": "2.1.x"
   },
   "might-use-plugins": {
     "wpackagist-plugin/jc-submenu": "~0.8",

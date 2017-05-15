@@ -11,7 +11,7 @@ The website is built on WordPress, running
 
 + VirtualBox <https://www.virtualbox.org> - Virtual machine container (open source VMWare equivalent)
 + Vagrant <http://www.vagrantup.com> - Virtual machine configuration tool
-+ VVV = Varying Vagrant Vagrants <https://github.com/Varying-Vagrant-Vagrants/VVV> - an open source Vagrant configuration focused on WordPress development
++ VVV = Varying Vagrant Vagrants <https://github.com/Varying-Vagrant-Vagrants/VVV> - an open source Vagrant configuration focused on WordPress development (version 1.4.1)
 
 ## Dependencies
 
@@ -31,9 +31,11 @@ $ mkdir umunandi
 $ cd umunandi
 ```
 
-1. Clone Varying Vagrant Vagrants into *./vvv*  
+1. Clone Varying Vagrant Vagrants into *./vvv* and checkout v1.4.1  
 `$ git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv`
+`$ cd vvv; git checkout tags/1.4.1 -b 1.4.1`
 1. Clone this umunandi.org repo into *./umunandi.org*  
+`$ cd ..`
 `$ git clone git://github.com/markchitty/umunandi.org umunandi.org`
 1. Run the umunandi.dev setup script. This configures VVV to set up the umunandi.dev development site.  
 `$ ./umunandi.org/vvv-setup/umunandi.dev.sh`  
