@@ -23,7 +23,6 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "wpackagist-plugin/admin-collapse-subpages": "~2.3",
     "wpackagist-plugin/advanced-custom-fields": "~4.4",
-    "wpackagist-plugin/ajax-thumbnail-rebuild": "1.12",
     "wpackagist-plugin/akismet": "~3.3",
     "wpackagist-plugin/codepress-admin-columns": "~3.0",
     "wpackagist-plugin/enable-media-replace": "~3.0",

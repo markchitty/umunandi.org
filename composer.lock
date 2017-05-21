@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "470934cf72a442b6eb6fd06d5e7a4413",
+    "content-hash": "a015ae5fb770044e4c0abbb16afe2cdf",
     "packages": [
         {
             "name": "composer/installers",
@@ -420,26 +420,6 @@
             "homepage": "https://wordpress.org/plugins/advanced-custom-fields/"
         },
         {
-            "name": "wpackagist-plugin/ajax-thumbnail-rebuild",
-            "version": "1.12",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/ajax-thumbnail-rebuild/",
-                "reference": "tags/1.12"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/ajax-thumbnail-rebuild.1.12.zip",
-                "reference": "tags/1.12",
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/ajax-thumbnail-rebuild/"
-        },
-        {
             "name": "wpackagist-plugin/akismet",
             "version": "3.3.1",
             "source": {
@@ -630,7 +610,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wp-optimize.2.1.1.zip",
-                "reference": null,
+                "reference": "tags/2.1.1",
                 "shasum": null
             },
             "require": {
