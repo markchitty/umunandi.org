@@ -6,28 +6,26 @@ $root_dir = dirname(__DIR__);
 /** @var string Document Root */
 $webroot_dir = $root_dir . '/web';
 
+/** @var string Directory containing environment configurations */
+$env_config_dir = __DIR__ . '/environments';
+
+/**
+ * Use Dotenv to set required environment variables
+ */
+$dotenv = new Dotenv\Dotenv($env_config_dir);
+$dotenv->load();
+$dotenv->required(['WP_ENV', 'WP_HOME', 'DB_NAME', 'DB_USER', 'DB_PASSWORD']);
+
 /**
  * Expose global env() function from oscarotero/env
  */
 Env::init();
 
 /**
- * Use Dotenv to set required environment variables and load .env file in root
- */
-$dotenv = new Dotenv\Dotenv($root_dir);
-if (file_exists($root_dir . '/.env')) {
-    $dotenv->load();
-    $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
-}
-
-/**
  * Set up our global environment constant and load its config first
- * Default: development
  */
-define('WP_ENV', env('WP_ENV') ?: 'development');
-
-$env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
-
+define('WP_ENV', env('WP_ENV'));
+$env_config = $env_config_dir . '/' . WP_ENV . '.php';
 if (file_exists($env_config)) {
     require_once $env_config;
 }
@@ -36,7 +34,7 @@ if (file_exists($env_config)) {
  * URLs
  */
 define('WP_HOME', env('WP_HOME'));
-define('WP_SITEURL', env('WP_SITEURL'));
+define('WP_SITEURL', WP_HOME . '/wp');
 
 /**
  * Custom Content Directory

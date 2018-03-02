@@ -6,7 +6,6 @@ web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
 web/app/wfcache
-web/app/debug.log
 
 # Umunandi
 !web/app/plugins/ovc/
@@ -14,6 +13,7 @@ web/app/debug.log
 # WordPress
 web/wp
 web/.htaccess
+.maintenance
 
 # WP-CLI
 db-sync
@@ -24,7 +24,7 @@ sql-dump-*.sql
 .env.*
 !.env.dev
 
-# Vendor (e.g. Composer)
+# Vendor (Composer)
 vendor/*
 !vendor/.gitkeep
 
@@ -36,6 +36,17 @@ bin
 .vagrant
 
 # Filesytem annoyances
+._*
 *.map
-*.DS_Store
-*Thumbs.db
+.Spotlight-V100
+.Trashes
+*.Trashes
+.DS_Store
+.DS_Store?
+*[Tt]humbs.db
+ehthumbs.db
+
+#  Log files
+*.log
+error_log
+access_log
