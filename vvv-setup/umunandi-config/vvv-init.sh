@@ -1,4 +1,4 @@
-# Init script for umunandi.dev
+# Init script for umunandi.test
 
 echo "Commencing Umunandi database setup"
 

@@ -24,26 +24,25 @@ Follow the instructions at <https://github.com/Varying-Vagrant-Vagrants/VVV> and
 
 ## Setup
 
-Create a parent folder for the project and `cd` into it
+1. **Create project home** - Create a parent folder for the project and `cd` into it  
+`$ mkdir umunandi; $ cd umunandi`
 
-```
-$ mkdir umunandi
-$ cd umunandi
-```
+1. **Get umunandi.org** - Clone this repo into */umunandi.org*  
+`$ git clone git://github.com/umunandi/umunandi.org umunandi.org`
 
-1. Clone Varying Vagrant Vagrants into *./vvv* and checkout v1.4.1  
-`$ git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv`
-`$ cd vvv; git checkout tags/1.4.1 -b 1.4.1`
-1. Clone this umunandi.org repo into *./umunandi.org*  
-`$ cd ..`
-`$ git clone git://github.com/markchitty/umunandi.org umunandi.org`
-1. Run the umunandi.dev setup script. This configures VVV to set up the umunandi.dev development site.  
-`$ ./umunandi.org/vvv-setup/umunandi.dev.sh`  
-5 additional directories will appear in the vvv folder
-1. Provision the dev machine. This may take some time (minutes) to download the VM image and configure it.  
-`$ cd vvv; vagrant up`  
-The vagrant provisioning script will ask you for your password so that it can update your hosts file with local DNS entries for *umunandi.dev*. Run `vagrant` to output further vagrant help info.
-1. Point your browser to <http://umunandi.dev> to browse the website. The WordPress admin page is available at <http://umunandi.dev/wp-admin>.
+1. **Get VVV** - Clone Varying Vagrant Vagrants into */vvv* and checkout v1.4.1  
+`$ git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv`  
+`$ cd vvv`  
+`$ git checkout tags/1.4.1 -b 1.4.1`
+
+1. **Configure dev env** - Run the config script to configure the umunandi.test web-site in VVV  
+`$ ../umunandi.org/vvv-setup/umunandi.config.sh`
+
+1. **Provision dev machine** - Downloads the VM image and configures it (may take a few mins)  
+`$ vagrant up`  
+The vagrant provisioning script will ask you for your password so that it can update your hosts file with local DNS entries for *umunandi.test*. 
+
+1. Point your browser to <http://umunandi.test> to browse the website. The WordPress admin page is available at <http://umunandi.test/wp-admin>.
 2. The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses grunt to build js and less. To install and run grunt:
 
 ```
@@ -51,6 +50,8 @@ $ cd ./umunandi.org/web-root/content/themes/umunandi
 $ npm install   // installs grunt
 $ grunt watch   // watch task dynamically recompiles less and js assets
 ```
+
+<sup>* To read more about vagrant and what it can do, run `vagrant` from the vvv directory</sup>
 
 ## Updating WordPress
 WordPress-Skeleton references the WordPress codebase as a git submodule. To update WordPress **don't** use the built-in admin Update feature. Instead, use git to update the submodule to the latest version tag - useful instructions [here](http://ryansechrest.com/2014/04/update-deploy-wordpress-git-submodule/) and [here](https://blog.sourcetreeapp.com/2012/02/01/using-submodules-and-subrepositories/). **Note:** back up the DB first.

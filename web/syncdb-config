@@ -7,7 +7,7 @@ r_host=umunandi.org
 r_web_dir=public_html
 r_port=47926
 
-l_web_addr=umnandi.dev
+l_web_addr=umnandi.test
 r_web_addr=umunandi.org
 r_web_addr_alt= # usually left blank (see note below)
 
@@ -27,7 +27,7 @@ r_web_addr_alt= # usually left blank (see note below)
     # connect via SSH.
 
     # $l_web_addr is whatever you set your local server name to. Something like
-    # localhost:8888/mywebsite or dev.mywebsite.com or mywebsite.dev. We'll be
+    # localhost:8888/mywebsite or dev.mywebsite.com or mywebsite.test. We'll be
     # search and replacing this string later on.
 
     # $r_web_addr is the web address, or site URL of your site. It is used to
