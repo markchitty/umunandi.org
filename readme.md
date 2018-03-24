@@ -46,7 +46,7 @@ The vagrant provisioning script will ask you for your password so that it can up
 2. The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses grunt to build js and less. To install and run grunt:
 
 ```
-$ cd ./umunandi.org/web-root/content/themes/umunandi
+$ cd ./umunandi.org/web/app/themes/umunandi
 $ npm install   // installs grunt
 $ grunt watch   // watch task dynamically recompiles less and js assets
 ```

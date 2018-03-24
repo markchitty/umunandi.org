@@ -12,9 +12,9 @@
     <ul>
     <?php while($featured_kids->have_posts()) : $featured_kids->the_post(); ?>
       <li class="kid">
-        <a href="#content"
+        <a href=".body-top"
           data-scrollto="750"
-          data-target="#carousel-ovcs"
+          data-target=".js-carouselOvcs"
           data-slide-to="<?= $featured_kids->current_post ?>">
           <div class="kid-face"><?= wp_get_attachment_image(get_field('head_shot'), 'thumbnail') ?></div>
           <div class="kid-name"><?php the_field('first_name') ?></div>

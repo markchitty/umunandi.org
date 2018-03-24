@@ -14,7 +14,7 @@
     > .active.right      { left:  110%; }
   }
   &-control              { color: #999; background-image: none !important; text-shadow: none; text-align: left; padding: 0 18px; 
-    &:hover              { color: #666; }
+    &:hover, &:focus     { color: #666; }
     &.left               { left:  0; }
     &.right              { right: 0; text-align: right; direction: rtl; }
     > span               { top: 70px; position: absolute; 
@@ -27,7 +27,7 @@
     }
   }
   &-indicators           { bottom: -26px; margin-bottom: 0;
-    li                   { border: 0; background-color: #ccc; }
+    li                   { border: 0; background-color: #ccc; transition: 0.4s; }
     li.active            { background-color: #aaa; }
   }
   &-progress-bar         { height: 3px; background: #ddd; width: 100%; position: relative; top: @section-padding; 
@@ -35,7 +35,7 @@
     .progress            { height: 3px; background: #aaa; width: 0; }
     .progress.max        { width: 100%; } // transition rule for animating progress bar is setup by js
   }
-  .kid-face              { width: 160px; height: 160px; border-width: 2px; margin-bottom: 1.2em; 
+  .kid-face              { display: inline-block; width: 160px; height: 160px; border-width: 2px; margin-bottom: 1.2em;
     @media @mq-xs        { float: left; margin-right: 1.2em; margin-bottom: 0; }
     @media @mq-sm        { width: 240px; height: 240px; margin-right: 2em; }
     @media @mq-md        { width: 300px; height: 300px; }

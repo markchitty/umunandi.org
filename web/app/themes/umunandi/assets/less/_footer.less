@@ -11,7 +11,7 @@
   h3 {
     .h6;
     margin: 0;
-    @media @mq-sm { margin-bottom: 5px; }
+    @media @mq-sm { margin-bottom: 3px; }
   }
 
   h3, .menu > li > a { color: @footer-text-color-dark; }
@@ -27,17 +27,13 @@
   a:hover { color: lighten(@footer-text-color, 15%) !important; }
 
   .vcard {
-    .org { .sr-only; }
-    .email { display: block; }
-    .adr span { display: block; }
-    .email, & + .notes { margin-top: @font-size-base; }
+    .org           { .sr-only; }
+    > *            { margin-bottom: 7px; }
+    .adr span, > * { display: block; }
   }
 
   .subscribe {
-    @media @mq-sm {
-      padding-left: 0;
-      text-align: right;
-    }
+    @media @mq-sm { padding-left: 0; text-align: right; }
   }
 
   .btn { color: @footer-bg-color; }
@@ -50,7 +46,9 @@
 
   .mailchimp-form {
     margin-top: @line-height-computed;
-
+    
+    .input-group .form-control { border: 0; }
+    
     .submit-icon:before {
       font-size: 19px;
       line-height: 1;
@@ -62,22 +60,19 @@
       margin-top: @line-height-computed/2;
       font-size: @font-size-small;
     }
-
+    
     div.mce_inline_error, #mce-error-response { color: @footer-text-color-warn; }
   }
-}
-
-// At narrow width (mobile devices) .mailchimp-form drops out
-// of its container (.subscribe) and goes full width
-@media @mq-upto-xs {
-  .mailchimp-form {
-    position: absolute;
-    left: 0;
-    bottom: 15px;
-    padding: 0 @grid-gutter-width/2;
+  
+  @media @mq-upto-xs {
+    .subscribe br   { display: none; }
+    .mailchimp-form { margin-top: @line-height-computed/2; }
+    .footer-contact, .subscribe { width: 100%; }
+    .vcard {
+      .row; 
+      > * { .make-xs-column(6; @gutter: @grid-gutter-width); }
+    }
   }
-  .subscribe { position: static; }
-  .footer-body { padding-bottom: 45px; }
 }
 
 .footer-footer {

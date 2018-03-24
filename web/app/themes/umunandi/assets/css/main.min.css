@@ -5881,7 +5881,7 @@ h2 {
 }
 @media (min-width: 768px) {
   .footer h3 {
-    margin-bottom: 5px;
+    margin-bottom: 3px;
   }
 }
 .footer h3,
@@ -5911,15 +5911,12 @@ h2 {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-.footer .vcard .email {
-  display: block;
+.footer .vcard > * {
+  margin-bottom: 7px;
 }
-.footer .vcard .adr span {
+.footer .vcard .adr span,
+.footer .vcard > * {
   display: block;
-}
-.footer .vcard .email,
-.footer .vcard + .notes {
-  margin-top: 15px;
 }
 @media (min-width: 768px) {
   .footer .subscribe {
@@ -5942,6 +5939,9 @@ h2 {
 .footer .mailchimp-form {
   margin-top: 21px;
 }
+.footer .mailchimp-form .input-group .form-control {
+  border: 0;
+}
 .footer .mailchimp-form .submit-icon:before {
   font-size: 19px;
   line-height: 1;
@@ -5958,17 +5958,27 @@ h2 {
   color: #d99d26;
 }
 @media (max-width: 480px) {
-  .mailchimp-form {
-    position: absolute;
-    left: 0;
-    bottom: 15px;
-    padding: 0 15px;
+  .footer .subscribe br {
+    display: none;
   }
-  .subscribe {
-    position: static;
+  .footer .mailchimp-form {
+    margin-top: 10.5px;
   }
-  .footer-body {
-    padding-bottom: 45px;
+  .footer .footer-contact,
+  .footer .subscribe {
+    width: 100%;
+  }
+  .footer .vcard {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .footer .vcard > * {
+    position: relative;
+    float: left;
+    width: 50%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 .footer-footer {
@@ -6362,7 +6372,8 @@ h2 {
   text-align: left;
   padding: 0 18px;
 }
-.carousel-control:hover {
+.carousel-control:hover,
+.carousel-control:focus {
   color: #666;
 }
 .carousel-control.left {
@@ -6411,6 +6422,7 @@ h2 {
 .carousel-indicators li {
   border: 0;
   background-color: #ccc;
+  transition: 0.4s;
 }
 .carousel-indicators li.active {
   background-color: #aaa;
@@ -6436,6 +6448,7 @@ h2 {
   width: 100%;
 }
 .carousel .kid-face {
+  display: inline-block;
   width: 160px;
   height: 160px;
   border-width: 2px;
