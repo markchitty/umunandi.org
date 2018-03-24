@@ -2,7 +2,7 @@
 // Force text edit mode on certain pages
 add_filter('user_can_richedit', 'disable_rich_editing');
 function disable_rich_editing($default) {
-  $disabled_page_slugs = ['Subscribe'];
+  $disabled_page_slugs = [];
   global $post;
   foreach ($disabled_page_slugs as $slug) {
     if ($post->ID == get_page_by_title($slug)->ID) return false;
