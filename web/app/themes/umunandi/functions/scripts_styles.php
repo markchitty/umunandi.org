@@ -17,5 +17,10 @@ function umunandi_scripts_n_styles() {
     false, false, true
   );
   wp_enqueue_script('addThis');
-  
 }
+
+// Login logo
+function umunandi_login_stylesheet() {
+  wp_enqueue_style('custom-login', get_template_directory_uri() . '/assets/css/login-style.css');
+}
+add_action('login_enqueue_scripts', 'umunandi_login_stylesheet');
