@@ -2,10 +2,7 @@
 
 umunandi.org is the website for **Umunandi**, a UK based charity supporting orphans and vulnerable children in Zambia.
 
-The website is built on WordPress, running
-
-+ WordPress-Skeleton <https://github.com/markjaquith/WordPress-Skeleton> - copied not cloned (don't want the history). Uses WordPress as a submodule.
-+ Roots theme <http://roots.io> & <https://github.com/roots/roots>. Theme renamed to Umunandi.
+The website is a WordPress site, built on the Roots theme <http://roots.io> & <https://github.com/roots/roots> (now deprecated and replace by [Sage](https://github.com/roots/sage)).
 
 ## Development environment
 
@@ -25,9 +22,10 @@ Follow the instructions at <https://github.com/Varying-Vagrant-Vagrants/VVV> and
 ## Setup
 
 1. **Create project home** - Create a parent folder for the project and `cd` into it  
-`$ mkdir umunandi; $ cd umunandi`
+`$ mkdir umunandi`  
+`$ cd umunandi`
 
-1. **Get umunandi.org** - Clone this repo into */umunandi.org*  
+1. **Get umunandi.org** - Clone this repo into a new folder */umunandi.org*  
 `$ git clone git://github.com/umunandi/umunandi.org umunandi.org`
 
 1. **Get VVV** - Clone Varying Vagrant Vagrants into */vvv* and checkout v1.4.1  
@@ -35,15 +33,17 @@ Follow the instructions at <https://github.com/Varying-Vagrant-Vagrants/VVV> and
 `$ cd vvv`  
 `$ git checkout tags/1.4.1 -b 1.4.1`
 
-1. **Configure dev env** - Run the config script to configure the umunandi.test web-site in VVV  
-`$ ../umunandi.org/vvv-setup/umunandi.config.sh`
+1. **Configure dev env** - Run the `umunandi.config.sh` config script   
+`$ ../umunandi.org/vvv-setup/umunandi.config.sh`  
+This prepares the VVV vm to create a new *umunandi.test* web site.
 
-1. **Provision dev machine** - Downloads the VM image and configures it (may take a few mins)  
+1. **Provision dev machine** - Run:  
 `$ vagrant up`  
-The vagrant provisioning script will ask you for your password so that it can update your hosts file with local DNS entries for *umunandi.test*. 
+This downloads the VM image and configures it (may take a few mins). The vagrant provisioning script will ask you for your password so that it can update your hosts file with local DNS entries for *umunandi.test*. To read more about vagrant and what it can do, run `vagrant` from the vvv directory.
 
-1. Point your browser to <http://umunandi.test> to browse the website. The WordPress admin page is available at <http://umunandi.test/wp-admin>.
-2. The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses grunt to build js and less. To install and run grunt:
+1. Point your browser to <http://umunandi.test> to browse the website. The WordPress admin page is available at <http://umunandi.test/wp-admin>. You can login with [VVV's default credentials](https://varyingvagrantvagrants.org/docs/en-US/default-credentials/).
+
+2. The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses *grunt* to build js and less/css assets. To install and run grunt:
 
 ```
 $ cd ./umunandi.org/web/app/themes/umunandi
@@ -51,31 +51,45 @@ $ npm install   // installs grunt
 $ grunt watch   // watch task dynamically recompiles less and js assets
 ```
 
-<sup>* To read more about vagrant and what it can do, run `vagrant` from the vvv directory</sup>
-
 ## Updating WordPress
-WordPress-Skeleton references the WordPress codebase as a git submodule. To update WordPress **don't** use the built-in admin Update feature. Instead, use git to update the submodule to the latest version tag - useful instructions [here](http://ryansechrest.com/2014/04/update-deploy-wordpress-git-submodule/) and [here](https://blog.sourcetreeapp.com/2012/02/01/using-submodules-and-subrepositories/). **Note:** back up the DB first.
+[Roots uses Composer](https://roots.io/using-composer-with-wordpress/) to manage dependencies such as WordPress plugins, and indeed WordPress itself. To update WordPress and/or plugins **don't** use the WordPress admin UI. Instead, edit *composer.json* and update the relevant version numbers for the dependencies you want to update. Once you've done that, log in to vvv ...
 
 ```
-$ cd umunandi.org/web-root/wp
-$ git fetch --tags
-
-From https://github.com/WordPress/WordPress
- * [new tag]         3.7.2      -> 3.7.2
- * [new tag]         3.8.2      -> 3.8.2
-
-$ git checkout 3.8.2
+$ cd vvv
+$ vagrant ssh       // Log in to the VM
+$ cd umunandi.test
 ```
+... and then from the vvv vm:
 
-This will show up in the umunandi.org (parent) repo as an uncomitted change to the submodule's tracked commit. Commit this change.
+1. Backup the database (always backup the database) using [wp-cli](https://wp-cli.org/). (The */temp* folder is gitignore'd).  
+`$ wp db export temp/umunandi-db-yyyy-mm-dd.sql`
 
-Finally, log in to the local WordPress admin pages and click the Update DB button that you should be redirected to. Hopefully everything won't blow up at this point.
+1. Update WordPress - this will fetch the new version of WordPress you specified when you edited *composer.json*  
+`$ composer update johnpbloch/wordpress*`
+
+1. Test <http://umunandi.test> is still working
+
+1. Update everything else (= plugins)  
+`$ composer update`
+
+1. Test <http://umunandi.test> is still working
+
 
 ## Managed deployment configuration
 
-The production server at umunandi.org is set as a git remote for pushing to.
+We deploy from *dev* to *prod* using git, as described by various [clever people](http://toroid.org/ams/git-website-howto) on the interweb.
 
-+ **Git repository on server** - <http://toroid.org/ams/git-website-howto>
+####Git repository on server
+
+On the server we create a [bare repositry](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/) in the server home directory.
+
+```
+$ mkdir umunandi.org.git && cd umunandi.org.git
+$ git init --bare
+```
+
+
+
 + **Public SSH key on server** - <http://smbjorklund.no/ssh-login-without-password-using-os-x>
 + **Post-receive git hook** - <http://serverfault.com/questions/458942/git-website-delopyment-including-submodules>
   - post-receive.sh
