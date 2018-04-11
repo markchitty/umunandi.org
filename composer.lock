@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c34bbc5b0a8c4df4b8568e2f40b44e9",
+    "content-hash": "61b2d223e9bb9bf26f0a8e885648792a",
     "packages": [
         {
             "name": "composer/installers",
@@ -382,6 +382,17 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "wp-sync-db/wp-sync-db",
+            "version": "1.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/wp-sync-db/wp-sync-db/archive/1.5.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "wordpress-plugin"
         },
         {
             "name": "wpackagist-plugin/admin-collapse-subpages",

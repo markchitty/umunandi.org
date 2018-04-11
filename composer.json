@@ -12,6 +12,18 @@
     {
       "type": "composer",
       "url": "https://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wp-sync-db/wp-sync-db",
+        "type": "wordpress-plugin",
+        "version": "1.5",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/wp-sync-db/wp-sync-db/archive/1.5.zip"
+        }
+      }
     }
   ],
   "require": {
@@ -33,7 +45,8 @@
     "wpackagist-plugin/wp-mail-smtp": "^1.1",
     "wpackagist-plugin/litespeed-cache": "^2.1",
     "wpackagist-plugin/wp-optimize": "^2.2",
-    "wpackagist-plugin/password-protected": "^2.1"
+    "wpackagist-plugin/password-protected": "^2.1",
+    "wp-sync-db/wp-sync-db": "*"
   },
   "might-use-plugins": {
     "wpackagist-plugin/jc-submenu": "~0.8",
