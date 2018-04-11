@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# === umunandi.org deployment setup ===
+# The web site is deployed by a modified version of git push-to-deploy
+# http://toroid.org/git-website-howto.
+# This script is run by git after the repo recieves a push. It runs from $GIT_DIR,
+# which on the server happens to be the bare repo in ~/umunandi.org/umunandi.org.git
+
+echo "Running umunandi.org post-receive githook..."
+
+# Set $git_work_tree based on the name of the branch that was pushed: production or staging
+while read oldrev newrev refname
+do
+  branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+  git_work_tree="../$branch"
+  echo "Setting work tree to $git_work_tree"
+done
+
+# Checkout the repo into the work tree
+echo "Checking out branch '$branch' into $git_work_tree"
+git --work-tree=$git_work_tree checkout -f $branch
+
+# Run composer install to install WordPress and plugins
+echo "Running composer install"
+cd $git_work_tree
+composer install
+
+echo "Done"
