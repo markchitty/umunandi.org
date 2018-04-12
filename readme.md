@@ -22,8 +22,7 @@ Follow the instructions at <https://github.com/Varying-Vagrant-Vagrants/VVV> and
 ## Setup
 
 1. **Create project home** - Create a parent folder for the project and `cd` into it  
-`$ mkdir umunandi`  
-`$ cd umunandi`
+`$ mkdir umunandi && $ cd umunandi`
 
 1. **Get umunandi.org** - Clone this repo into a new folder */umunandi.org*  
 `$ git clone git://github.com/umunandi/umunandi.org umunandi.org`
@@ -94,34 +93,39 @@ Everything on the server lives in _~/umunandi.org_:
 
 ### Setup
 
-1. Create the directory structure above.  
+* Create the directory structure above.  
 
-1. Create the [bare repositry](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/):  
+* Create the [bare repositry](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/):  
 `$ cd umunandi.org.git && git init --bare`
 
-1. In your dev environment, set the bare repo as a new remote (the _umunandi:_ protocol is enabled by using [ssh config](http://osxdaily.com/2011/04/05/setup-ssh-config-fie/))  
+* In your dev environment, set the bare repo as a new remote (the _umunandi:_ protocol is enabled by using [ssh config](http://osxdaily.com/2011/04/05/setup-ssh-config-fie/))  
 `$ git remote add production umunandi:umunandi.org/umunandi.org.git` 
 
-1. Push the staging branch:  
+* Push the staging branch:  
 `$ git push production staging` 
 
-1. At this point the repo should now be on the server, but the _production_ and _staging_ directories are still empty as the git-hook that populates them is not in place on the server. To make the git-hook available, we copy the post-receive  script from the repo to _umunandi.org.git/hooks_ using _git archive_:  
+* At this point the repo should now be on the server, but the _production_ and _staging_ directories are still empty as the git-hook that populates them is not in place on the server. To make the git-hook available, we copy the post-receive  script from the repo to _umunandi.org.git/hooks_ using _git archive_:  
 `$ git archive staging deploy/post-receive | tar -x --strip-components=1 -C hooks/` 
 
-1. Now push the staging branch from _dev_ again and the git-hook will checkout the repo into the _staging_ directory. To update the production site simply push the master branch instead:  
-`$ git push production master` 
+* Now push the staging branch from _dev_ again and the git-hook will checkout the repo into the _staging_ directory.  
+`$ git push production staging`
 
+The staging directory should now look like this:
 
 ```
-production         <= staging has the same structure
-├ config
-├ deploy           <= contains post-receive git hook 
-├ vvv-setup        <= ignored on server
-└ web              <= web-root - symlink'd to ~/public_html
-  ├ app
-  ├ stuff
-  └ wp
+└ staging
+  ├ config
+  | └ environments   <= contains .env files
+  ├ deploy           <= contains post-receive git hook
+  ├ vendor           <= composer libraries
+  ├ vvv-setup        <= ignored on server
+  └ web              <= configured as staging site web-root in cPanel
+    ├ app
+    ├ stuff
+    └ wp
 ```
+
+* Create the environment specific .env file. In _config/environments_ copy _.env.dev_ to _.env_ and then edit the new _.env_ file, setting the appropriate DB connection details, etc.
 
 ### Deployment steps
 
