@@ -75,33 +75,53 @@ $ cd umunandi.test
 1. Test <http://umunandi.test> is still working
 
 
-## Managed deployment configuration
+## Managed deployment
 
-We deploy from *dev* to *prod* using git, as described by various [clever people](http://toroid.org/ams/git-website-howto) on the interweb.
+The production server hosts two environments, __production__ and __staging__. Deployment to the server is done [using git](http://toroid.org/ams/git-website-howto) for the code and [wp-sync-db plugin](https://github.com/wp-sync-db/wp-sync-db) for the database. Connect to the server using [ssh keys](http://smbjorklund.no/ssh-login-without-password-using-os-x) - this works for both terminal sessions and git.
 
-####Git repository on server
+In addition to the steps below, the server also needs to have databases and subdomains set up. This is configured using the normal cPanel admin UI.
 
-On the server we create a [bare repositry](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/) in the server home directory.
+Everything on the server lives in _~/umunandi.org_:
 
 ```
-$ mkdir umunandi.org.git && cd umunandi.org.git
-$ git init --bare
+/~
+├ umunandi.org
+  ├ production         <= main web site
+  ├ staging            <= staging site
+  ├ umunandi.org.git   <= bare repositry
+  └ v1                 <= old site
 ```
 
+### Setup
+
+1. Create the directory structure above.  
+
+1. Create the [bare repositry](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/):  
+`$ cd umunandi.org.git && git init --bare`
+
+1. In your dev environment, set the bare repo as a new remote (the _umunandi:_ protocol is enabled by using [ssh config](http://osxdaily.com/2011/04/05/setup-ssh-config-fie/))  
+`$ git remote add production umunandi:umunandi.org/umunandi.org.git` 
+
+1. Push the staging branch:  
+`$ git push production staging` 
+
+1. At this point the repo should now be on the server, but the _production_ and _staging_ directories are still empty as the git-hook that populates them is not in place on the server. To make the git-hook available, we copy the post-receive  script from the repo to _umunandi.org.git/hooks_ using _git archive_:  
+`$ git archive staging deploy/post-receive | tar -x --strip-components=1 -C hooks/` 
+
+1. Now push the staging branch from _dev_ again and the git-hook will checkout the repo into the _staging_ directory. To update the production site simply push the master branch instead:  
+`$ git push production master` 
 
 
-+ **Public SSH key on server** - <http://smbjorklund.no/ssh-login-without-password-using-os-x>
-+ **Post-receive git hook** - <http://serverfault.com/questions/458942/git-website-delopyment-including-submodules>
-  - post-receive.sh
-  - saved on server at *~/umunandi.org.git/hooks/post-receive* (chmod 775)
-  - checks out latest revision to *~/public_html* and then removes .git files & dirs
-+ **syncdb** - <https://github.com/jplew/SyncDB>
-  - Synchronizes non-git assets = WP database & uploaded content
-  - *syncdb* script and configuration file *syncdb-config* live in *umunandi.org/web-root*
-  - SyncDB must be from the webroot directory within the vvv vm  
-    `$ cd vvv; vagrant ssh` - open a shell on the vvv vm  
-    `$ cd /srv/www/umunandi` - cd to the webroot directory  
-    `$ ./syncdb help` - show the list of SyncDB commands
+```
+production         <= staging has the same structure
+├ config
+├ deploy           <= contains post-receive git hook 
+├ vvv-setup        <= ignored on server
+└ web              <= web-root - symlink'd to ~/public_html
+  ├ app
+  ├ stuff
+  └ wp
+```
 
 ### Deployment steps
 
@@ -111,14 +131,4 @@ The ideal solution would be for dev DB changes to be scripted and the SQL script
 
 For now, the only approach is to sync down the DB from live => dev on a regular basis and especially prior to doing a code update. I'm *preeeety* sure this is going to bite me in the ass at some point, but I guess I'll have to deal with that when it happens.
 
-#### Pull
 
-1. `$ cd vvv; vagrant ssh` - Open a shell on the vvv vm
-2. `$ /srv/www/umunandi/syncdb pull` - run *syncdb pull* to copy the live database and uploads (images etc) down locally
-
-#### Push
-
-1. `$ cd vvv; vagrant ssh` - Open a shell on the vvv vm
-2. `$ /srv/www/umunandi/syncdb push` - run *syncdb push* to copy the local database and uploads (images etc) up to the live server
-3. Push the latest release in git up to umunandi.org remote
-   - We're using gitflow so go through the correct procedure for creating a new release
