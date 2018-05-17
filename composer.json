@@ -48,6 +48,7 @@
     "wpackagist-plugin/admin-collapse-subpages": "^2.3",
     "wpackagist-plugin/advanced-custom-fields": "^4.4",
     "wpackagist-plugin/akismet": "^4.0",
+    "wpackagist-plugin/bootstrap-3-shortcodes": "^3.3",
     "wpackagist-plugin/codepress-admin-columns": "^3.0",
     "wpackagist-plugin/enable-media-replace": "^3.0",
     "wpackagist-plugin/post-tags-and-categories-for-pages": "^1.4",
@@ -57,7 +58,6 @@
     "wpackagist-plugin/wp-mail-smtp": "^1.1",
     "wpackagist-plugin/litespeed-cache": "^2.1",
     "wpackagist-plugin/wp-optimize": "^2.2",
-    "wpackagist-plugin/password-protected": "^2.1",
     "wp-sync-db/wp-sync-db": "*",
     "wp-sync-db/wp-sync-db-media-files": "*"
   },
