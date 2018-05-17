@@ -1,9 +1,25 @@
 <?php
-// Prepend base template path so base.php can live at templates/layout/base.php
-function umunandi_roots_template_path($templates) {
-  return array_map(function($t) { return 'templates/layout/' . $t; }, $templates);
+// Get template type - list copied from src/wp-includes/template-loader.php
+function umunandi_get_template_type() {
+  $template_type = 'index';
+  if     (is_embed()            ) : $template_type = 'embed';
+  elseif (is_404()              ) : $template_type = '404';
+  elseif (is_search()           ) : $template_type = 'search';
+  elseif (is_front_page()       ) : $template_type = 'front-page';
+  elseif (is_home()             ) : $template_type = 'home';
+  elseif (is_post_type_archive()) : $template_type = 'archive';
+  elseif (is_tax()              ) : $template_type = 'taxonomy';
+  elseif (is_attachment()       ) : $template_type = 'attachment';
+  elseif (is_page()             ) : $template_type = 'page';
+  elseif (is_singular()         ) : $template_type = 'singular';
+  elseif (is_category()         ) : $template_type = 'category';
+  elseif (is_tag()              ) : $template_type = 'tag';
+  elseif (is_author()           ) : $template_type = 'author';
+  elseif (is_date()             ) : $template_type = 'date';
+  elseif (is_archive()          ) : $template_type = 'archive';
+  endif;
+  return $template_type;
 }
-add_filter('roots_wrap_base', 'umunandi_roots_template_path');
 
 // Image tag without dimensions
 function wp_get_image_tag($attach_id, $size, $icon, $alt = '') {
