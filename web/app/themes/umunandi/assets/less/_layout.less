@@ -55,8 +55,8 @@ footer {
   @media @mq-sm { height: @footer-height; }
 }
 .body-row {
-  @media @mq-sm { min-height: calc(~"100vh - " @header-height-sm + @footer-height); }
-  @media @mq-lg { min-height: calc(~"100vh - " @header-height-lg + @footer-height); }
+  @media @mq-sm { min-height: calc(~"100vh - " @footer-height + @header-height-sm); }
+  @media @mq-lg { min-height: calc(~"100vh - " @footer-height + @header-height-lg); }
 }
 
 // Sections

@@ -1,0 +1,18 @@
+.donate {
+  .donate-section {
+    text-align: center;
+    background-position-y: top;
+
+    @media @mq-upto-sm { margin-top: @navbar-height; }
+    @media @mq-sm      { min-height: calc(~"100vh - " @footer-height); }
+    @media @mq-sm      { padding-top: @navbar-height + 20 + @section-padding; }
+    @media @mq-md      { padding-top: @navbar-height + 70 + @section-padding; }
+  }
+
+  .iframe.raisely {
+    min-height: 550px;
+    max-width: 490px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 2px;
+  }
+}

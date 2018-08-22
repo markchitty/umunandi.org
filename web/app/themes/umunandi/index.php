@@ -9,11 +9,17 @@
     <?php get_template_part('templates/ie-warning'); ?>
     <?php get_template_part('templates/layout/nav'); ?>
 
+    <?php if (is_page('donate')) : ?>
+      <?php get_template_part('templates/donate'); ?>
+    <?php else : ?>
+
       <?php get_template_part('templates/layout/header'); ?>
       <div class="body" role="document">
         <a name="body-top" class="body-top"></a>
         <?php get_template_part(sprintf('templates/%s-body', umunandi_get_template_type())); ?>
       </div>
+
+    <?php endif; ?>
 
     <?php get_template_part('templates/layout/footer'); ?>
 
