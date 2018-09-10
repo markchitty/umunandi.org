@@ -1,10 +1,7 @@
 <div class="home-banner">
 
   <div class="tagline">
-    <h2>
-      <?= umunandi_split_sentence(get_bloginfo('description'))[0] ?><br>
-      <?= umunandi_split_sentence(get_bloginfo('description'))[1] ?>
-    </h2>
+    <h2><?= str_replace("get", "<br>get", get_bloginfo('description')) ?></h2>
   </div>
 
   <?php global $OVCs; $featured_kids = $OVCs->featured_kids(); ?>
@@ -12,7 +9,7 @@
     <ul>
     <?php while($featured_kids->have_posts()) : $featured_kids->the_post(); ?>
       <li class="kid">
-        <a href=".body-top"
+        <a href=".kids-carousel .section-top"
           data-scrollto="750"
           data-target=".js-carouselOvcs"
           data-slide-to="<?= $featured_kids->current_post ?>">
@@ -25,7 +22,7 @@
   </div>
 
   <div class="scroll-down">
-    <a href=".body-top" data-scrollto="750"><span class="icon-arrow-down"></span></a>
+    <a href=".kids-carousel .section-top" data-scrollto="750"><span class="icon-arrow-down"></span></a>
   </div>
 
   <div class="explainer">

@@ -1,9 +1,15 @@
 .carousel                { width: auto;
-  @carousel-ctrl-spacing : 110px;
+
+  @carousel-ctrl-spacing     : 110px;
+  @carousel-kid-face-size-xs : 160px;
+  @carousel-kid-face-size-sm : 240px;
+  @carousel-kid-face-size-md : 300px;
+
   @media @mq-sm          { max-width: @container-sm + @carousel-ctrl-spacing;
                            padding: 0 (@grid-gutter-width + @carousel-ctrl-spacing)/2; }
   @media @mq-md          { max-width: @container-md + @carousel-ctrl-spacing; }
   @media @mq-lg          { max-width: @container-lg + @carousel-ctrl-spacing; }
+
   &-inner                { text-align: center; 
     @media @mq-xs        { text-align: left; }
     > .next              { left:  110%; }
@@ -13,33 +19,48 @@
     > .active.left       { left: -110%; }
     > .active.right      { left:  110%; }
   }
-  &-control              { color: #999; background-image: none !important; text-shadow: none; text-align: left; padding: 0 18px; 
+
+  &-control              { color: #999; width: auto; background-image: none !important; text-shadow: none;
+                           text-align: left; padding: 0 18px; bottom: auto; transform: translateY(-50%); z-index: 20;
     &:hover, &:focus     { color: #666; }
     &.left               { left:  0; }
     &.right              { right: 0; text-align: right; direction: rtl; }
-    > span               { top: 70px; position: absolute; 
-      @media @mq-xs      { top: initial; bottom: 10px; }
-      @media @mq-sm      { top: 123px; bottom: initial; }
-      @media @mq-md      { top: 150px; }
-    }
+
+    &                    { top: @carousel-kid-face-size-xs/2; }
+    @media @mq-xs        { top: auto; bottom: 0; transform: none; }
+    @media @mq-sm        { top: @carousel-kid-face-size-sm/2; }
+    @media @mq-md        { top: @carousel-kid-face-size-md/2; }
+
     > span:before        { font-size: 33px; padding: 0;
-      @media @mq-sm      { font-size: 50px; margin-top: -25px; }
+      @media @mq-sm      { font-size: 50px; }
     }
   }
-  &-indicators           { bottom: -26px; margin-bottom: 0;
-    li                   { border: 0; background-color: #ccc; transition: 0.4s; }
-    li.active            { background-color: #aaa; }
+
+  &-indicators           { position: relative; margin: 16px 0 8px;
+                           bottom: auto; left: auto; width: auto;
+    li                   { border: 0; background-color: #ccc; transition: 0.4s;
+      &, &.active        { width: 10px; height: 10px; margin: 0 4px; }
+      &.active           { background-color: #999; transform: scale(1.4); }
+    }
   }
+
   &-progress-bar         { height: 3px; background: #ddd; width: 100%; position: relative; top: @section-padding; 
-    @media @mq-lg        { top: @section-padding*2; }
+    @media @mq-lg        { top: @section-padding-lg; }
     .progress            { height: 3px; background: #aaa; width: 0; }
     .progress.max        { width: 100%; } // transition rule for animating progress bar is setup by js
   }
-  .kid-face              { display: inline-block; width: 160px; height: 160px; border-width: 2px; margin-bottom: 1.2em;
+
+  .kid-face              { display: inline-block; border-width: 2px; margin-bottom: 1.2em;
+                           width: @carousel-kid-face-size-xs; height: @carousel-kid-face-size-xs;
+                           transition: 0.2s;
     @media @mq-xs        { float: left; margin-right: 1.2em; margin-bottom: 0; }
-    @media @mq-sm        { width: 240px; height: 240px; margin-right: 2em; }
-    @media @mq-md        { width: 300px; height: 300px; }
+    @media @mq-sm        { width: @carousel-kid-face-size-sm; height: @carousel-kid-face-size-sm; margin-right: 2em; }
+    @media @mq-md        { width: @carousel-kid-face-size-md; height: @carousel-kid-face-size-md; }
+    &:hover              { border-color: @brand-primary;
+      > img              { transform: scale(1.07); }
+    }
   }
+
   .kid-info              { 
     @media @mq-upto-sm   { padding-bottom: 70px; }
     @media @mq-sm        { overflow: auto; }
