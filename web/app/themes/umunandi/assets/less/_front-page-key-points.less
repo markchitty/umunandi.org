@@ -75,6 +75,11 @@
     @media @mq-md { font-size: 22px; }
   }
 
+  &-read-more {
+    margin: 1.5em 0 0;
+    opacity: 0;
+  }
+
   &:before {
     content: '';
     display: block;
@@ -94,6 +99,10 @@
     .key-point-img {
       background-color: @brand-primary;
       border-color: rgba(255,255,255,0.6);
+    }
+
+    .key-point-read-more {
+      opacity: 0.8;
     }
   }
 }

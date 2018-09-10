@@ -6714,6 +6714,10 @@ h2 {
     font-size: 22px;
   }
 }
+.key-point-read-more {
+  margin: 1.5em 0 0;
+  opacity: 0;
+}
 .key-point:before {
   content: '';
   display: block;
@@ -6735,6 +6739,9 @@ h2 {
 .key-point:hover .key-point-img {
   background-color: #006800;
   border-color: rgba(255, 255, 255, 0.6);
+}
+.key-point:hover .key-point-read-more {
+  opacity: 0.8;
 }
 .home .nav-main .umunandi-svg-fill,
 .donate .nav-main .umunandi-svg-fill {

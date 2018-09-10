@@ -2,6 +2,7 @@
   <div class="key-point-img"><img src="<?= $atts['img'] ?>"></div>
   <div class="key-point-words">
     <h3 class="key-point-title"><?= $atts['title'] ?></h3>
-    <div class="key-point-blurb"><?= $content ?></div>
+    <p class="key-point-blurb"><?= $content ?></p>
+    <p class="key-point-read-more">Read more &#x2192;</p>
   </div>
 </a>
