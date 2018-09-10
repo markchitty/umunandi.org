@@ -5456,8 +5456,46 @@ button.close {
 }
 @media (min-width: 1200px) {
   .section {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+.section.fuzzy-edges {
+  position: relative;
+}
+.section.fuzzy-edges:before,
+.section.fuzzy-edges:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 100%;
+  height: 15px;
+  background: transparent url("/app/themes/umunandi/assets/img/brush-edge-1.png") 0 0 no-repeat;
+  background-size: 100% 100%;
+}
+.section.fuzzy-edges:after {
+  transform: scale(-1, -1);
+  height: 9px;
+  bottom: auto;
+  top: 100%;
+}
+@media (min-width: 768px) {
+  .section.fuzzy-edges:before {
+    height: 30px;
+  }
+  .section.fuzzy-edges:after {
+    height: 18px;
+  }
+}
+.section.fuzzy-edges .section-top {
+  position: absolute;
+  display: block;
+  top: -15px;
+}
+@media (min-width: 768px) {
+  .section.fuzzy-edges .section-top {
+    top: -65px;
   }
 }
 @media (max-width: 767px) {
@@ -5474,6 +5512,44 @@ h6,
 h2 {
   font-family: 'Martel', serif;
   font-size: 60px;
+}
+.section-header {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  margin-top: 10.5px;
+  margin-bottom: 10.5px;
+  font-size: 13px;
+  font: 600 13px/2 'Nunito', 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  color: #999;
+  text-align: center;
+  text-transform: uppercase;
+}
+.section-header small,
+.section-header .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #777777;
+}
+.section-header small,
+.section-header .small {
+  font-size: 75%;
+}
+@media (min-width: 992px) {
+  .section-header {
+    margin-bottom: 50px;
+    font-size: 19px;
+  }
+}
+.libre-baskerville,
+.tagline h2 {
+  font-weight: normal;
+  font-family: 'Libre Baskerville', serif;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
 }
 .nav-main {
   line-height: 48px;
@@ -6021,8 +6097,7 @@ h2 {
   background-image: linear-gradient(to top, #a98457, #b5956c, #7f8b5b, #88a270, #f0e5c9 60%, #fff6e7);
 }
 .home .header:after {
-  background: transparent url("/app/themes/umunandi/assets/img/brush-edge-1.png") no-repeat 0% 100%;
-  background-size: 100% 30px;
+  background: transparent;
 }
 @media (max-aspect-ratio: 2/3) {
   .home .header {
@@ -6080,21 +6155,14 @@ h2 {
     top: calc(3vh + 85px);
   }
 }
-.libre-baskerville,
-.tagline h2 {
-  font-weight: normal;
-  font-family: 'Libre Baskerville', serif;
-  line-height: 1.6;
-  letter-spacing: 0.1em;
-  text-transform: lowercase;
-  text-shadow: 0 0 0.05em rgba(0, 0, 0, 0.5);
-}
 .tagline h2 {
   display: inline-block;
   padding: 2.6% 5.5% 4%;
   margin: 0 15px;
   position: relative;
   image-rendering: pixelated;
+  text-transform: lowercase;
+  text-shadow: 0 0 0.05em rgba(0, 0, 0, 0.5);
   font-size: 22px;
 }
 .tagline h2:before {
@@ -6315,13 +6383,6 @@ h2 {
   font-weight: normal;
   padding-right: 0.33em;
 }
-.how-it-works {
-  height: 600px;
-  color: #fff;
-  text-align: center;
-  background-color: #555;
-  background-position: 50% 20%;
-}
 .carousel {
   width: auto;
 }
@@ -6367,10 +6428,15 @@ h2 {
 }
 .carousel-control {
   color: #999;
+  width: auto;
   background-image: none !important;
   text-shadow: none;
   text-align: left;
   padding: 0 18px;
+  bottom: auto;
+  transform: translateY(-50%);
+  z-index: 20;
+  top: 80px;
 }
 .carousel-control:hover,
 .carousel-control:focus {
@@ -6384,24 +6450,20 @@ h2 {
   text-align: right;
   direction: rtl;
 }
-.carousel-control > span {
-  top: 70px;
-  position: absolute;
-}
 @media (min-width: 480px) {
-  .carousel-control > span {
-    top: initial;
-    bottom: 10px;
+  .carousel-control {
+    top: auto;
+    bottom: 0;
+    transform: none;
   }
 }
 @media (min-width: 768px) {
-  .carousel-control > span {
-    top: 123px;
-    bottom: initial;
+  .carousel-control {
+    top: 120px;
   }
 }
 @media (min-width: 992px) {
-  .carousel-control > span {
+  .carousel-control {
     top: 150px;
   }
 }
@@ -6412,20 +6474,29 @@ h2 {
 @media (min-width: 768px) {
   .carousel-control > span:before {
     font-size: 50px;
-    margin-top: -25px;
   }
 }
 .carousel-indicators {
-  bottom: -26px;
-  margin-bottom: 0;
+  position: relative;
+  margin: 16px 0 8px;
+  bottom: auto;
+  left: auto;
+  width: auto;
 }
 .carousel-indicators li {
   border: 0;
   background-color: #ccc;
   transition: 0.4s;
 }
+.carousel-indicators li,
 .carousel-indicators li.active {
-  background-color: #aaa;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+}
+.carousel-indicators li.active {
+  background-color: #999;
+  transform: scale(1.4);
 }
 .carousel-progress-bar {
   height: 3px;
@@ -6436,7 +6507,7 @@ h2 {
 }
 @media (min-width: 1200px) {
   .carousel-progress-bar {
-    top: 80px;
+    top: 60px;
   }
 }
 .carousel-progress-bar .progress {
@@ -6449,10 +6520,11 @@ h2 {
 }
 .carousel .kid-face {
   display: inline-block;
-  width: 160px;
-  height: 160px;
   border-width: 2px;
   margin-bottom: 1.2em;
+  width: 160px;
+  height: 160px;
+  transition: 0.2s;
 }
 @media (min-width: 480px) {
   .carousel .kid-face {
@@ -6473,6 +6545,12 @@ h2 {
     width: 300px;
     height: 300px;
   }
+}
+.carousel .kid-face:hover {
+  border-color: #006800;
+}
+.carousel .kid-face:hover > img {
+  transform: scale(1.07);
 }
 @media (max-width: 767px) {
   .carousel .kid-info {
@@ -6535,6 +6613,128 @@ h2 {
   .carousel .kid-info--sponsor .btn {
     padding: 8px 12px;
   }
+}
+.key-points {
+  color: #fff;
+  background-color: #555;
+  background-position: 50% 20%;
+}
+@media (min-width: 992px) {
+  .key-points {
+    padding: 80px 0;
+  }
+}
+.key-points .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (min-width: 768px) {
+  .key-points .container {
+    flex-direction: row;
+  }
+}
+.key-point {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 32px 12px;
+}
+@media (min-width: 768px) {
+  .key-point {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 340px;
+    padding: 32px;
+  }
+}
+.key-point,
+.key-point:hover,
+.key-point:focus {
+  text-decoration: none;
+  color: inherit;
+}
+.key-point-img {
+  width: 90px;
+  height: 90px;
+  padding: 15px;
+  margin-right: 18px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transition: 0.1s;
+}
+@media (min-width: 768px) {
+  .key-point-img {
+    width: 100px;
+    height: 100px;
+    margin-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .key-point-img {
+    width: 120px;
+    height: 120px;
+    padding: 20px;
+  }
+}
+.key-point-img img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+.key-point-title {
+  font-family: 'Nunito', 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  margin-top: 2px;
+  font-size: 22px;
+}
+@media (min-width: 768px) {
+  .key-point-title {
+    margin-top: 21px;
+  }
+}
+@media (min-width: 992px) {
+  .key-point-title {
+    font-size: 26px;
+  }
+}
+.key-point-blurb {
+  opacity: 0.9;
+  font-size: 17px;
+  font-weight: 300;
+}
+@media (min-width: 992px) {
+  .key-point-blurb {
+    font-size: 22px;
+  }
+}
+.key-point:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 10px solid transparent;
+  border-image: url(/app/themes/umunandi/assets/img/sketch-box.svg) 5% 3% 6% 3% stretch;
+  border-image-outset: 0.4;
+  opacity: 0;
+  transition: 0.1s;
+}
+.key-point:hover:before {
+  opacity: 1;
+}
+.key-point:hover .key-point-img {
+  background-color: #006800;
+  border-color: rgba(255, 255, 255, 0.6);
 }
 .home .nav-main .umunandi-svg-fill,
 .donate .nav-main .umunandi-svg-fill {

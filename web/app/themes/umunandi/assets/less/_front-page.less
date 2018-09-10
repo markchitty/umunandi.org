@@ -19,8 +19,7 @@
     }
     
     &:after {
-      background: transparent url("@{base-url}/img/brush-edge-1.png") no-repeat 0% 100%;
-      background-size: 100% 30px;
+      background: transparent;
     }
 
     &               { background-position-x: 0%; }
@@ -56,21 +55,14 @@
   }
 }
 
-.libre-baskerville {
-  font-weight: normal;
-  font-family: 'Libre Baskerville', serif;
-  line-height: 1.6;
-  letter-spacing: 0.1em;
-  text-transform: lowercase;
-  text-shadow: 0 0 0.05em rgba(0, 0, 0, 0.5);
-}
-
 .tagline h2 {
   display: inline-block;
   padding: 2.6% 5.5% 4%;
   margin: 0 @grid-gutter-width/2;
   position: relative;
   image-rendering: pixelated;
+  text-transform: lowercase;
+  text-shadow: 0 0 0.05em rgba(0, 0, 0, 0.5);
 
   &:extend(.libre-baskerville);
 
@@ -215,12 +207,5 @@
   }
 }
 
-.how-it-works {
-  height: 600px;
-  color: #fff;
-  text-align: center;
-  background-color: #555;
-  background-position: 50% 20%;
-}
-
 @import "_front-page-carousel";
+@import "_front-page-key-points";

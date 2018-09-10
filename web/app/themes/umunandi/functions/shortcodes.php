@@ -25,3 +25,14 @@ function umunandi_shortcode_share_icons($atts) {
   get_template_part('templates/shortcodes/share-icons');
   return ob_get_clean();
 }
+
+// [key_point]
+add_shortcode('key_point', 'umunandi_shortcode_key_point');
+function umunandi_shortcode_key_point($atts, $content) {
+  ob_start();
+
+  // Using include() rather than get_template_part()
+  // keeps the shortcode params ($atts, $content) in scope
+  include(locate_template('templates/shortcodes/key-point.php'));
+  return ob_get_clean();
+}
