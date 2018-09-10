@@ -51,10 +51,9 @@ function umunandi_force_404() {
 }
 add_action('wp', 'umunandi_force_404');
 
-function umunandi_split_sentence($sentence, $position = null) {
+function umunandi_split_sentence($sentence, $line_count = 2) {
   $words = explode(" ", $sentence);
-  $position = $position ?: count($words)/2;
-  $start = array_slice($words, 0, $position);
-  $end = array_slice($words, -($position + 1));
-  return [ join(' ', $start), join(' ', $end) ];
+  $av_word_length = strlen($sentence) / count($words);
+  $max_line_length = (strlen($sentence) / $line_count) + $av_word_length / 2;
+  return explode("\n", wordwrap($sentence, $max_line_length));
 }
