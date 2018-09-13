@@ -286,7 +286,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #001c00;
+  color: #004f00;
   text-decoration: underline;
 }
 a:focus {
@@ -2309,7 +2309,7 @@ fieldset[disabled] .btn-link {
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #001c00;
+  color: #004f00;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -5498,6 +5498,60 @@ button.close {
     top: -65px;
   }
 }
+.img-section {
+  padding: 20px 0;
+}
+.img-section > * {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+}
+.img-section .alignleft,
+.img-section .alignright {
+  float: none;
+}
+@media (min-width: 768px) {
+  .img-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .img-section > * {
+    width: calc(50% - 20px);
+    margin-bottom: 0;
+  }
+  .img-section .alignright {
+    order: 2;
+  }
+  .img-section .alignright + * {
+    text-align: right;
+  }
+}
+@media (min-width: 992px) {
+  .img-section {
+    padding: 30px 0;
+  }
+  .img-section > * {
+    width: calc(50% - 30px);
+  }
+  .img-section + .img-section {
+    margin-top: 30px;
+  }
+}
+.img-section .read-more {
+  font-size: 80%;
+  background-size: 100% 0%;
+  position: relative;
+  top: 1em;
+}
+@media (max-width: 767px) {
+  .img-section .read-more {
+    display: block;
+    margin-top: 2em;
+    top: 0;
+    text-align: center;
+  }
+}
 @media (max-width: 767px) {
   body {
     font-size: 14px;
@@ -5508,6 +5562,19 @@ h6,
   font: 600 13px/2 'Nunito', 'Open Sans', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+p {
+  margin: 0 0 0.9em;
+}
+p a:not(.btn) {
+  text-decoration: none;
+  background: linear-gradient(#006800, #006800 50%, transparent 50%, transparent) no-repeat;
+  background-position: 0px 1.1em;
+  background-size: 100% 20%;
+  transition: 0.1s;
+}
+p a:not(.btn):hover {
+  background-size: 100% 30%;
 }
 h2 {
   font-family: 'Martel', serif;
@@ -6316,8 +6383,8 @@ h2 {
   }
 }
 .kid-name {
-  padding-top: 10px;
   font-size: 18px;
+  padding-top: 10px;
 }
 @media (min-width: 992px) {
   .kid-name {
@@ -6382,6 +6449,14 @@ h2 {
   font-size: 85%;
   font-weight: normal;
   padding-right: 0.33em;
+}
+.what-we-do {
+  font-size: 17px;
+}
+@media (min-width: 992px) {
+  .what-we-do {
+    font-size: 22px;
+  }
 }
 .carousel {
   width: auto;
@@ -6621,7 +6696,7 @@ h2 {
 }
 @media (min-width: 992px) {
   .key-points {
-    padding: 80px 0;
+    padding: 120px 0 90px;
   }
 }
 .key-points .container {
@@ -6634,11 +6709,15 @@ h2 {
     flex-direction: row;
   }
 }
+.key-points .section-header {
+  display: none;
+}
 .key-point {
   position: relative;
   display: flex;
   flex-direction: row;
   padding: 32px 12px;
+  text-decoration: none !important;
 }
 @media (min-width: 768px) {
   .key-point {

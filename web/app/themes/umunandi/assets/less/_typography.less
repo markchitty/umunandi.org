@@ -8,6 +8,22 @@ h6, .h6 {
   letter-spacing: 1px;
 }
 
+p {
+  margin: 0 0 0.9em;
+
+  a:not(.btn) {
+    text-decoration: none;
+    background: linear-gradient(#006800, #006800 50%, transparent 50%, transparent) no-repeat;
+    background-position: 0px 1.1em;
+    background-size: 100% 20%;
+    transition: 0.1s;
+    
+    &:hover {
+      background-size: 100% 30%;
+    }
+  }
+}
+
 .split-line(@color: #ccc) {
   display: block;
   width: 100%;

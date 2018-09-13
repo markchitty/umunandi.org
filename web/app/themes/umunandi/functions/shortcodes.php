@@ -36,3 +36,27 @@ function umunandi_shortcode_key_point($atts, $content) {
   include(locate_template('templates/shortcodes/key-point.php'));
   return ob_get_clean();
 }
+
+// [img_section]
+add_shortcode('img_section', 'umunandi_shortcode_img_section');
+function umunandi_shortcode_img_section($atts, $content) {
+  $html = str_get_html($content);
+
+  // Extract the image out of $content
+  $img = $html->find('img', 0);
+  $img_tag = $img->outertext;
+  $img->outertext = '';
+
+  // Then build an array of all the remaining text
+  foreach ($html->find('p') as $s) {
+    $s = $s->innertext;
+    if (!($s == '' || $s == ' ' || $s == '</p>')) $text[] = "<p>$s</p>";
+  }
+
+  // And then recombine it into the DOM structure we want
+  $content = sprintf("%s\n<div>%s</div>", $img_tag, join("\n", $text));
+
+  ob_start();
+  include(locate_template('templates/shortcodes/img-section.php'));
+  return ob_get_clean();
+}
