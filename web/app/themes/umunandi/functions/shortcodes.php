@@ -26,6 +26,14 @@ function umunandi_shortcode_share_icons($atts) {
   return ob_get_clean();
 }
 
+// [carousel]
+add_shortcode('kids_carousel', 'umunandi_shortcode_kids_carousel');
+function umunandi_shortcode_kids_carousel($atts) {
+  ob_start();
+  get_template_part('templates/shortcodes/kids-carousel');
+  return ob_get_clean();
+}
+
 // [key_point]
 add_shortcode('key_point', 'umunandi_shortcode_key_point');
 function umunandi_shortcode_key_point($atts, $content) {
