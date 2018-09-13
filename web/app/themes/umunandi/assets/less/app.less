@@ -2,50 +2,33 @@
  * Roots 6.5.2
  */
 
-@import "_bootstrap-parts";
-@import "_icons";
-@import "_variables";
-@import "_layout";
-@import "_section";
-@import "_img-section";
-@import "_typography";
-@import "_nav-main";
-@import "_nav-floating";
-@import "_nav-secondary";
-@import "_sidebar";
-@import "_btn";
-@import "_header";
-@import "_footer";
-@import "_front-page";
-@import "_front-page-nav";
-@import "_share-icons";
-@import "_donate";
+@import "core/bootstrap-parts";
+@import "core/icons";
+@import "core/variables";
+@import "core/typography";
+@import "core/utilities";
+
+@import "layout/layout";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/section";
+@import "layout/sidebar";
+
+@import "nav/nav";
+@import "nav/floating";
+@import "nav/secondary";
+
+@import "components/btn";
+@import "components/share-icons";
+@import "components/img-section";
+
+@import "home/home";
+@import "home/nav";
+@import "home/carousel";
+@import "home/key-points";
+
+@import "pages/donate";
 
 // ====================  Debug  =====================
 // div, header, a { outline: 1px solid rgba(240,50,50,0.4); }
 // .filler        { width: 500px; height: 1500px; background: #bde; }
-
-// ====================  Content  =====================
-/* Gallery Shortcode */
-.gallery-row   { padding: 15px 0; }
-
-
-// ====================  Useful thingies  =======================
-.focus {
-  outline: 1px dashed fade(@brand-primary, 50%);
-  outline-offset: 1px;
-}
-*:focus:extend(.focus) {};
-
-.table           { display: table; width: 100%; }
-.tr              { display: table-row; }
-.td              { display: table-cell; vertical-align: middle; }
-
-.full-height     { height: 100vh; }
-iframe           { border: 0; width: 100%; }
-
-// ====================  WordPress classes  =====================
-.aligncenter     { display: block; margin: 0 auto; }
-figure.alignnone { margin-left: 0; margin-right: 0; }
-
-

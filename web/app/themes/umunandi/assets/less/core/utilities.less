@@ -1,0 +1,17 @@
+// ====================  Useful thingies  =======================
+.focus {
+  outline: 1px dashed fade(@brand-primary, 50%);
+  outline-offset: 1px;
+}
+*:focus:extend(.focus) {};
+
+.table           { display: table; width: 100%; }
+.tr              { display: table-row; }
+.td              { display: table-cell; vertical-align: middle; }
+
+.full-height     { height: 100vh; }
+iframe           { border: 0; width: 100%; }
+
+// ====================  WordPress classes  =====================
+.aligncenter     { display: block; margin: 0 auto; }
+figure.alignnone { margin-left: 0; margin-right: 0; }
