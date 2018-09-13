@@ -5506,10 +5506,6 @@ button.close {
   height: auto;
   margin-bottom: 1em;
 }
-.img-section .alignleft,
-.img-section .alignright {
-  float: none;
-}
 @media (min-width: 768px) {
   .img-section {
     display: flex;
@@ -6960,9 +6956,6 @@ h2 {
 .full-height {
   height: 100vh;
 }
-.gradient-bg {
-  background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1) 40%), linear-gradient(-25deg, rgba(255, 255, 255, 0.08) 28%, rgba(255, 255, 255, 0.02) 48%, rgba(255, 255, 255, 0.04) 48%);
-}
 iframe {
   border: 0;
   width: 100%;
@@ -6970,12 +6963,6 @@ iframe {
 .aligncenter {
   display: block;
   margin: 0 auto;
-}
-.alignleft {
-  float: left;
-}
-.alignright {
-  float: right;
 }
 figure.alignnone {
   margin-left: 0;

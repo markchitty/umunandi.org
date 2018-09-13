@@ -1,32 +1,30 @@
-.home {
-  .header {
-    height: auto;
-    margin-top: 0;
+.home .header {
+  height: auto;
+  margin-top: 0;
+  padding-top: 0;
+  text-shadow: none;
+  color: @text-color;
+  background-position-y: 50%;
+
+  .container {
+    max-width: none;
     padding-top: 0;
-    text-shadow: none;
-    color: @text-color;
-    background-position-y: 50%;
-
-    .container {
-      max-width: none;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    &:before {
-      // Gradient approximation of home page image
-      background-image: linear-gradient(to top, #a98457, #b5956c, #7f8b5b, #88a270, #f0e5c9 60%, #fff6e7);
-    }
-    
-    &:after {
-      background: transparent;
-    }
-
-    &               { background-position-x: 0%; }
-    @media @mq-2to3 { background-position-x: ~"calc(50% + 43vh)"; } // Keeps kid centred
-    @media @mq-sm   { background-position-x: 17%; }
-    @media @mq-lg   { background-position-x: 0%; }
+    padding-bottom: 0;
   }
+
+  &:before {
+    // Gradient approximation of home page image
+    background-image: linear-gradient(to top, #a98457, #b5956c, #7f8b5b, #88a270, #f0e5c9 60%, #fff6e7);
+  }
+  
+  &:after {
+    background: transparent;
+  }
+
+  &               { background-position-x: 0%; }
+  @media @mq-2to3 { background-position-x: ~"calc(50% + 43vh)"; } // Keeps kid centred
+  @media @mq-sm   { background-position-x: 17%; }
+  @media @mq-lg   { background-position-x: 0%; }
 }
 
 .home-banner {
@@ -88,7 +86,11 @@
   }
 
   @media @mq-upto-sm {
-    &        { max-width: 410px; color: #5d4831; text-shadow: none; letter-spacing: 1px; }
+    max-width: 410px;
+    color: #5d4831;
+    text-shadow: none;
+    letter-spacing: 1px;
+
     &:before { opacity: 0.2; border-width: 0.7em 1em 0.9em 0.7em; }
     &:after  { background: rgba(255,255,255,0.5); right: 0; }
     br       { display: none; }
@@ -99,7 +101,6 @@
   @media @mq-sm                   { font-size: 32px; }
   @media @mq-md                   { font-size: 38px; }
   @media @mq-lg and @mq-900h      { font-size: 45px; }
-
   @media @mq-upto-sm and @mq-land { font-size: 22px; }
 }
 
@@ -122,7 +123,10 @@
   }
 }
 
-.featured-kids > ul { .list-unstyled; margin-bottom: 0; }
+.featured-kids > ul {
+  .list-unstyled;
+  margin-bottom: 0;
+}
 
 .kid {
   &     { display: inline-block; }
@@ -152,9 +156,7 @@
   }
 
   &-name {
-    padding-top: 10px;
-    font-size: 18px;
-
+    &             { font-size: 18px; padding-top: 10px; }
     @media @mq-md { font-size: 21px; }
   }
 }
@@ -180,7 +182,10 @@
     }
   }
 
-  &:hover .icon-arrow-down { transform: scale(1.2); text-decoration: none; }
+  &:hover .icon-arrow-down {
+    transform: scale(1.2);
+    text-decoration: none;
+  }
 }
 
 .explainer {
