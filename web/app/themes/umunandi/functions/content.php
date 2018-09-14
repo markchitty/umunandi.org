@@ -40,7 +40,16 @@ function umunandi_featured_image_bg_style($isRandom = false) {
   }
 }
 
+// Add custom page class into body tag classes
+add_filter('body_class', 'umunandi_body_class');
+function umunandi_body_class($classes) {
+  global $post;
+  $classes[] = get_post_meta($post->ID, 'umunandi_page_class', true);
+  return $classes;
+}
+
 // Force 404 on hidden pages
+add_action('wp', 'umunandi_force_404');
 function umunandi_force_404() {
   global $post;
   if ($post->post_parent && get_post_meta($post->post_parent, 'hide_child_pages')) {
@@ -49,7 +58,6 @@ function umunandi_force_404() {
     status_header(404);
   }
 }
-add_action('wp', 'umunandi_force_404');
 
 function umunandi_split_sentence($sentence, $line_count = 2) {
   $words = explode(" ", $sentence);

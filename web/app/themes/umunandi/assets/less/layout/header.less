@@ -13,7 +13,22 @@
   }
 
   &:before { background-image: linear-gradient(to left top, #fbf5d0, #648883, #234323); }
-  &:after  { background-color: rgba(0,0,0,0.3); z-index: 0; }
+
+  &:after  { 
+    z-index: 0;
+    background-color: #000;
+    opacity: 0.3;
+  }
+
+  .header-light & {
+    color: #333;
+    text-shadow: none;
+
+    &:after {
+      background-color: #fff;
+      opacity: 0.4;
+    }
+  }
 
   .container {
     padding-top: @line-height-computed;

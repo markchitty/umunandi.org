@@ -1,40 +1,38 @@
-.section {
-  @fuzzy-edge-height-sm : 15px;
-  @fuzzy-edge-height-lg : 30px;
+@fuzzy-edge-height-sm : 15px;
+@fuzzy-edge-height-lg : 30px;
 
-  &.fuzzy-edges {
-    position: relative;
+.fuzzy-edges {
+  position: relative;
 
-    &:before, &:after {
-      content: '';
-      position: absolute;
-      right: 0; left: 0;
-      bottom: 100%;
-      height: @fuzzy-edge-height-sm;
-      background: transparent url("@{base-url}/img/brush-edge-1.png") 0 0 no-repeat;
-      background-size: 100% 100%;
-    }
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    right: 0; left: 0;
+    bottom: 100%;
+    height: @fuzzy-edge-height-sm;
+    background: transparent url("@{base-url}/img/brush-edge-1.png") 0 0 no-repeat;
+    background-size: 100% 100%;
+  }
 
-    &:after {
-      transform: scale(-1, -1);
-      height: @fuzzy-edge-height-sm * 0.6;
-      bottom: auto;
-      top: 100%;
-    }
+  &:after {
+    transform: scale(-1, -1);
+    height: @fuzzy-edge-height-sm * 0.6;
+    bottom: auto;
+    top: 100%;
+  }
 
+  @media @mq-sm {
+    &:before { height: @fuzzy-edge-height-lg; }
+    &:after  { height: @fuzzy-edge-height-lg * 0.6; }
+  }
+
+  .section-top {
+    position: absolute;
+    display: block;
+    top: -@fuzzy-edge-height-sm;
+    
     @media @mq-sm {
-      &:before { height: @fuzzy-edge-height-lg; }
-      &:after  { height: @fuzzy-edge-height-lg * 0.6; }
-    }
-
-    .section-top {
-      position: absolute;
-      display: block;
-      top: -@fuzzy-edge-height-sm;
-      
-      @media @mq-sm {
-        top: -@fuzzy-edge-height-sm - @navbar-height;
-      }
+      top: -@fuzzy-edge-height-sm - @navbar-height;
     }
   }
 }

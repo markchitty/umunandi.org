@@ -14,7 +14,8 @@
     <?php else : ?>
 
       <?php get_template_part('templates/layout/header'); ?>
-      <div class="body" role="document">
+
+      <div class="body fuzzy-edges" role="document">
         <a name="body-top" class="body-top"></a>
         <?php get_template_part(sprintf('templates/%s-body', umunandi_get_template_type())); ?>
       </div>

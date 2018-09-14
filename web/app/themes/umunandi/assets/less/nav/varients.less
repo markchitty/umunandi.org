@@ -1,0 +1,38 @@
+.nav-dark, .header-light {
+  .nav-main {
+    @media @mq-sm {
+      .umunandi-svg-fill { fill: url(#greenGradient); }
+
+      .navbar-nav > li:not(.link-btn) {
+        &        > a   { opacity: 1; color: darken(@nav-link-color, 15%); }
+        &.active > a   { color: @uGreen; border-bottom-color: transparent; }
+        &:hover  > a   { border-bottom-color: inherit; }
+      }
+      
+      .navbar-nav > li.link-btn {
+        &:not(.active) > a:not(:hover) {
+          color: @uGreen;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+.nav-floating {
+  .nav-main {
+    &.floating {
+      @media @mq-sm {
+        .umunandi-svg    { transform: none; }
+        .logo-link       { transform: scale(1.3); }
+        .navbar-nav      { transform: translateY(5px); }
+      }
+
+      @media @mq-md      { 
+        .logo-link       { transform: scale(2); }
+        .navbar-nav      { transform: translateY(20px); }
+        @media @mq-900h  { top: 3%; }
+      }
+    }
+  }
+}

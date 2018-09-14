@@ -5578,8 +5578,17 @@ figure.alignnone {
   background-image: linear-gradient(to left top, #fbf5d0, #648883, #234323);
 }
 .header:after {
-  background-color: rgba(0, 0, 0, 0.3);
   z-index: 0;
+  background-color: #000;
+  opacity: 0.3;
+}
+.header-light .header {
+  color: #333;
+  text-shadow: none;
+}
+.header-light .header:after {
+  background-color: #fff;
+  opacity: 0.4;
 }
 .header .container {
   padding-top: 21px;
@@ -5803,11 +5812,11 @@ figure.alignnone {
     border-left: 1px solid #6e6e6e;
   }
 }
-.section.fuzzy-edges {
+.fuzzy-edges {
   position: relative;
 }
-.section.fuzzy-edges:before,
-.section.fuzzy-edges:after {
+.fuzzy-edges:before,
+.fuzzy-edges:after {
   content: '';
   position: absolute;
   right: 0;
@@ -5817,27 +5826,27 @@ figure.alignnone {
   background: transparent url("/app/themes/umunandi/assets/img/brush-edge-1.png") 0 0 no-repeat;
   background-size: 100% 100%;
 }
-.section.fuzzy-edges:after {
+.fuzzy-edges:after {
   transform: scale(-1, -1);
   height: 9px;
   bottom: auto;
   top: 100%;
 }
 @media (min-width: 768px) {
-  .section.fuzzy-edges:before {
+  .fuzzy-edges:before {
     height: 30px;
   }
-  .section.fuzzy-edges:after {
+  .fuzzy-edges:after {
     height: 18px;
   }
 }
-.section.fuzzy-edges .section-top {
+.fuzzy-edges .section-top {
   position: absolute;
   display: block;
   top: -15px;
 }
 @media (min-width: 768px) {
-  .section.fuzzy-edges .section-top {
+  .fuzzy-edges .section-top {
     top: -65px;
   }
 }
@@ -6093,6 +6102,55 @@ figure.alignnone {
 @media (min-width: 992px) {
   .widget_nav_menu .sub-menu > li > a {
     font-size: 18px;
+  }
+}
+@media (min-width: 768px) {
+  .nav-dark .nav-main .umunandi-svg-fill,
+  .header-light .nav-main .umunandi-svg-fill {
+    fill: url(#greenGradient);
+  }
+  .nav-dark .nav-main .navbar-nav > li:not(.link-btn) > a,
+  .header-light .nav-main .navbar-nav > li:not(.link-btn) > a {
+    opacity: 1;
+    color: #626262;
+  }
+  .nav-dark .nav-main .navbar-nav > li:not(.link-btn).active > a,
+  .header-light .nav-main .navbar-nav > li:not(.link-btn).active > a {
+    color: #006800;
+    border-bottom-color: transparent;
+  }
+  .nav-dark .nav-main .navbar-nav > li:not(.link-btn):hover > a,
+  .header-light .nav-main .navbar-nav > li:not(.link-btn):hover > a {
+    border-bottom-color: inherit;
+  }
+  .nav-dark .nav-main .navbar-nav > li.link-btn:not(.active) > a:not(:hover),
+  .header-light .nav-main .navbar-nav > li.link-btn:not(.active) > a:not(:hover) {
+    color: #006800;
+    background-color: transparent;
+  }
+}
+@media (min-width: 768px) {
+  .nav-floating .nav-main.floating .umunandi-svg {
+    transform: none;
+  }
+  .nav-floating .nav-main.floating .logo-link {
+    transform: scale(1.3);
+  }
+  .nav-floating .nav-main.floating .navbar-nav {
+    transform: translateY(5px);
+  }
+}
+@media (min-width: 992px) {
+  .nav-floating .nav-main.floating .logo-link {
+    transform: scale(2);
+  }
+  .nav-floating .nav-main.floating .navbar-nav {
+    transform: translateY(20px);
+  }
+}
+@media (min-width: 992px) and (min-height: 900px) {
+  .nav-floating .nav-main.floating {
+    top: 3%;
   }
 }
 .btn {
@@ -6515,59 +6573,6 @@ figure.alignnone {
 @media (min-width: 992px) {
   .what-we-do {
     font-size: 22px;
-  }
-}
-.home .nav-main .umunandi-svg-fill,
-.donate .nav-main .umunandi-svg-fill {
-  fill: url(#greenGradient);
-}
-@media (min-width: 768px) {
-  .home .nav-main.floating .navbar-nav > li:not(.link-btn) > a,
-  .donate .nav-main.floating .navbar-nav > li:not(.link-btn) > a {
-    opacity: 1;
-    color: #626262;
-  }
-  .home .nav-main.floating .navbar-nav > li:not(.link-btn).active > a,
-  .donate .nav-main.floating .navbar-nav > li:not(.link-btn).active > a {
-    color: #006800;
-    border-bottom-color: transparent;
-  }
-  .home .nav-main.floating .navbar-nav > li:not(.link-btn):hover > a,
-  .donate .nav-main.floating .navbar-nav > li:not(.link-btn):hover > a {
-    border-bottom-color: inherit;
-  }
-  .home .nav-main.floating .navbar-nav > li.link-btn:not(.active) > a:not(:hover),
-  .donate .nav-main.floating .navbar-nav > li.link-btn:not(.active) > a:not(:hover) {
-    color: #006800;
-    background-color: transparent;
-  }
-  .home .nav-main.floating .umunandi-svg,
-  .donate .nav-main.floating .umunandi-svg {
-    transform: none;
-  }
-  .home .nav-main.floating .logo-link,
-  .donate .nav-main.floating .logo-link {
-    transform: scale(1.3);
-  }
-  .home .nav-main.floating .navbar-nav,
-  .donate .nav-main.floating .navbar-nav {
-    transform: translateY(5px);
-  }
-}
-@media (min-width: 992px) {
-  .home .nav-main.floating .logo-link,
-  .donate .nav-main.floating .logo-link {
-    transform: scale(2);
-  }
-  .home .nav-main.floating .navbar-nav,
-  .donate .nav-main.floating .navbar-nav {
-    transform: translateY(20px);
-  }
-}
-@media (min-width: 992px) and (min-height: 900px) {
-  .home .nav-main.floating,
-  .donate .nav-main.floating {
-    top: 3%;
   }
 }
 .carousel {
