@@ -6969,3 +6969,7 @@ figure.alignnone {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 2px;
 }
+.page.contact .header:before {
+  background-image: none;
+  background-color: #acdbfd;
+}
