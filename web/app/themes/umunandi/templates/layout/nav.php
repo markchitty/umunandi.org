@@ -9,7 +9,7 @@
       </a>
       <a class="logo-link" title="Home" href="<?= is_front_page() ? '#top' : '/' ?>"
         <?= is_front_page() ? 'data-scrollto="750"' : '' ?>>
-        <?php get_template_part('assets/img/inline-umunandi-logo.svg') ?>
+        <?php get_template_part('assets/img/umunandi-logo-inline.svg') ?>
       </a>
     </div>
 
