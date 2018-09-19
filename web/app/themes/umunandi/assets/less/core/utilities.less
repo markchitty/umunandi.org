@@ -15,3 +15,12 @@ iframe           { border: 0; width: 100%; }
 // ====================  WordPress classes  =====================
 .aligncenter     { display: block; margin: 0 auto; }
 figure.alignnone { margin-left: 0; margin-right: 0; }
+
+// =========================== Mixins ===========================
+.create-pseudo-content(@top, @right, @bottom, @left) {
+  content: ''; display: block; position: absolute;
+  top: @top; right: @right; bottom: @bottom; left: @left;
+}
+.pseudo-content(@t, @r, @b, @l) { .create-pseudo-content(@t, @r, @b, @l); }
+.pseudo-content(@tb, @rl)       { .create-pseudo-content(@tb, @rl, @tb, @rl); }
+.pseudo-content(@tbrl)          { .create-pseudo-content(@tbrl, @tbrl, @tbrl, @tbrl); }

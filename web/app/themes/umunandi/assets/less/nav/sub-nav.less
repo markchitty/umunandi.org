@@ -1,0 +1,62 @@
+.main-nav > li {
+  .sub-menu {
+    @sub-menu-pad-h: 16px;
+    position: absolute;
+    left: -@sub-menu-pad-h;
+    padding: 5px 4px;
+    min-width: calc(100% ~'+' @sub-menu-pad-h * 2);
+    background: rgba(255,255,255,0.95);
+    line-height: @line-height-base;
+    font-size: 110%;
+    
+    // sketched box outline
+    &:before {
+      .pseudo-content(0);
+      border: 10px solid;
+      border-image: url("@{base-url}/img/box-drawn-thin-black.png") 9% stretch;
+      border-image-outset: 0.2 0.4 0.3;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    > li > a {
+      display: block;
+      padding: 6px 12px;
+      white-space: nowrap;
+      color: @text-color;
+      border-radius: 2px;
+      transition: color 0.05s, background-color 0.05s;
+
+      &:hover {
+        color: #fff;
+        background: @brand-primary;
+        text-decoration: none;
+      }
+    }
+  }
+  
+  // Show/hide sub-menu on hover
+  // Hidden state
+  .sub-menu {
+    left: -99999px;
+    transform: translateY(0px);
+    opacity: 0;
+    transition: left 0s .2s, transform 0s .2s, opacity .2s; // mouse-leave timing
+  }
+  // Visible state
+  &:hover > .sub-menu {
+    left: 0;
+    transform: translateY(15px);
+    opacity: 1;
+    transition: left 0s, transform .2s, opacity .2s; // mouse-enter timing
+  }
+
+  // Mouse-out buffer zone above & below menu
+  // The z-index anim blocks menu item hover events whilst the menu is animating
+  .sub-menu:after {
+    .pseudo-content(-20px, 0, -50px, 0);
+    z-index: 0;
+    transition: z-index 0s 0.2s;
+  }
+  &:hover > .sub-menu:after { z-index: -1; }
+}

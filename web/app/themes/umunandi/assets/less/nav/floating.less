@@ -1,5 +1,14 @@
-// Floating nav - iPad and above
-.nav-main {
+// Floating nav - iPad and wider
+.main-nav-container {
+  @floating-nav-top        : @line-height-computed/2;
+  @floating-nav-transition : 0.3s;
+
+  &:before, &:after {
+    @media @mq-sm {
+      transition: opacity @floating-nav-transition/2 @floating-nav-transition/2;
+    }
+  }
+
   &.floating {
     @media @mq-sm {
       position: absolute;
@@ -7,42 +16,40 @@
       background-color: transparent;
       box-shadow: none;
 
-      .umunandi-svg-fill { fill: #fff; }
-
-      .btn {
-        border-color: @uGreen;
-        background: @uGreen;
-        color: #fff;
-
-        &:hover {
-          border-color: @uGreenLite;
-          background: @uGreenLite !important;
-        }
+      &:before, &:after {
+        opacity: 0;
+        transition-delay: 0s;
       }
 
-      .navbar-nav > li:not(.link-btn) {
-        & > a {
-          color: #fff;
-          border: 2px solid transparent;
-          border-width: 2px 0;
-          opacity: 0.6;
-        }
-        &:hover > a, &.active > a {
-          opacity: 1;
-          border-bottom-color: inherit;
+      .umunandi-svg-fill { fill: #fff; }
+
+      .main-nav > li:not(.link-btn) {
+        & > a        { opacity: 0.8; color: #fff; }
+        &:hover > a, 
+        &.active > a { opacity: 1; }
+      }
+
+      .main-nav > li.link-btn > a {
+        color: #fff;
+        background-color: @brand-primary;
+        border-color: @brand-primary;
+
+        &:hover {
+          background-color: @uGreenLite !important;
+          border-color: @uGreenLite !important;
         }
       }
     }
 
     @media @mq-md {
       .logo-link  { transform: scale(1.3); }
-      .navbar-nav { transform: translateY(5px); }
+      .main-nav { transform: translateY(5px); }
     }
   }
 
-  &, .logo-link, .primary-nav {
-    transition-property: height, visiblility, transform, background-color;
-    transition-duration: 0.3s;
+  &, .logo-link, .main-nav {
+    transition-property: transform, background-color;
+    transition-duration: @floating-nav-transition;
     transform-origin: top left;
   }
 }
