@@ -20,6 +20,7 @@
           wp_nav_menu(array(
             'theme_location' => 'primary_navigation',
             'menu_class' => 'main-nav nav navbar-nav navbar-right',
+            'walker' => new Umunandi_Nav_Walker()
           ));
         endif;
       ?>
