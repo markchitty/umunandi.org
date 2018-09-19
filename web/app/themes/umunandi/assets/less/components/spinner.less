@@ -19,9 +19,7 @@
     overflow: hidden;
     
     &:before {
-      content: "";
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
+      .pseudo-content(0);
       box-sizing: border-box;
       border: ((@line-width / 200%) * 1em) solid;
       border-left: 0;

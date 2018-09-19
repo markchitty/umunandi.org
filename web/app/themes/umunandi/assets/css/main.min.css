@@ -5567,6 +5567,7 @@ figure.alignnone {
 .header:before,
 .header:after {
   content: '';
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
@@ -5818,10 +5819,12 @@ figure.alignnone {
 .fuzzy-edges:before,
 .fuzzy-edges:after {
   content: '';
+  display: block;
   position: absolute;
+  top: auto;
   right: 0;
-  left: 0;
   bottom: 100%;
+  left: 0;
   height: 15px;
   background: transparent url("/app/themes/umunandi/assets/img/edge-brushed.png") 0 0 no-repeat;
   background-size: 100% 100%;
@@ -5848,69 +5851,6 @@ figure.alignnone {
 @media (min-width: 768px) {
   .fuzzy-edges .section-top {
     top: -75px;
-  }
-}
-.sidebar {
-  text-align: right;
-}
-.sidebar:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  right: 0;
-  background-color: #f8f8f8;
-  background-image: url('sidebar-gradient.svg');
-  background-image: linear-gradient(to right, #fcfcfc, #f4f4f4);
-  border-right: 1px solid #dddddd;
-}
-.sidebar .sub-menu > li > a {
-  color: #999;
-}
-.sidebar .menu {
-  margin-bottom: 3em;
-}
-.sidebar .menu a {
-  display: block !important;
-  border-right: 2px solid transparent;
-}
-.sidebar .menu li.active:not(.ancestor) > a,
-.sidebar .menu a:hover {
-  color: #006800;
-  border-color: #006800;
-}
-@media (min-width: 768px) {
-  .sidebar {
-    padding-right: 0px;
-  }
-  .sidebar .menu a {
-    padding-right: 15px;
-  }
-  .sidebar:before {
-    right: 0px;
-  }
-}
-@media (min-width: 992px) {
-  .sidebar {
-    padding-right: 15px;
-  }
-  .sidebar .menu a {
-    padding-right: 30px;
-  }
-  .sidebar:before {
-    right: 15px;
-  }
-}
-@media (min-width: 1200px) {
-  .sidebar {
-    padding-right: 30px;
-  }
-  .sidebar .menu a {
-    padding-right: 45px;
-  }
-  .sidebar:before {
-    right: 30px;
   }
 }
 .main-nav-container {
@@ -6476,6 +6416,7 @@ figure.alignnone {
 }
 .tagline h2:before {
   content: '';
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
@@ -6489,6 +6430,7 @@ figure.alignnone {
 }
 .tagline h2:after {
   content: '';
+  display: block;
   position: absolute;
   top: 0;
   right: -5%;
@@ -7044,8 +6986,8 @@ figure.alignnone {
   display: block;
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.1);
   border: 10px solid transparent;

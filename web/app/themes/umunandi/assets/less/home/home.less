@@ -65,20 +65,16 @@
   &:extend(.libre-baskerville);
 
   &:before { // hand drawn border
-    content: '';
-    position: absolute; 
-    top: 0; right: 0; bottom: 0; left: 0;
+    .pseudo-content(0);
     opacity: 0.4;
     border: 1px solid transparent;
     border-image: url("@{base-url}/img/box-sketched-2.png") 25 25 35 25 stretch;
     border-width: 0.45em 0.55em 0.65em 0.45em;
     border-image-outset: 0.5;
   }
-
+  
   &:after { // green paint wash
-    content: '';
-    position: absolute; 
-    top: 0; right: -5%; bottom: 0; left: 0;
+    .pseudo-content(0, -5%, 0, 0);
     z-index: -1;
     background: url("@{base-url}/img/paint-texture.png") no-repeat;
     background-size: 100% 100%;
