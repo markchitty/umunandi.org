@@ -1,19 +1,17 @@
 .nav-dark, .header-light {
   .main-nav-container {
-    @media @mq-sm {
-      .umunandi-svg-fill { fill: url(#greenGradient); }
+    .umunandi-svg-fill { fill: url(#greenGradient); }
 
-      .main-nav > li:not(.link-btn) {
-        &        > a   { opacity: 1; color: darken(@nav-link-color, 15%); }
-        &.active > a   { color: @uGreen; border-bottom-color: transparent; }
-        &:hover  > a   { border-bottom-color: inherit; }
-      }
-      
-      .main-nav > li.link-btn {
-        &:not(.active) > a:not(:hover) {
-          color: @uGreen;
-          background-color: transparent;
-        }
+    .main-nav > li:not(.link-btn) {
+      &        > a   { opacity: 1; color: darken(@nav-link-color, 15%); }
+      &.active > a   { color: @uGreen; border-bottom-color: transparent; }
+      &:hover  > a   { border-bottom-color: inherit; }
+    }
+    
+    .main-nav > li.link-btn {
+      &:not(.active) > a:not(:hover) {
+        color: @uGreen;
+        background-color: transparent;
       }
     }
   }
@@ -21,7 +19,7 @@
 
 .nav-forefront {
   .main-nav-container {
-    &.floating {
+    &:not(.fixed) {
       @media @mq-sm {
         .umunandi-svg   { transform: none; }
         .logo-link      { transform: scale(1.3); }

@@ -1,4 +1,4 @@
-<nav class="main-nav-container navbar floating js-navMain">
+<nav class="main-nav-container navbar js-main-nav">
   <div class="container">
 
     <div class="navbar-header">

@@ -1,15 +1,16 @@
-// Floating nav - iPad and wider
-.main-nav-container {
-  @floating-nav-top        : @line-height-computed/2;
-  @floating-nav-transition : 0.3s;
+@floating-nav-top        : @line-height-computed/2;
+@floating-nav-transition : 0.3s;
 
+.main-nav-container {
+
+  // wibbly bottom edge
   &:before, &:after {
     @media @mq-sm {
       transition: opacity @floating-nav-transition/2 @floating-nav-transition/2;
     }
   }
 
-  &.floating {
+  &:not(.fixed) {
     @media @mq-sm {
       position: absolute;
       top: @floating-nav-top;

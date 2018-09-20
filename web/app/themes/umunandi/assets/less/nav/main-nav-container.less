@@ -1,14 +1,14 @@
 .main-nav-container {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  min-height: @navbar-height;
   line-height: @navbar-height - 2;
   z-index: @zindex-navbar-fixed;
   border-width: 0;
   background: @body-bg;
-  box-shadow: rgba(0,0,0,0.08) 0 5px 10px;
   
   // wibbly bottom edge
   @media @mq-sm {
-    box-shadow: none;
-
     &:before, &:after { .pseudo-content(auto, 0); }
     
     &:before {
@@ -35,10 +35,9 @@
   .logo-link     { display: block; }
 
   .umunandi-svg {
-    @logo-height : 38px;
     display: block;
-    height: @logo-height;
-    margin: (@navbar-height - @logo-height)/2 0;
+    height: @navbar-logo-height;
+    margin: (@navbar-height - @navbar-logo-height)/2 0;
 
     // Enlarge logo on hover
     // Note: Both .umunandi-svg and its container .logo-link use transform:scale
@@ -62,10 +61,5 @@
     }
     
     &.collapsed .icon-bar { background-color: @nav-link-color; }
-  }
-  
-  // Fixed nav - small screens - slides up out of the way on scroll
-  @media @mq-upto-sm { 
-    &.page-scrolled { transform: translateY(-(@navbar-height + 10)); }
   }
 }

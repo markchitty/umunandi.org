@@ -8,7 +8,7 @@
       <stop offset="1" stop-color="#305800"/>
     </linearGradient>
   </defs>
-  <title>umunandi-logo</title>
+  <title>Home</title>
   <g clip-path="url(#logoOutline)">
     <rect class="umunandi-svg-fill" fill="url(#greenGradient)" width="740" height="245"/>
   </g>
