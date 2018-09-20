@@ -77,7 +77,8 @@ module.exports = function(grunt) {
         files: [
           '<%= jshint.all %>'
         ],
-        tasks: [/*'jshint',*/ 'concat', 'version']
+        tasks: [/*'jshint',*/ 'concat', 'version'],
+        options: { livereload: true }
       },
       php: {
         files: [
