@@ -34,25 +34,12 @@ var Umunandi = {
     init: function() {
       $('a[href="#"]').click(function(e) { e.preventDefault(); });  // Globally limit javascript click actions
       $.scrollTo(0);                                                // Reset the screen to (0,0)
-
-      var lastScrollTop = 0;
-      var $navBar = $('.js-main-nav');
-
-      // Show navbar when scrolling back up
-      function toggleNavOnScroll() {
-        var curScrollTop = $(window).scrollTop();
-        if (Math.abs(lastScrollTop - curScrollTop) <= 5) return;
-        var isPageScrolledBackUp = (curScrollTop < lastScrollTop && curScrollTop != 0);
-        $navBar.toggleClass('page-scrolled-up', isPageScrolledBackUp);
-        lastScrollTop = curScrollTop;
-      }
-      $(window).scroll($.debounce(10, toggleNavOnScroll));
-
+      
       // Track navbar position to control floating/fixed state
+      var $navBar = $('.js-main-nav');
       var navBarTopY = $navBar.offset().top;
-      $(document).scroll(function() {
-        $navBar.toggleClass('fixed', $(this).scrollTop() > navBarTopY);
-      });
+      $(window).resize($.debounce(100, function () { navBarTopY = $navBar.offset().top; }));
+      $(document).scroll(function() { $navBar.toggleClass('fixed', $(this).scrollTop() > navBarTopY); });
     }
   },
 
@@ -63,6 +50,7 @@ var Umunandi = {
       // ScrollTo behaviour
       $('[data-scrollto]').off().on('click', function(e) {
         e.preventDefault();
+        $('.nav-toggle-checkbox').prop('checked', false); // Close the mobile menu
         var $this = $(this);
         var scrollOpts = { duration: $this.data().scrollto };
         $.scrollTo($this.attr('href'), scrollOpts);

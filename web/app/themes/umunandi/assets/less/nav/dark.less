@@ -1,0 +1,17 @@
+.nav-dark, .header-light {
+  .main-nav {
+    .umunandi-svg-fill { fill: url(#greenGradient); }
+
+    .main-nav-menu > li:not(.link-btn) {
+      &        > a   { opacity: 1; color: darken(@nav-link-color, 15%); }
+      &.active > a   { color: @uGreen; }
+    }
+    
+    .main-nav-menu > li.link-btn {
+      &:not(.active) > a:not(:hover) {
+        color: @uGreen;
+        background-color: transparent;
+      }
+    }
+  }
+}

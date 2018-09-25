@@ -1,5 +1,9 @@
 <div class="home-banner">
 
+  <div class="logo-mobile">
+    <?php include(locate_template('assets/img/umunandi-logo.svg')) ?>
+  </div>
+
   <div class="tagline">
     <h2><?= str_replace("get", "<br>get", get_bloginfo('description')) ?></h2>
   </div>

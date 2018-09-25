@@ -1,0 +1,24 @@
+.hamburger {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+
+  > span {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    border-radius: 100px;
+    transform-origin: 50% 0;
+    transition: 0.3s;
+
+    + span { margin-top: 6px; }
+
+    .nav-toggle-checkbox:checked ~ & {
+      &:nth-child(1) { transform: translate(0px,  8px) rotate(-45deg); }
+      &:nth-child(2) { transform: scaleX(0); }
+      &:nth-child(3) { transform: translate(1px, -8px) rotate( 45deg); }
+    }
+  }
+}

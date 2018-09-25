@@ -12,14 +12,10 @@
     padding-bottom: 0;
   }
 
-  &:before {
-    // Gradient approximation of home page image
-    background-image: linear-gradient(to top, #a98457, #b5956c, #7f8b5b, #88a270, #f0e5c9 60%, #fff6e7);
-  }
-  
-  &:after {
-    background: transparent;
-  }
+  // Gradient approximation of home page image
+  @home-image-grad: linear-gradient(to top, #a98457, #b5956c, #7f8b5b, #88a270, #f0e5c9 60%, #feffee 80%);
+  &:before { background-image: @home-image-grad; }
+  &:after  { background: transparent; }
 
   &               { background-position-x: 0%; }
   @media @mq-2to3 { background-position-x: ~"calc(50% + 43vh)"; } // Keeps kid centred
@@ -42,10 +38,16 @@
     align-items: center;
   }
 
+  .logo-mobile   { top: 18px; justify-content: flex-start; }
   .tagline       { top: @navbar-height; bottom: 57vh; }
   .featured-kids { top: 45vh; height: 37vh; justify-content: flex-end; }
   .scroll-down   { bottom: 1vh; }
   .explainer     { bottom: 6vh; display: none; }
+  
+  .logo-mobile .umunandi-svg {
+    &             { height: 55px; }
+    @media @mq-sm { height: 0; } // work-around for display:none
+  }
 
   .tagline {
     @media @mq-sm { top: @navbar-height + 15; }

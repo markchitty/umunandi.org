@@ -1,56 +1,49 @@
-@floating-nav-top        : @line-height-computed/2;
-@floating-nav-transition : 0.3s;
+.main-nav:not(.fixed) {
+  position: absolute;
+  top: 10px;
+  background-color: transparent;
+  box-shadow: none;
 
-.main-nav-container {
+  .umunandi-svg-fill { fill: #fff; }
 
-  // wibbly bottom edge
-  &:before, &:after {
-    @media @mq-sm {
-      transition: opacity @floating-nav-transition/2 @floating-nav-transition/2;
+  .main-nav-menu > li {
+    > a { color: #fff; }
+
+    &:not(.link-btn) {
+      > a                       { opacity: 0.8; }
+      &:hover > a, &.active > a { opacity: 1; }
+    }
+
+    > a.btn {
+      background-color: @brand-primary;
+      border-color: @brand-primary;
+    }
+    > a.btn:hover {
+      background-color: @uGreenLite !important;
+      border-color: @uGreenLite !important;
     }
   }
 
-  &:not(.fixed) {
-    @media @mq-sm {
-      position: absolute;
-      top: @floating-nav-top;
-      background-color: transparent;
-      box-shadow: none;
-
-      &:before, &:after {
-        opacity: 0;
-        transition-delay: 0s;
-      }
-
-      .umunandi-svg-fill { fill: #fff; }
-
-      .main-nav > li:not(.link-btn) {
-        & > a        { opacity: 0.8; color: #fff; }
-        &:hover > a, 
-        &.active > a { opacity: 1; }
-      }
-
-      .main-nav > li.link-btn > a {
-        color: #fff;
-        background-color: @brand-primary;
-        border-color: @brand-primary;
-
-        &:hover {
-          background-color: @uGreenLite !important;
-          border-color: @uGreenLite !important;
-        }
-      }
-    }
-
-    @media @mq-md {
-      .logo-link  { transform: scale(1.3); }
-      .main-nav { transform: translateY(5px); }
-    }
+  .nav-forefront & {
+    .umunandi-svg   { transform: none; }
+    .logo-link      { transform: scale(1.3); }
+    .main-nav-menu  { transform: translateY(5px); }
   }
 
-  &, .logo-link, .main-nav {
-    transition-property: transform, background-color;
-    transition-duration: @floating-nav-transition;
-    transform-origin: top left;
+  @media @mq-md {
+    .logo-link     { transform: scale(1.3); }
+    .main-nav-menu { transform: translateY(5px); }
+
+    .nav-forefront & {
+      .logo-link      { transform: scale(2); }
+      .main-nav-menu  { transform: translateY(20px); }
+      @media @mq-900h { top: 3%; }
+    }
   }
+}
+
+.main-nav, .main-nav-menu, .logo-link {
+  transition-property: transform, background-color;
+  transition-duration: 0.3s;
+  transform-origin: top left;
 }

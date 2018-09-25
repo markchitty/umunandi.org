@@ -1,59 +1,28 @@
 .main-nav {
-  cursor: default;
-
-  > li {
-    position: relative;
-    z-index: 1;
-
-    > a {
-      padding: 3px 0 2px;
-      background-color: transparent;
-      font: 600 @font-size-base @font-family-nav;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      transition: all 0.1s;
-      
-      &.btn { padding: 3px @padding-base-horizontal 2px; }
-    }
-
-    .arc-svg {
-      height: 4px;
-      width: 100%;
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      opacity: 0;
-      transition: 0.1s;
-    }
+  min-height: @navbar-height;
+  line-height: @navbar-height - 2;
+  background: @body-bg;
+  box-shadow: rgba(0,0,0,0.08) 0 5px 10px;
   
-    &:not(.link-btn) {
-      &        > a { color: @nav-link-color; }
-      &:hover  > a { color: @nav-link-hover-color; }
-      &.active > a { color: @uGreen; }
+  &-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-      &:hover, &.active {
-        .arc-svg { opacity: 0.75; }
-      }
-    }
+  .logo-link     { display: block; }
+  .main-nav-menu { position: relative; top: 4px; }
+  .hamburger     { .hidden(); }
 
-    &:not(:first-child) {
-      @media @mq-sm { margin-left: @navbar-padding-horizontal * 1.3; }
-      @media @mq-md { margin-left: @navbar-padding-horizontal * 2; }
-    }
-    
-    @media @mq-sm {
-      &    { float: none; display: inline-block; }
-      .btn { display: block; }
-    }  
-  }  
+  .umunandi-svg {
+    display: block;
+    height: @navbar-logo-height;
+    margin: (@navbar-height - @navbar-logo-height)/2 0;
 
-  // Collapsed mobile nav
-  @media @mq-upto-sm {
-    > li            { text-align: center; line-height: normal; }
-    > li > a        { padding-top: 10px; padding-bottom: 10px; }
-    > li.active > a { background-color: #f4f4f4; }
-    .btn            { display: inline-block; }
+    // Enlarge logo on hover
+    // Note: Both .umunandi-svg and its container .logo-link use transform:scale
+    // - the separate rules decouple floating scaling from hover scaling
+    &       { transition: transform 0.15s; }
+    &:hover { transform: scale(1.1); }
   }
 }
-
-.menu, .sub-menu { &:extend(.nav); }

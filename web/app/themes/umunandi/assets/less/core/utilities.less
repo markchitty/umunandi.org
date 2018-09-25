@@ -24,3 +24,12 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 .pseudo-content(@t, @r, @b, @l) { .create-pseudo-content(@t, @r, @b, @l); }
 .pseudo-content(@tb, @rl)       { .create-pseudo-content(@tb, @rl, @tb, @rl); }
 .pseudo-content(@tbrl)          { .create-pseudo-content(@tbrl, @tbrl, @tbrl, @tbrl); }
+
+.hidden() {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+}

@@ -1,0 +1,44 @@
+.main-nav {
+  &-header {
+    .umunandi-svg      { height: 40px; }
+    .umunandi-svg-fill { fill: #fff; }
+  }
+  
+  &-menu {
+    &         { font-size: 20px; }
+    .sub-menu { font-size: 85%; font-weight: 300; }
+    .arc-svg  { display: none; }
+
+    li > a {
+      display: block;
+      margin-top: 20px;
+      padding: 0 2px;
+      text-decoration: none;
+      color: #fff;
+      opacity: 0.9;
+
+      &:hover {
+        background: rgba(255,255,255,0.08);
+        opacity: 1;
+      }
+    }
+
+    .sub-menu li > a {
+      display: block;
+      margin: 0;
+      padding: 2px 10px;
+    }
+
+    .btn {
+      padding: 6px;
+      margin-top: 30px;
+      border-color: rgba(255,255,255,0.8);
+
+      &:hover {
+        background: #fff !important;
+        border-color: #fff;
+        color: @brand-primary;
+      }
+    }
+  }
+}
