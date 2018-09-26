@@ -1,0 +1,30 @@
+.scroll-down a {
+  display: inline-block;
+  padding: 10px;
+
+  .icon-arrow-down {
+    display: inline-block;
+    line-height: 1;
+    border-radius: 50%;
+    border: 2px solid;
+    transition: all 250ms;
+
+    &:before {
+      position: relative;
+      top: 0.12em;
+      font-size: inherit;
+    }
+  }
+
+  &:hover .icon-arrow-down {
+    transform: scale(1.2);
+    text-decoration: none;
+  }
+
+  animation: pulse 4s ease-in-out 0s infinite;
+
+  @keyframes pulse {
+    0%, 80% { transform: scale(1); }
+    90%     { transform: scale(1.15); }
+  }
+}

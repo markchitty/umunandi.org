@@ -1,5 +1,5 @@
 .img-section {
-  padding: @section-padding/2 0;
+  padding-bottom: @section-padding;
 
   > * {
     width: 100%;
@@ -7,10 +7,13 @@
     margin-bottom: 1em;
   }
   
-  @media @mq-sm {
+  @media @mq-sm, @mq-land {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media @mq-land { align-items: flex-start; }
+    img             { margin-top: 0.33em; }
     
     > * {
       width: calc(~'50%' - @section-padding/2);
@@ -22,7 +25,7 @@
   }
     
   @media @mq-md {
-    &     { padding: @section-padding-lg/2 0; }
+    &     { padding-bottom: @section-padding-lg/2; }
     > *   { width: calc(~'50%' - @section-padding-lg/2); }
     & + & { margin-top: @section-padding-lg/2; }
   }
@@ -34,7 +37,6 @@
     top: 1em;
 
     @media @mq-upto-sm {
-      display: block;
       margin-top: 2em;
       top: 0;
       text-align: center;

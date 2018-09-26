@@ -1,0 +1,52 @@
+.home {
+  @media @mq-upto-sm {
+    .logo-mobile .umunandi-svg { height: 55px; }
+    .logo-mobile   { top: 18px; transform: none; }
+    .tagline h2    { font-size: 7.5vw; }
+    .featured-kids { display: none; }
+    .scroll-down   { font-size: 25px; }
+
+    .learn-more {
+      display: inline-block;
+      margin-top: 1.5em;
+      font-size: calc(11px ~'+' 1vw);
+    }
+
+    // Landscape phone - no kids, white tagline
+    @media @mq-land {
+      .header {
+        background-size: 114%;
+        background-position-y: 90%;
+      }
+  
+      .tagline {
+        top: auto;
+        bottom: calc(6% ~'+' 10px);
+        transform: translateY(0);
+        
+        h2 {
+          margin-left: 10px;
+          font-size: 4.5vw;
+          color: #fff;
+          border: 12px solid transparent;
+          border-image: url("@{base-url}/img/box-sketched.svg") 5% 3% 6% 3% stretch;
+          border-image-outset: 0.3 1;
+        }
+
+        .learn-more {
+          margin-top: 15vh;
+          background-color: @btn-primary-bg;
+          border-color: @btn-primary-border;
+          color: @btn-primary-color;
+
+          &:hover, &:focus, &:active {
+            background-color: #fff !important;
+            border-color: #fff;
+            color: @brand-primary;
+          }
+          // .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
 
   .container {
     position: fixed;
-    top: 0; right: 0; bottom: 0; left: 30%;
+    top: 0; right: -70%; bottom: 0; left: 100%;
     padding: 25px 30px;
     background: linear-gradient(lighten(@brand-primary, 6%) 10%, darken(@brand-primary, 3%) 90%);
   }
@@ -54,16 +54,16 @@
   
   // Nav toggle animation - hidden
   .main-nav-container       { opacity: 0;                  transition: opacity   0.1s; }
-  .container                { transform: translateX(100%); transition: transform 0.3s ease-out; }
+  .container                { transform: translateX(0);    transition: transform 0.3s ease-out; }
   .hamburger                { transform: translate(0);     transition: transform 0.3s; }
   .hamburger:before         { background: @brand-primary;  transition: all       0.3s; }
 
   // Nav toggle animation - visible
   .nav-toggle-checkbox:checked {
     ~ * .main-nav-container { opacity: 1; transition: opacity 0.2s 0.1s; }
-    ~ .container            { transform: translateX(0); }
+    ~ .container            { transform: translateX(-100%); }
     ~ .hamburger            { transform: translate(-8px, 16px); }
-    ~ .hamburger:before     { background: lighten(@brand-primary, 6%); transition-delay: 0s; }
+    ~ .hamburger:before     { background: transparent; transition-delay: 0s; }
     ~ .hamburger > span     { background: #fff; }
   }
 }

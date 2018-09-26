@@ -1,0 +1,84 @@
+.home {
+  .header {
+    height: 97vh;
+    margin-top: 0;
+    padding-top: 0;
+    text-shadow: none;
+
+    .container {
+      max-width: none;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &-page-header {
+    position: relative;
+    height: 100%;
+    
+    > * {
+      position: absolute;
+      transform: translateY(-50%); // vertically center all children
+      color: @header-text-color;
+    }
+    
+    .tagline {
+      top: 24%;
+      margin-top: 5px;
+      @media @mq-md { margin-top: 20px; }
+      text-align: left;
+
+      h2 {
+        font-family: Raleway, sans-serif;
+        font-weight: 500;
+        font-size: 6vh;                      // font scales with device height
+        @media @mq-950h { font-size: 58px; } // up to max font-size
+      }
+    }
+    
+    .featured-kids {
+      top: 64%;
+
+      > ul {
+        .list-unstyled;
+        margin-bottom: 0;
+        color: #fff;
+      }
+    }
+
+    .scroll-down   {
+      top: 100%;
+      margin-top: -10px;
+      width: 100%;
+      justify-content: center;
+      opacity: 0.8;
+      font-size: 30px;
+
+      .icon-arrow-down { background-color: rgba(255,255,255,0.3); }
+    }
+    
+    .logo-mobile .umunandi-svg { height: 0; } // work-around for display:none
+    .learn-more { display: none; }
+    a:not(.btn) { color: inherit; }
+  }
+
+  .header {
+    // Home page image
+    background-position: 100% 66%;
+    @media @mq-tall { background-position-x: ~"calc(50% - 45vh)"; } // Keeps kid centred
+    @media @mq-sm   { background-position-x: 83%; }
+    @media @mq-lg   { background-position-x: 100%; }
+    
+    // Gradient approximation of home page image
+    @home-image-gradient: linear-gradient(to top, 
+      #a98457, #b5956c 15%, #7f8b5b 24%, #7f8b5b 40%, #88a270 51%, #f0e5c9 60%, #feffee 80%
+    );
+    &:before { background-image: @home-image-gradient; }
+    &:after  { background: transparent; }
+  }
+
+  .what-we-do {
+    &             { font-size: 17px; }
+    @media @mq-md { font-size: 22px; }
+  }
+}

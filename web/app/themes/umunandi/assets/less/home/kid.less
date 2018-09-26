@@ -1,0 +1,36 @@
+.kid {
+  &     { display: inline-block; }
+  & + & { margin-left: 24px; }
+  > a   { display: block; text-decoration: none; }
+
+  &-face {
+    border-radius: 50%;
+    border: 3px solid rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: 0.3s;
+
+    img {
+      width: 100%;
+      height: 100%;
+      transition: all 0.3s;
+    }
+    
+    @media @mq-sm  { width: 110px; border-width: 4px; }
+    @media @mq-md  { width: 150px; border-width: 5px; }
+    @media @mq-lg  { width: 166px; }
+  }
+  
+  &:hover {
+    img       { transform: scale(1.1); }
+    .kid-name { transform: scale(1.2); }
+    .kid-face { border-color: rgba(0,50,0,0.7); }
+  }
+
+  &-name {
+    font-size: 18px;
+    padding-top: 10px;
+    transition: 0.3s;
+
+    @media @mq-md { font-size: 21px; }
+  }
+}

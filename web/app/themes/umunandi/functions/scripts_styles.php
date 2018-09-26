@@ -6,7 +6,7 @@ function umunandi_scripts_n_styles() {
   // Google fonts
   wp_enqueue_style(
     'umunandi_fonts',
-    '//fonts.googleapis.com/css?family=Martel:900|Nunito:600|Quicksand:300,400,700|Libre+Baskerville:400',
+    '//fonts.googleapis.com/css?family=Raleway:300,400,500,600|Martel:900|Nunito:400,600|Quicksand:300,400,700|Libre+Baskerville:400',
     false, false
   );
 

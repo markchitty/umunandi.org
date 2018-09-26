@@ -56,13 +56,17 @@ h2 {
   text-align: center;
   text-transform: uppercase;
 
+  @media @mq-upto-sm and @mq-land {
+    margin: 0 0 @section-padding * 2/3;
+  }
+
   @media @mq-md {
     margin-bottom: @section-padding-lg - 10;
     font-size: @font-size-large;
   }
 }
 
-.libre-baskerville {
+.libre-baskerville() {
   font-weight: normal;
   font-family: 'Libre Baskerville', serif;
   line-height: 1.6;
