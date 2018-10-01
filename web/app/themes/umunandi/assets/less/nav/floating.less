@@ -1,6 +1,9 @@
+@nav-floating-top  : 10px;
+@nav-forefront-top : 3%;
+
 .main-nav:not(.fixed) {
   position: absolute;
-  top: 10px;
+  top: @nav-floating-top;
   background-color: transparent;
   box-shadow: none;
 
@@ -37,8 +40,18 @@
     .nav-forefront & {
       .logo-link      { transform: scale(2); }
       .main-nav-menu  { transform: translateY(20px); }
-      @media @mq-950h { top: 3%; }
+      @media @mq-950h { top: @nav-forefront-top; }
     }
+  }
+}
+
+// Keeps track of the unfixed navbar position, even after it has become fixed
+.js-main-nav-position-ref {
+  position: absolute;
+  top: @nav-floating-top;
+
+  @media @mq-md and @mq-950h {
+    .nav-forefront & { top: @nav-forefront-top; }
   }
 }
 

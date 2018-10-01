@@ -1,3 +1,4 @@
+<a name="main-nav-position-ref" class="js-main-nav-position-ref"></a>
 <nav class="main-nav navbar js-main-nav">
 
   <input type="checkbox" class="nav-toggle-checkbox" name="navToggle" id="navToggle">
