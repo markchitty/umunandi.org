@@ -44,12 +44,10 @@
   }
 
   // Initial / scrolled animation
-  &:not(.fixed) {
-    .hamburger {
-      &        { transform: translate(-8px, 16px); }
-      &:before { opacity: 0; }
-      > span   { background: @nav-link-color; }
-    }
+  &:not(.fixed) .hamburger {
+    &        { transform: translate(-8px, 16px); }
+    &:before { opacity: 0; }
+    > span   { background: @nav-link-color; }
   }
   
   // Nav toggle animation - hidden

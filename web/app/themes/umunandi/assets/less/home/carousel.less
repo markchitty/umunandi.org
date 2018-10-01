@@ -43,21 +43,37 @@
       &.active           { background-color: #999; transform: scale(1.4); }
     }
   }
+  
+  .kid-face {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1.2em;
+    border-width: 0;
 
-  &-progress-bar         { height: 3px; background: #ddd; width: 100%; position: relative; top: @section-padding; 
-    @media @mq-lg        { top: @section-padding-lg; }
-    .progress            { height: 3px; background: #aaa; width: 0; }
-    .progress.max        { width: 100%; } // transition rule for animating progress bar is setup by js
+    @media @mq-xs { float: left; margin-right: 1.2em; margin-bottom: 0; }
+
+    &             { width: @carousel-kid-face-size-xs; height: @carousel-kid-face-size-xs; }
+    @media @mq-sm { width: @carousel-kid-face-size-sm; height: @carousel-kid-face-size-sm; margin-right: 2em; }
+    @media @mq-md { width: @carousel-kid-face-size-md; height: @carousel-kid-face-size-md; }
+    
+    &:hover > img { transform: scale(1.07); }
   }
 
-  .kid-face              { display: inline-block; border-width: 2px; margin-bottom: 1.2em;
-                           width: @carousel-kid-face-size-xs; height: @carousel-kid-face-size-xs;
-                           transition: 0.2s;
-    @media @mq-xs        { float: left; margin-right: 1.2em; margin-bottom: 0; }
-    @media @mq-sm        { width: @carousel-kid-face-size-sm; height: @carousel-kid-face-size-sm; margin-right: 2em; }
-    @media @mq-md        { width: @carousel-kid-face-size-md; height: @carousel-kid-face-size-md; }
-    &:hover              { border-color: @brand-primary;
-      > img              { transform: scale(1.07); }
+  .progressometer {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    pointer-events: none;
+
+    .radial-bg, .radial-progress {
+      fill: none;
+      stroke-width: 5px;
+      stroke: rgba(255,255,255,0.3);
+    }
+    .radial-progress {
+      stroke: rgba(0,0,0,0.3);
+      transition: stroke-dashoffset 1s linear;
+      stroke-dasharray: 315 1000;
+      stroke-dashoffset: 1000;
     }
   }
 

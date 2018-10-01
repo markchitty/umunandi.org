@@ -1,15 +1,13 @@
 // Based on experiments here: https://codepen.io/markchitty/pen/aaWvag
-@size       : 70px;
 @speed      : 2s;
-@line-width : 0;
-@line-color : #eee;
-@fill       : #ddd;
+@line-width : 3;
+@line-color : rgba(0,0,0,0.5);
+@fill       : transparent;
 
 .spinner {
   position: relative;
   width: 1em;
   height: 1em;
-  font-size: @size;
   color: @line-color;
   opacity: 0.8;
   
@@ -36,12 +34,12 @@
   }
   
   & {
-    > span:before  { animation: spin-unspin @speed linear infinite; }
+    .slice1:before { animation: spin-unspin @speed linear infinite; }
     .slice2:before { animation-delay: @speed/4; }
   }
 
   &.one-way {
-    > span:before  { animation: spin @speed linear infinite; }
+    .slice1:before { animation: spin @speed linear infinite; }
     .slice2:before { animation: spin2 @speed linear infinite; }
   }
 }

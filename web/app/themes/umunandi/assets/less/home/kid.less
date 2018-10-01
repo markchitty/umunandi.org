@@ -15,9 +15,9 @@
       transition: all 0.3s;
     }
     
-    @media @mq-sm  { width: 110px; border-width: 4px; }
-    @media @mq-md  { width: 150px; border-width: 5px; }
-    @media @mq-lg  { width: 166px; }
+    @media @mq-sm  { width: 110px; height: 110px; border-width: 4px; }
+    @media @mq-md  { width: 150px; height: 150px; border-width: 5px; }
+    @media @mq-lg  { width: 166px; height: 166px; }
   }
   
   &:hover {
@@ -30,6 +30,7 @@
     font-size: 18px;
     padding-top: 10px;
     transition: 0.3s;
+    transform-origin: top;
 
     @media @mq-md { font-size: 21px; }
   }

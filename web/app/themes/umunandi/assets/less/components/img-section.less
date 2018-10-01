@@ -12,17 +12,18 @@
     justify-content: space-between;
     align-items: center;
 
-    @media @mq-land { align-items: flex-start; }
-    img             { margin-top: 0.33em; }
+    img { margin-top: 0.33em; }
     
     > * {
       width: calc(~'50%' - @section-padding/2);
       margin-bottom: 0;
     }
-
+    
     .alignright     { order: 2; }
     .alignright + * { text-align: right; }
   }
+
+  @media @mq-upto-sm and @mq-land { align-items: flex-start; }
     
   @media @mq-md {
     &     { padding-bottom: @section-padding-lg/2; }
