@@ -20,7 +20,7 @@ var Umunandi = Umunandi || {};
     });
 
     // Carousel
-    var carouselSlideInterval = 12000;
+    var carouselSlideInterval = 3000;
     var carouselOptions = { interval: carouselSlideInterval, pause: '' };
     var $carousel = $('.js-kids-carousel').carousel(carouselOptions).carousel('pause');
     var carouselProgress = new Umunandi.CarouselProgress($carousel);
@@ -28,7 +28,7 @@ var Umunandi = Umunandi || {};
     $('.js-kids-carousel')
       .on('slide.bs.carousel', carouselProgress.resetProgress)
       .on('slid.bs.carousel',  carouselProgress.onSlid)
-      .hover(carouselProgress.pauseCarousel, carouselProgress.startCarousel)
+      .hover(carouselProgress.onHover)
       .fadeOnScroll({ dontFade : true })
       .on('enteredView.fadeOnScroll', carouselProgress.startCarousel)
       .on('exitedView.fadeOnScroll',  carouselProgress.pauseCarousel)
