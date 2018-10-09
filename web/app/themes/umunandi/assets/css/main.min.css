@@ -4029,6 +4029,8 @@ figure.alignnone {
 }
 .header {
   position: relative;
+  display: flex;
+  margin-top: 0;
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.3) 0 0 5px;
   text-align: center;
@@ -4062,15 +4064,13 @@ figure.alignnone {
   opacity: 0.4;
 }
 .header .container {
-  padding-top: 21px;
-  padding-bottom: 21px;
   position: relative;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 1;
   max-width: 100%;
+  padding: 70px 25px 60px;
 }
 .header .container:before,
 .header .container:after {
@@ -4079,6 +4079,7 @@ figure.alignnone {
 @media (min-width: 480px) {
   .header .container {
     max-width: 80%;
+    padding: 25px;
   }
 }
 @media (min-width: 768px) {
@@ -4426,14 +4427,17 @@ figure.alignnone {
     height: 0 !important;
     opacity: 0 !important;
   }
-  .main-nav .umunandi-svg {
+  .main-nav .umunandi-logo-svg {
     display: block;
     height: 38px;
     margin: 11px 0;
     transition: transform 0.15s;
   }
-  .main-nav .umunandi-svg:hover {
+  .main-nav .umunandi-logo-svg:hover {
     transform: scale(1.1);
+  }
+  .logo-link-mobile {
+    display: none;
   }
   .main-nav-menu {
     cursor: default;
@@ -4490,7 +4494,7 @@ figure.alignnone {
     background-color: transparent;
     box-shadow: none;
   }
-  .main-nav:not(.fixed) .umunandi-svg-fill {
+  .main-nav:not(.fixed) .umunandi-logo-fill {
     fill: #fff;
   }
   .main-nav:not(.fixed) .main-nav-menu > li > a {
@@ -4511,7 +4515,7 @@ figure.alignnone {
     background-color: #2a7b06 !important;
     border-color: #2a7b06 !important;
   }
-  .nav-forefront .main-nav:not(.fixed) .umunandi-svg {
+  .nav-forefront .main-nav:not(.fixed) .umunandi-logo-svg {
     transform: none;
   }
   .nav-forefront .main-nav:not(.fixed) .logo-link {
@@ -4531,9 +4535,9 @@ figure.alignnone {
     transition-duration: 0.3s;
     transform-origin: top left;
   }
-  .nav-dark .main-nav .umunandi-svg-fill,
-  .header-light .main-nav .umunandi-svg-fill {
-    fill: url(#greenGradient);
+  .nav-dark .main-nav .umunandi-logo-fill,
+  .header-light .main-nav .umunandi-logo-fill {
+    fill: url(#uLogoGreenGradient);
   }
   .nav-dark .main-nav .main-nav-menu > li:not(.link-btn) > a,
   .header-light .main-nav .main-nav-menu > li:not(.link-btn) > a {
@@ -4683,14 +4687,11 @@ figure.alignnone {
     background: #206800;
     border-radius: 0 0 0 100%;
   }
-  .main-nav:not(.fixed) .hamburger {
-    transform: translate(-8px, 16px);
-  }
   .main-nav:not(.fixed) .hamburger:before {
     opacity: 0;
   }
-  .main-nav:not(.fixed) .hamburger > span {
-    background: #888;
+  .nav-forefront .main-nav:not(.fixed) .hamburger {
+    transform: translate(-8px, 16px);
   }
   .main-nav .main-nav-container {
     opacity: 0;
@@ -4698,7 +4699,7 @@ figure.alignnone {
   }
   .main-nav .container {
     transform: translateX(0);
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
   }
   .main-nav .hamburger {
     transform: translate(0);
@@ -4714,6 +4715,7 @@ figure.alignnone {
   }
   .main-nav .nav-toggle-checkbox:checked ~ .container {
     transform: translateX(-100%);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   .main-nav .nav-toggle-checkbox:checked ~ .hamburger {
     transform: translate(-8px, 16px);
@@ -4723,12 +4725,38 @@ figure.alignnone {
     transition-delay: 0s;
   }
   .main-nav .nav-toggle-checkbox:checked ~ .hamburger > span {
-    background: #fff;
+    background: #fff !important;
   }
-  .main-nav-header .umunandi-svg {
+  .logo-link-mobile {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    padding: 10px 20px;
+  }
+  .logo-link-mobile .umunandi-logo-svg {
     height: 40px;
   }
-  .main-nav-header .umunandi-svg-fill {
+  .logo-link-mobile .umunandi-logo-fill {
+    fill: #fff;
+  }
+  .nav-forefront .logo-link-mobile {
+    padding: 18px 25px;
+  }
+  .nav-forefront .logo-link-mobile .umunandi-logo-svg {
+    height: 55px;
+  }
+  .nav-dark .main-nav:not(.fixed) .hamburger > span,
+  .header-light .main-nav:not(.fixed) .hamburger > span {
+    background: #888;
+  }
+  .nav-dark .umunandi-logo-fill,
+  .header-light .umunandi-logo-fill {
+    fill: url(#uLogoMobileGreenGradient);
+  }
+  .main-nav-header .umunandi-logo-svg {
+    height: 40px;
+  }
+  .main-nav-header .umunandi-logo-fill {
     fill: #fff;
   }
   .main-nav-menu {
@@ -4985,9 +5013,6 @@ figure.alignnone {
 }
 .home-page-header .scroll-down .icon-arrow-down {
   background-color: rgba(255, 255, 255, 0.3);
-}
-.home-page-header .logo-mobile .umunandi-svg {
-  height: 0;
 }
 .home-page-header .learn-more {
   display: none;
@@ -5480,12 +5505,8 @@ figure.alignnone {
   opacity: 0.8;
 }
 @media (max-width: 767px) {
-  .home .logo-mobile .umunandi-svg {
-    height: 55px;
-  }
-  .home .logo-mobile {
-    top: 18px;
-    transform: none;
+  .home .header .container {
+    width: 100%;
   }
   .home .tagline h2 {
     font-size: 7.5vw;
@@ -5520,15 +5541,15 @@ figure.alignnone {
     border-image: url("/app/themes/umunandi/assets/img/box-sketched.svg") 5% 3% 6% 3% stretch;
     border-image-outset: 0.3 1;
   }
-  .home .tagline .learn-more {
+  .home .learn-more {
     margin-top: 10vw;
     background-color: #206800;
     border-color: #206800;
     color: #fff;
   }
-  .home .tagline .learn-more:hover,
-  .home .tagline .learn-more:focus,
-  .home .tagline .learn-more:active {
+  .home .learn-more:hover,
+  .home .learn-more:focus,
+  .home .learn-more:active {
     background-color: #fff !important;
     border-color: #fff;
     color: #206800;

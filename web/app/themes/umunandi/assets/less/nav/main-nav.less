@@ -14,15 +14,17 @@
   .main-nav-menu { position: relative; top: 4px; }
   .hamburger     { .hidden(); }
 
-  .umunandi-svg {
+  .umunandi-logo-svg {
     display: block;
     height: @navbar-logo-height;
     margin: (@navbar-height - @navbar-logo-height)/2 0;
 
     // Enlarge logo on hover
-    // Note: Both .umunandi-svg and its container .logo-link use transform:scale
+    // Note: Both .umunandi-logo-svg and its container .logo-link use transform:scale
     // - the separate rules decouple floating scaling from hover scaling
     &       { transition: transform 0.15s; }
     &:hover { transform: scale(1.1); }
   }
 }
+
+.logo-link-mobile { display: none; }

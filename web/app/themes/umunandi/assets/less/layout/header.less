@@ -1,5 +1,7 @@
 .header {
   position: relative;
+  display: flex;
+  margin-top: 0;
   color: #fff;
   text-shadow: rgba(0,0,0,0.3) 0 0 5px;
   text-align: center;
@@ -29,10 +31,7 @@
   }
 
   .container {
-    padding-top: @line-height-computed;
-    padding-bottom: @line-height-computed;
     position: relative;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,8 +39,8 @@
 
     &:before, &:after { content: none; }
 
-    &             { max-width: 100%; }
-    @media @mq-xs { max-width: 80%;  }
+    &             { max-width: 100%; padding: 70px @grid-gutter-width/2 60px; }
+    @media @mq-xs { max-width: 80%;  padding: @grid-gutter-width/2; }
     @media @mq-sm { max-width: 0.8 * @container-sm; }
     @media @mq-md { max-width: 0.7 * @container-md; }
     @media @mq-lg { max-width: 0.6 * @container-lg; }

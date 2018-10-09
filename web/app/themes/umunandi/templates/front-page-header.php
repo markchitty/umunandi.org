@@ -1,9 +1,5 @@
 <div class="home-page-header">
 
-  <div class="logo-mobile">
-    <?php include(locate_template('assets/img/umunandi-logo.svg')) ?>
-  </div>
-
   <div class="tagline">
     <h2><?= str_replace(" get", "<br>get", get_bloginfo('description')) ?></h2>
     <a class="learn-more btn btn-primary" href=".body-top" data-scrollto="750" data-scrolloffset="10">

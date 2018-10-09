@@ -1,10 +1,9 @@
-.home {
-  @media @mq-upto-sm {
-    .logo-mobile .umunandi-svg { height: 55px; }
-    .logo-mobile   { top: 18px; transform: none; }
-    .tagline h2    { font-size: 7.5vw; }
-    .featured-kids { display: none; }
-    .scroll-down   { font-size: 25px; }
+@media @mq-upto-sm {
+  .home {
+    .header .container { width: 100%; }
+    .tagline h2        { font-size: 7.5vw; }
+    .featured-kids     { display: none; }
+    .scroll-down       { font-size: 25px; }
 
     .learn-more {
       display: inline-block;
@@ -32,19 +31,18 @@
           border-image: url("@{base-url}/img/box-sketched.svg") 5% 3% 6% 3% stretch;
           border-image-outset: 0.3 1;
         }
+      }
 
-        .learn-more {
-          margin-top: 10vw;
-          background-color: @btn-primary-bg;
-          border-color: @btn-primary-border;
-          color: @btn-primary-color;
+      .learn-more {
+        margin-top: 10vw;
+        background-color: @btn-primary-bg;
+        border-color: @btn-primary-border;
+        color: @btn-primary-color;
 
-          &:hover, &:focus, &:active {
-            background-color: #fff !important;
-            border-color: #fff;
-            color: @brand-primary;
-          }
-          // .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+        &:hover, &:focus, &:active {
+          background-color: #fff !important;
+          border-color: #fff;
+          color: @brand-primary;
         }
       }
     }

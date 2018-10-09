@@ -32,7 +32,7 @@
     right: 0px;
     padding: 20px;
     cursor: pointer;
-    
+
     &:before {
       .pseudo-content(50%, auto, auto, 50%);
       width: 90px;
@@ -45,23 +45,39 @@
 
   // Initial / scrolled animation
   &:not(.fixed) .hamburger {
-    &        { transform: translate(-8px, 16px); }
-    &:before { opacity: 0; }
-    > span   { background: @nav-link-color; }
+    &:before               { opacity: 0; }
+    .nav-forefront &       { transform: translate(-8px, 16px); }
   }
   
   // Nav toggle animation - hidden
   .main-nav-container       { opacity: 0;                  transition: opacity   0.1s; }
-  .container                { transform: translateX(0);    transition: transform 0.3s ease-out; }
+  .container                { transform: translateX(0);    transition: transform 0.3s cubic-bezier(0,0,0.2,1); }
   .hamburger                { transform: translate(0);     transition: transform 0.3s; }
   .hamburger:before         { background: @brand-primary;  transition: all       0.3s; }
 
   // Nav toggle animation - visible
   .nav-toggle-checkbox:checked {
     ~ * .main-nav-container { opacity: 1; transition: opacity 0.2s 0.1s; }
-    ~ .container            { transform: translateX(-100%); }
+    ~ .container            { transform: translateX(-100%); transition-timing-function: cubic-bezier(0.4,0,0.2,1);}
     ~ .hamburger            { transform: translate(-8px, 16px); }
     ~ .hamburger:before     { background: transparent; transition-delay: 0s; }
-    ~ .hamburger > span     { background: #fff; }
+    ~ .hamburger > span     { background: #fff !important; }
   }
+}
+
+.logo-link-mobile {
+  position: absolute;
+  display: block;
+  z-index: 1;
+  padding: 10px 20px;
+
+  .umunandi-logo-svg  { height: 40px; }
+  .umunandi-logo-fill { fill: #fff; }
+  .nav-forefront &    { padding: 18px @grid-gutter-width/2; }
+  .nav-forefront & .umunandi-logo-svg { height: 55px; }
+}
+
+.nav-dark, .header-light {
+  .main-nav:not(.fixed) .hamburger > span { background: @nav-link-color; }
+  .umunandi-logo-fill { fill: url(#uLogoMobileGreenGradient); }
 }
