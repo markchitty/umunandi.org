@@ -4052,16 +4052,16 @@ figure.alignnone {
 }
 .header:after {
   z-index: 0;
-  background-color: #000;
   opacity: 0.3;
+  background-image: linear-gradient(to bottom, #000 7%, rgba(0, 0, 0, 0) 30%);
 }
 .header-light .header {
   color: #333;
   text-shadow: none;
 }
 .header-light .header:after {
-  background-color: #fff;
-  opacity: 0.4;
+  opacity: 0.8;
+  background-image: linear-gradient(to bottom, #fff 7%, rgba(255, 255, 255, 0) 30%);
 }
 .header .container {
   position: relative;
