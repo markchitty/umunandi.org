@@ -58,7 +58,7 @@ module.exports = function(grunt) {
     },
     version: {
       options: {
-        file: 'lib/scripts.php',
+        file: 'lib/roots/scripts.php',
         css: 'assets/css/main.min.css',
         cssHandle: 'roots_main',
         js: 'assets/js/scripts.min.js',
@@ -84,9 +84,9 @@ module.exports = function(grunt) {
         files: [
           'templates/**/*.php',
           'lib/*.php',
-          'functions/*.php',
+          'src/*.php',
           '*.php',
-          '!lib/scripts.php'
+          '!lib/roots/scripts.php'
         ],
         options: { livereload: true }
       },

@@ -1,9 +1,6 @@
 .carousel                { width: auto;
 
   @carousel-ctrl-spacing     : 110px;
-  @carousel-kid-face-size-xs : 160px;
-  @carousel-kid-face-size-sm : 240px;
-  @carousel-kid-face-size-md : 300px;
 
   @media @mq-sm          { max-width: @container-sm + @carousel-ctrl-spacing;
                            padding: 0 (@grid-gutter-width + @carousel-ctrl-spacing)/2; }
@@ -20,16 +17,26 @@
     > .active.right      { left:  110%; }
   }
 
-  &-control              { color: #999; width: auto; background-image: none !important; text-shadow: none;
-                           text-align: left; padding: 0 18px; bottom: auto; transform: translateY(-50%); z-index: 20;
+  &-control {
+    color: #999;
+    width: auto;
+    background-image: none !important;
+    text-shadow: none;
+    text-align: left;
+    padding: 0 18px;
+    bottom: auto;
+    transform: translateY(-50%);
+    z-index: 20;
+
     &:hover, &:focus     { color: #666; }
-    &.left               { left:  0; }
+    &.left               { left: 0; }
     &.right              { right: 0; text-align: right; direction: rtl; }
 
-    &                    { top: @carousel-kid-face-size-xs/2; }
-    @media @mq-xs        { top: auto; bottom: 0; transform: none; }
-    @media @mq-sm        { top: @carousel-kid-face-size-sm/2; }
-    @media @mq-md        { top: @carousel-kid-face-size-md/2; }
+    &                    { top: 96px; }
+    @media @mq-md        { top: 127px; }
+    @media @mq-lg        { top: 150px; }
+    @media @mq-xs
+       and @mq-upto-sm   { top: auto; bottom: 0; transform: none; }
 
     > span:before        { font-size: 33px; padding: 0;
       @media @mq-sm      { font-size: 50px; }
@@ -47,53 +54,54 @@
   .kid-face {
     display: inline-block;
     position: relative;
-    margin-bottom: 1.2em;
+    float: left;
+    margin-right: 1.2em;
+    margin-bottom: 0.8em;
     border-width: 0;
 
-    @media @mq-xs { float: left; margin-right: 1.2em; margin-bottom: 0; }
+    &                    { width: 12em; height: 12em; }
+    @media @mq-md        { width: 15em; height: 15em; margin-right: 2em; }
+    @media @mq-upto-xs   { float: none; margin: 0; }
 
-    &             { width: @carousel-kid-face-size-xs; height: @carousel-kid-face-size-xs; }
-    @media @mq-sm { width: @carousel-kid-face-size-sm; height: @carousel-kid-face-size-sm; margin-right: 2em; }
-    @media @mq-md { width: @carousel-kid-face-size-md; height: @carousel-kid-face-size-md; }
-    
-    &:hover > img { transform: scale(1.07); }
+    &:hover > img        { transform: scale(1.07); }
   }
 
-  .progressometer {
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    pointer-events: none;
-
-    .radial-bg, .radial-progress {
-      fill: none;
-      stroke-width: 5px;
-      stroke: rgba(255,255,255,0.3);
-    }
-    .radial-progress {
-      stroke: rgba(0,0,0,0.3);
-      transition: stroke-dashoffset 1s linear;
-      stroke-dasharray: 315 1000;
-      stroke-dashoffset: 1000;
-    }
-  }
-
-  .kid-info              { 
-    @media @mq-upto-sm   { padding-bottom: 70px; }
-    @media @mq-sm        { overflow: auto; }
-    &--name              { font-size: 22px; margin-top: 0;
-      @media @mq-sm      { font-size: 26px; }
-      @media @mq-md      { font-size: 32px; }
-    }
-    &--story             { font-size: 14px; overflow: auto; 
-      @media @mq-xs      { font-size: 15px; }
-      @media @mq-sm      { font-size: 16px; }
-      @media @mq-md      { font-size: 20px; }
-    }
+  .kid-info { 
+    &--story             { .bigger; }
     &--sponsor           { padding: 1.2em 0;
-      @media @mq-upto-sm { text-align: center; position: absolute; width: 100%; bottom: 0; }
       .btn               { padding: 4px 10px;
         @media @mq-md    { padding: 8px 12px; }
       }
     }
+    @media @mq-xs {
+      &--name            { margin-top: 0; }
+    }
+    @media @mq-upto-md   { padding-bottom: 70px;
+      &--sponsor         { text-align: center; position: absolute; width: 100%; bottom: 0; }
+    }
+    @media @mq-md {
+      &, &--story        { overflow: auto; }
+    }
+  }
+}
+
+.progressometer {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  pointer-events: none;
+
+  &-defs { position: absolute; width: 0; height: 0; }
+
+  .radial-bg, .radial-progress {
+    fill: none;
+    stroke-width: 5px;
+    stroke: rgba(255,255,255,0.3);
+  }
+
+  .radial-progress {
+    stroke: rgba(0,0,0,0.3);
+    transition: stroke-dashoffset 1s linear;
+    stroke-dasharray: 315 1000;
+    stroke-dashoffset: 1000;
   }
 }

@@ -1,11 +1,19 @@
 body {
-  @media @mq-upto-sm { font-size: 14px; }
+  &             { font-size: 16px; } // @font-size-base
+  @media @mq-md { font-size: 17px; }
+  @media @mq-lg { font-size: 19px; }
 }
 
-h6, .h6 {
-  font: 600 13px/2 @font-family-nav;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.smaller {
+  &             { font-size: 15px; }
+  @media @mq-md { font-size: 16px; }
+  @media @mq-lg { font-size: 18px; }
+}
+
+.bigger {
+  &             { font-size: 17px; }
+  @media @mq-md { font-size: 18px; }
+  @media @mq-lg { font-size: 22px; }
 }
 
 p {
@@ -21,6 +29,31 @@ p {
     &:hover {
       background-size: 100% 30%;
     }
+  }
+}
+
+h2 {
+  font-family: @font-family-title;
+  font-size: 200%;
+}
+
+h6, .h6 {
+  font-family: @font-family-title;
+  font-weight: 300;
+  font-size: inherit;
+  line-height: 2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}  
+
+.section-header {
+  .h6;
+  margin-bottom: @section-padding;
+  color: #999;
+  text-align: center;
+
+  @media @mq-upto-sm and @mq-land {
+    margin: 0 0 @section-padding * 2/3;
   }
 }
 
@@ -42,28 +75,6 @@ p {
 
   &:before { right: 0.5em; margin-left:  -50%; }
   &:after  {  left: 0.5em; margin-right: -50%; }
-}
-
-h2 {
-  font-family: @font-family-title;
-  font-size: 60px;
-}
-
-.section-header {
-  .h6;
-  margin-bottom: @section-padding;
-  color: #999;
-  text-align: center;
-  text-transform: uppercase;
-
-  @media @mq-upto-sm and @mq-land {
-    margin: 0 0 @section-padding * 2/3;
-  }
-
-  @media @mq-md {
-    margin-bottom: @section-padding-lg - 10;
-    font-size: @font-size-large;
-  }
 }
 
 .libre-baskerville() {

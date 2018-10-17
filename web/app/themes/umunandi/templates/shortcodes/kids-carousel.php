@@ -1,4 +1,4 @@
-<svg viewBox="0 0 100 100" width="0">
+<svg viewBox="0 0 100 100" class="progressometer-defs">
   <defs>
     <circle cx="50" cy="50" r="50" id="circ-path" transform="translate(100,0) scale(-1, 1) rotate(-90, 50, 50)"></circle>
     <clipPath id="circ-clip"><use xlink:href="#circ-path"></use></clipPath>
