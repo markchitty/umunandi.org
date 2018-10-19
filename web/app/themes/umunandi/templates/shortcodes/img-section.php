@@ -1,4 +1,4 @@
-<div class="img-section <?= $atts['class'] ?>">
+<div class="img-section col-grid <?= $atts['class'] ?>">
   <?= $atts['img_tag'] ?>
-  <div class="copy"><?= $content ?></div>
+  <div class="copy col"><?= $content ?></div>
 </div>

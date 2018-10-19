@@ -46,6 +46,12 @@ h6, .h6 {
   letter-spacing: 1px;
 }
 
+figcaption {
+  .smallest-text;
+  line-height: 1.25;
+  margin-top: 0.5em;
+}
+
 .split-line(@color: #ccc) {
   display: block;
   width: 100%;
@@ -64,17 +70,4 @@ h6, .h6 {
 
   &:before { right: 0.5em; margin-left:  -50%; }
   &:after  {  left: 0.5em; margin-right: -50%; }
-}
-
-.libre-baskerville() {
-  font-weight: normal;
-  font-family: 'Libre Baskerville', serif;
-  line-height: 1.6;
-  letter-spacing: 0.1em;
-}
-
-figcaption {
-  .smallest-text;
-  line-height: 1.25;
-  margin-top: 0.5em;
 }

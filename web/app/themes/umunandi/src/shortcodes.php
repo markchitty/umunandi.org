@@ -62,13 +62,14 @@ function umunandi_shortcode_img_section($atts, $content) {
     'valign' => 'center',
     'object_fit' => ''
   ), $atts);
-  $atts['class'] .= ' valign-' . $atts['valign'] . ($atts['object_fit'] === 'cover' ? ' object-fit' : '');
+  $atts['class'] .= ' col-grid-' . $atts['valign'] . ($atts['object_fit'] === 'cover' ? ' object-fit' : '');
   $html = str_get_html(do_shortcode($content));
   
   // Extract the image (or <figure>) out of $content
   $fig = $html->find('figure', 0);
   $img = $fig ? $fig : $html->find('img', 0);
   $atts['img_class'] = $img->class;
+  $img->class .= ' col';
   $atts['img_tag'] = $img->outertext;
   $img->outertext = '';
 
