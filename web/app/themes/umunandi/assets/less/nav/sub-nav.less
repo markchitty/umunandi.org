@@ -7,17 +7,9 @@
     min-width: calc(100% ~'+' @sub-menu-pad-h * 2);
     background: rgba(255,255,255,0.95);
     line-height: @line-height-base;
-    font-size: 110%;
-    
-    // sketched box outline
-    &:before {
-      .pseudo-content(0);
-      border: 10px solid;
-      border-image: url("@{base-url}/img/box-drawn-thin-black.png") 9% stretch;
-      border-image-outset: 0.2 0.4 0.3;
-      opacity: 0.5;
-      pointer-events: none;
-    }
+
+    .sketch-box;
+    &:before { opacity: 0.5; }
 
     > li > a {
       display: block;
