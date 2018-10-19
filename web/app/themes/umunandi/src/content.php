@@ -1,4 +1,7 @@
 <?php
+define('IMG_ASSET_PATH', '/app/themes/umunandi/assets/img/');
+// define('GOOGLE_ANALYTICS_ID', '');
+
 // Get template type - list copied from src/wp-includes/template-loader.php
 function umunandi_get_template_type() {
   $template_type = 'index';
@@ -21,23 +24,32 @@ function umunandi_get_template_type() {
   return $template_type;
 }
 
-// Image tag without dimensions
-function wp_get_image_tag($attach_id, $size, $icon, $alt = '') {
-  if ($src = wp_get_attachment_image_src($attach_id, $size, $icon)) {
-    return sprintf('<img src="%s" alt="%s" />', $src[0], $alt);
-  }
+function umunandi_get_image_src($attach_id, $size) {
+  return ($src = wp_get_attachment_image_src($attach_id, $size, false)) ? $src[0] : '';
 }
 
 // Use featured image as css background-image
-// Returns 'style="background-image: url(path/to/image);"' if post featured image is set
+// Returns 'background-image: url(path/to/image);' if post featured image is set
 function umunandi_featured_image_bg_style($isRandom = false) {
-  $bg_style = 'style="background-image: url(%s);"';
+  $bg_img_style = 'background-image: url(%s);';
+  $bg_pos_style = 'background-position: %s;';
+  global $post;
+
   if ($isRandom) {
-    return sprintf($bg_style, 'http://lorempixel.com/900/500/people');
+    $bg_img = 'http://lorempixel.com/900/500/people';
   }
-  if ($bg_img = (wp_get_attachment_image_src(get_post_thumbnail_id(), 'full'))) {
-    return sprintf($bg_style, wp_make_link_relative($bg_img[0]));
+  elseif ($bg_img = (wp_get_attachment_image_src(get_post_thumbnail_id(), 'full'))) {
+    $bg_img = wp_make_link_relative($bg_img[0]);
   }
+  else return;
+
+  $bg_style = sprintf($bg_img_style, $bg_img);
+
+  if ($bg_pos = get_post_meta($post->ID, 'umunandi_page_bg_pos', true)) {
+    $bg_style .= sprintf($bg_pos_style, $bg_pos);
+  }
+
+  return $bg_style;
 }
 
 // Add custom page class into body tag classes

@@ -1,4 +1,4 @@
-<div class="home-page-header">
+<div class="home-page-header container">
 
   <div class="tagline">
     <h2><?= str_replace(" get", "<br>get", get_bloginfo('description')) ?></h2>

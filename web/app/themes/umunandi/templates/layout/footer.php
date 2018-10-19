@@ -19,4 +19,6 @@
 
 </footer>
 
+<div class="scripts-etc">
 <?php wp_footer(); ?>
+</div>

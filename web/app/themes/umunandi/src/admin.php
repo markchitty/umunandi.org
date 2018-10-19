@@ -28,15 +28,20 @@ function umunandi_acf_admin_head() {
 }
 
 // Custom page attribute field
-add_action('page_attributes_misc_attributes', 'umunandi_page_class');
-function umunandi_page_class($post) {
-  $page_class = get_post_meta($post->ID, 'umunandi_page_class', true);
+add_action('page_attributes_misc_attributes', 'umunandi_page_attrs');
+function umunandi_page_attrs($post) {
+  $page_class  = get_post_meta($post->ID, 'umunandi_page_class', true);
+  $page_bg_pos = get_post_meta($post->ID, 'umunandi_page_bg_pos', true);
   wp_nonce_field('umunandi_meta_box_nonce', 'meta_box_nonce');
   ?>
   <p class="post-attributes-label-wrapper">
     <label class="post-attributes-label" for="umunandi_page_class">Class</label>
   </p>
   <input type="text" name="umunandi_page_class" id="umunandi_page_class" value="<?= $page_class ?>">
+  <p class="post-attributes-label-wrapper">
+    <label class="post-attributes-label" for="umunandi_page_bg_pos">Featured image position</label>
+  </p>
+  <input type="text" name="umunandi_page_bg_pos" id="umunandi_page_bg_pos" value="<?= $page_bg_pos ?>">
   <?php
 }
 
@@ -47,32 +52,27 @@ function umunandi_meta_box_save($post_id) {
   if (!current_user_can('edit_post', $post_id)) return;
   if (!isset($_POST['meta_box_nonce']) ||
       !wp_verify_nonce($_POST['meta_box_nonce'], 'umunandi_meta_box_nonce')) return;
-
   if (isset($_POST['umunandi_page_class']))
       update_post_meta($post_id, 'umunandi_page_class', esc_attr($_POST['umunandi_page_class']));
+  if (isset($_POST['umunandi_page_bg_pos']))
+      update_post_meta($post_id, 'umunandi_page_bg_pos', esc_attr($_POST['umunandi_page_bg_pos']));
 }
 
 // Add Formats dropdown to TinyMCE editor (row 2), for custom styles
-// add_filter('mce_buttons_2', 'add_mce_formats');
-// function add_mce_formats($buttons) {
-//   array_unshift($buttons, 'styleselect');
-//   return $buttons;
-// }
-// // Custom TinyMCE styles
-// add_filter( 'tiny_mce_before_init', 'mce_styles');
-// function mce_styles( $init_array ) {
-//   $style_formats = array(
-//     array(
-//       'title'   => 'Parallax section',
-//       'block'   => 'div',
-//       'classes' => 'parallax-section',
-//       'wrapper' => true
-//     )
-//   );  
-//   $init_array['style_formats'] = json_encode($style_formats);
-//   return $init_array;
-// }
-
+add_filter('mce_buttons_2', 'add_mce_formats');
+function add_mce_formats($buttons) {
+  array_unshift($buttons, 'styleselect');
+  return $buttons;
+}
+add_filter('tiny_mce_before_init', 'mce_styles');
+function mce_styles($init_array) {
+  $style_formats = array(
+    array('title' => 'intro', 'block' => 'p', 'classes' => 'intro')
+  );  
+  $init_array['style_formats'] = json_encode($style_formats);
+  // $init_array['cache_suffix'] = 'v=' . date('Ymd-His');  // Uncomment to refresh editor-styles.css 
+  return $init_array;
+}
 
 // WP only makes excerpts available on Posts. This turns on excerpts for Pages too.
 // function umunandi_add_excerpts_to_pages() {

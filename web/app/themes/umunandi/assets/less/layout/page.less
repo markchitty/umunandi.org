@@ -1,0 +1,55 @@
+@header-height-sm : 450px;
+@header-height-lg : 540px;
+@footer-height    : 300px;
+
+.container {
+  @media @mq-sm { max-width: @container-sm; }
+  @media @mq-md { max-width: @container-md; }
+  @media @mq-lg { max-width: @container-lg; }
+}
+
+.header {
+  @media @mq-upto-sm { min-height: 50vh; }
+  @media @mq-upto-sm
+     and @mq-land    { min-height: 66vh; }
+  @media @mq-sm      { height: @header-height-sm; }
+  @media @mq-lg      { height: @header-height-lg; }
+
+  position: relative;
+  display: flex;
+}
+
+footer { 
+  @media @mq-sm { height: @footer-height; }
+}
+.body {
+  padding-bottom: 1px; // prevent collapsing margins screwing up these calc() heights
+  @media @mq-sm { min-height: calc(~"100vh - " @footer-height + @header-height-sm); }
+  @media @mq-lg { min-height: calc(~"100vh - " @footer-height + @header-height-lg); }
+}
+
+// Scrollto marker - ensures page scrolls to bottom of navbar when it's visible
+.body-top {
+  @media @mq-sm {
+    display: block;
+    transform: translateY(-@navbar-height);
+  }
+}
+
+// Equal height columns
+.row.equal-height-cols {
+  @media @mq-sm {
+    display: table;
+    width: 100%;
+    .container > & { width: calc(~"100% +" @grid-gutter-width); }
+
+    [class*="col-"] {
+      float: none;
+      display: table-cell;
+      vertical-align: top;
+    }
+  }
+}
+
+// Globally remove last margins
+*:last-child { margin-bottom: 0; }

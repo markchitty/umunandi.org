@@ -1,0 +1,16 @@
+.home {
+  .what-we-do p { .bigger-text; }
+
+  .read-more {
+    .smaller-text;
+    background-size: 100% 0%;
+    position: relative;
+    top: 1em;
+
+    @media @mq-upto-sm {
+      margin-top: 2em;
+      top: 0;
+      text-align: center;
+    }
+  }
+}
