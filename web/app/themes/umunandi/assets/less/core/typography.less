@@ -1,20 +1,17 @@
-body {
+// The <html> root element font size sets the reference size for rem units
+// (rem = R-oot E-le-M-ent). This means the media query scaling defined on the
+// html element will cascade through to any other property that uses rem units.
+html {
   &             { font-size: 16px; } // @font-size-base
   @media @mq-md { font-size: 17px; }
   @media @mq-lg { font-size: 19px; }
 }
 
-.smaller {
-  &             { font-size: 15px; }
-  @media @mq-md { font-size: 16px; }
-  @media @mq-lg { font-size: 18px; }
-}
-
-.bigger {
-  &             { font-size: 17px; }
-  @media @mq-md { font-size: 18px; }
-  @media @mq-lg { font-size: 22px; }
-}
+body            { font-size: 16 / 16rem; }
+.smallest-text  { font-size: 13 / 16rem; }
+.smaller-text   { font-size: 15 / 16rem; }
+.bigger-text    { font-size: 17 / 16rem; }
+.biggest-text   { font-size: 19 / 16rem; }
 
 p {
   margin: 0 0 0.9em;
@@ -32,13 +29,16 @@ p {
   }
 }
 
-h2 {
+.h1, .h2, .h3, .h4, .h5, .h6,
+ h1,  h2,  h3,  h4,  h5,  h6 {
   font-family: @font-family-title;
-  font-size: 200%;
+
+  &:first-child { margin-top: 0 !important; }
 }
 
+h2, .h2 { font-size: 2em; }
+
 h6, .h6 {
-  font-family: @font-family-title;
   font-weight: 300;
   font-size: inherit;
   line-height: 2;
