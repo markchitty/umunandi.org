@@ -10,6 +10,12 @@
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
+
+  > li {
+    padding-left: 0;
+    text-indent: 0;
+    &:before { content: none; }
+  }
 }  
 
 .nav-toggle-checkbox { .hidden(); }

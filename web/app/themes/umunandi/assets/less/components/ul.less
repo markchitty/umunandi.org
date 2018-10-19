@@ -1,0 +1,31 @@
+ul {
+  list-style: none;
+  padding-left: 0;
+
+  @blob-size    : 0.7em;
+  @blob-margins : 0.9em;
+  @total-indent : (@blob-margins * 2) + @blob-size;
+
+  > li {
+    padding-left: @total-indent;
+    text-indent: -@total-indent;
+    margin-bottom: 0.4em;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      background: url("@{base-url}/img/sketched-dots.png") no-repeat 0 0;
+      background-size: 300%;
+      width: @blob-size;
+      height: @blob-size;
+      margin: 0 @blob-margins;
+      position: relative;
+      top: 0.06em;
+    }
+
+    &:nth-child(5n+2):before { background-position: 50% 0%; }
+    &:nth-child(5n+3):before { background-position: 50% 66%; }
+    &:nth-child(5n+4):before { background-position: 0% 33%; }
+    &:nth-child(5n+5):before { background-position: 50% 33%; }
+  }
+}
