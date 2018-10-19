@@ -24,6 +24,9 @@ var Umunandi = Umunandi || {};
     $(document).scroll(function() {
       $navBar.toggleClass('fixed', $(this).scrollTop() > navBarRefTop); }
     );
+
+    // TODO : IE image cover fit polyfill
+    // https://medium.com/@primozcigler/neat-trick-for-css-object-fit-fallback-on-edge-and-other-browsers-afbc53bbb2c3
   }
 
   // export

@@ -48,21 +48,28 @@ function umunandi_shortcode_key_point($atts, $content) {
 // [img_section]
 add_shortcode('img_section', 'umunandi_shortcode_img_section');
 function umunandi_shortcode_img_section($atts, $content) {
-  $html = str_get_html($content);
-
-  // Extract the image out of $content
-  $img = $html->find('img', 0);
-  $img_tag = $img->outertext;
+  $atts = shortcode_atts(array(
+    'class' => '',
+    'valign' => 'center',
+    'object_fit' => ''
+  ), $atts);
+  $atts['class'] .= ' valign-' . $atts['valign'] . ($atts['object_fit'] === 'cover' ? ' object-fit' : '');
+  $html = str_get_html(do_shortcode($content));
+  
+  // Extract the image (or <figure>) out of $content
+  $fig = $html->find('figure', 0);
+  $img = $fig ? $fig : $html->find('img', 0);
+  $atts['img_class'] = $img->class;
+  $atts['img_tag'] = $img->outertext;
   $img->outertext = '';
 
-  // Then build an array of all the remaining text
+  // Then extract and clean up the remaining text
+  $text = array();
   foreach ($html->find('p') as $s) {
     $s = $s->innertext;
     if (!($s == '' || $s == ' ' || $s == '</p>')) $text[] = "<p>$s</p>";
   }
-
-  // And then recombine it into the DOM structure we want
-  $content = sprintf("%s\n<div>%s</div>", $img_tag, join("\n", $text));
+  $content = join("\n", $text);
 
   ob_start();
   include(locate_template('templates/shortcodes/img-section.php'));
