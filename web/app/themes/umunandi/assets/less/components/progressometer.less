@@ -1,0 +1,20 @@
+.progressometer {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  pointer-events: none;
+
+  &-defs { position: absolute; width: 0; height: 0; }
+
+  .radial-bg, .radial-progress {
+    fill: none;
+    stroke-width: 5px;
+    stroke: rgba(255,255,255,0.3);
+  }
+
+  .radial-progress {
+    stroke: rgba(0,0,0,0.3);
+    transition: stroke-dashoffset 1s linear;
+    stroke-dasharray: 315 1000;
+    stroke-dashoffset: 1000;
+  }
+}
