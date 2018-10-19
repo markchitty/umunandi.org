@@ -7,17 +7,18 @@ $args = array(
   'orderby'        => 'menu_order'
 );
 $front_page_sections = new WP_Query($args);
-?>
 
-<?php while ($front_page_sections->have_posts()) : $front_page_sections->the_post(); ?>
-<section class="section <?= $post->post_name ?> <?= get_post_meta($post->ID, 'umunandi_page_class', true) ?>"
-  <?= umunandi_featured_image_bg_style() ?>>
-  <a name="section-top" class="section-top"></a>
-  <div class="container">
-    <h3 class="section-header"><?php the_title(); ?></h3>
-  </div>
-  <div class="container">
-    <?php the_content(); ?>
-  </div>
-</section>
-<?php endwhile; wp_reset_postdata(); ?>
+while ($front_page_sections->have_posts()) {
+  $front_page_sections->the_post();
+  $sect = array(
+    'class'   => $post->post_name . ' ' . get_post_meta($post->ID, 'umunandi_page_class', true),
+    'style'   => umunandi_featured_image_bg_style(),
+    'header'  => get_the_title(),
+    'content' => apply_filters('the_content', get_the_content()) // also parse shortcodes in the content
+  );
+  $shortcode = '[section class="%s" style="%s" header="%s"]%s[/section]';
+  echo do_shortcode(sprintf($shortcode, $sect['class'], $sect['style'], $sect['header'], $sect['content']));
+}
+
+wp_reset_postdata();
+?>

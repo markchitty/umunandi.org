@@ -45,6 +45,15 @@ function umunandi_shortcode_key_point($atts, $content) {
   return ob_get_clean();
 }
 
+// [section]
+add_shortcode('section', 'umunandi_shortcode_section');
+function umunandi_shortcode_section($atts, $content) {
+  $atts = shortcode_atts(array('class' => '', 'style' => '', 'header' => null), $atts);
+  ob_start();
+  include(locate_template('templates/shortcodes/section.php'));
+  return ob_get_clean();
+}
+
 // [img_section]
 add_shortcode('img_section', 'umunandi_shortcode_img_section');
 function umunandi_shortcode_img_section($atts, $content) {

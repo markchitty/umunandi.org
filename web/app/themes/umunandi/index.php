@@ -17,10 +17,12 @@
         <?php get_template_part(sprintf('templates/pages/%s/header', umunandi_get_template_type())); ?>
       </header>
 
-      <div class="body" role="document">
-        <a name="body-top" class="body-top"></a>
-        <?php get_template_part(sprintf('templates/pages/%s/body', umunandi_get_template_type())); ?>
-      </div>
+      <main role="main">
+        <div class="body" role="document">
+          <a name="body-top" class="body-top"></a>
+          <?php get_template_part(sprintf('templates/pages/%s/body', umunandi_get_template_type())); ?>
+        </div>
+      </main>
 
     <?php endif; ?>
 

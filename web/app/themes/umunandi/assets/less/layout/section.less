@@ -1,8 +1,28 @@
-@fuzzy-edge-height-sm : 15px;
-@fuzzy-edge-height-lg : 30px;
+.section {
+  background: 50% 50% / cover no-repeat fixed @body-bg;
+  
+  &.buff        { background: @buff; }
+  &             { padding: @section-padding-sm 0; }
+  @media @mq-sm { padding: @section-padding 0; }
+}
+
+.section-header {
+  .h6;
+  color: #666;
+  text-align: center;
+  line-height: 1;
+  margin: 0 0 @section-padding * 2/3 !important;
+
+  @media @mq-sm { margin: 10px 0 @section-padding; }
+}
 
 .fuzzy-edges {
+  @fuzzy-edge-height-sm : 15px;
+  @fuzzy-edge-height-lg : 30px;
+
   position: relative;
+  &             { padding: (@section-padding-sm - 10px) 0; }
+  @media @mq-sm { padding: (@section-padding - 10px) 0; }
 
   &:before, &:after {
     .pseudo-content(auto, 0, 100%, 0);
