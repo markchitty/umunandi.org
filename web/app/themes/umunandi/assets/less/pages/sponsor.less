@@ -1,37 +1,65 @@
-.sponsor {
-  &-intro .container {
-    display: flex;
-    align-items: flex-start;
+.sponsor-intro .container {
+  display: flex;
+  align-items: flex-start;
 
-    &:before, &:after { content: none; }
+  &:before, &:after { content: none; }
+
+  @media @mq-upto-sm {
+    flex-direction: column;
+    align-items: center;
   }
+}
 
-  &-story {
-    .girl-outside-school {
-      .copy { flex-grow: 2; }
-      
-      .img-container img {
-        @media @mq-upto-sm { max-width: 380px; }
-      }
-    }
-  }
+.sponsor .sponsor-price-box {
+  @media @mq-upto-sm { margin: 1.5em 0 0; }
+}
 
-  &-how-it-works {
-    h4 {
-      margin-top: 2em;
-      font-weight: 300;
-      color: @brand-primary;
+.sponsor-story {
+  .girl-outside-school {
+    .copy { flex-grow: 2; }
+    
+    .img-container img {
+      @media @mq-upto-sm { max-width: 380px; }
     }
   }
 }
 
-@media @mq-upto-sm {
-  .sponsor {
-    &-intro .container {
-      flex-direction: column;
-      align-items: center;
-    }
+.sponsor-how-it-works-mq(@bg-img-height) {
+  &         { background-size: auto @bg-img-height; }
+  &:after   { height: @bg-img-height * 2.2/3; }
+}
 
-    & &-price-box { margin: 1.5em 0 0; }
+.sponsor-how-it-works {
+  @media @mq-upto-sm {
+    .col-grid   { .no-grid; }
+    .col + .col { margin-top: @section-padding/2; }
+  }
+
+  h4 {
+    margin-top: 2em;
+    font-weight: 300;
+    color: @brand-primary;
+  }
+
+  background-position: 55% 100%;
+
+  &:after {
+    position: static;
+    transform: none;
+    top: auto;
+    bottom: 0;
+    background: transparent;
+  }
+
+  @bg-img-height-xs: 180px;
+  @bg-img-height-sm: 240px;
+  @bg-img-height-md: 300px;
+
+  &             { .sponsor-how-it-works-mq(@bg-img-height-xs); }
+  @media @mq-xs { .sponsor-how-it-works-mq(@bg-img-height-sm); }
+  @media @mq-sm { .sponsor-how-it-works-mq(@bg-img-height-md); }
+  @media @mq-lg {
+    &       { background-size: contain; }
+    &:after { height: 16.6vw; }
   }
 }

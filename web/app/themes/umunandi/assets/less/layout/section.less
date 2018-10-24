@@ -1,9 +1,11 @@
 .section {
-  background: 50% 50% / cover no-repeat fixed @body-bg;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
   
   &.buff        { background: @buff; }
   &             { padding: @section-padding-sm 0; }
   @media @mq-sm { padding: @section-padding 0; }
+  @media @mq-lg { padding: @section-padding-lg 0; }
 }
 
 .section-header {
@@ -23,6 +25,7 @@
   position: relative;
   &             { padding: (@section-padding-sm - 10px) 0; }
   @media @mq-sm { padding: (@section-padding - 10px) 0; }
+  @media @mq-lg { padding: (@section-padding-lg - 10px) 0; }
 
   &:before, &:after {
     .pseudo-content(auto, 0, 100%, 0);

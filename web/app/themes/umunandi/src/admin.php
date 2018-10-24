@@ -68,7 +68,7 @@ add_filter('tiny_mce_before_init', 'mce_styles');
 function mce_styles($init_array) {
   $style_formats = array(
     array('title' => 'intro', 'block' => 'p', 'classes' => 'intro')
-  );  
+  );
   $init_array['style_formats'] = json_encode($style_formats);
   // $init_array['cache_suffix'] = 'v=' . date('Ymd-His');  // Uncomment to refresh editor-styles.css 
   return $init_array;
@@ -79,3 +79,33 @@ function mce_styles($init_array) {
 //   add_post_type_support('page', 'excerpt');
 // }
 // add_action('init', 'umunandi_add_excerpts_to_pages');
+
+
+// Disable emoji images and use native emojis instead
+// https://goedemorgenwp.com/do-you-really-need-emoji-on-your-wordpress-site/
+add_action('init', 'umunandi_disable_emojis');
+function umunandi_disable_emojis() {
+	remove_action('wp_head', 'print_emoji_detection_script', 7);
+	remove_action('admin_print_scripts', 'print_emoji_detection_script');
+	remove_action('wp_print_styles', 'print_emoji_styles');
+	remove_action('admin_print_styles', 'print_emoji_styles');
+	remove_filter('the_content_feed', 'wp_staticize_emoji');
+	remove_filter('comment_text_rss', 'wp_staticize_emoji');
+	remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+	add_filter('tiny_mce_plugins', 'umunandi_disable_emojis_tinymce');
+	add_filter('wp_resource_hints', 'umunandi_disable_emojis_remove_dns_prefetch', 10, 2);
+}
+
+function umunandi_disable_emojis_tinymce($plugins) {
+  return is_array($plugins) ? array_diff($plugins, array('wpemoji')) : array();
+}
+
+function umunandi_disable_emojis_remove_dns_prefetch($urls, $relation_type) {
+	if ('dns-prefetch' == $relation_type) {
+		$emoji_svg_url_bit = 'https://s.w.org/images/core/emoji/';
+		foreach ($urls as $key => $url) {
+			if (strpos($url, $emoji_svg_url_bit) !== false) unset($urls[$key]);
+		}
+	}
+	return $urls;
+}

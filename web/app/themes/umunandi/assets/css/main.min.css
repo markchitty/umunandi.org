@@ -3953,6 +3953,12 @@ iframe {
   border: 0;
   width: 100%;
 }
+.bg-img-fixed {
+  background-attachment: fixed;
+}
+.bg-img-cover {
+  background-size: cover;
+}
 .aligncenter {
   display: block;
   margin: 0 auto;
@@ -4256,7 +4262,8 @@ figure.alignnone {
   }
 }
 .section {
-  background: 50% 50% / cover no-repeat fixed #fcfcfc;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
   padding: 37.5px 0;
 }
 .section.buff {
@@ -4265,6 +4272,11 @@ figure.alignnone {
 @media (min-width: 768px) {
   .section {
     padding: 50px 0;
+  }
+}
+@media (min-width: 1200px) {
+  .section {
+    padding: 75px 0;
   }
 }
 .section-header {
@@ -4311,6 +4323,11 @@ figure.alignnone {
 @media (min-width: 768px) {
   .fuzzy-edges {
     padding: 40px 0;
+  }
+}
+@media (min-width: 1200px) {
+  .fuzzy-edges {
+    padding: 65px 0;
   }
 }
 .fuzzy-edges:before,
@@ -4371,6 +4388,7 @@ figure.alignnone {
 .sub-menu > li {
   padding-left: 0;
   text-indent: 0;
+  margin: 0;
 }
 .main-nav-menu > li:before,
 .menu > li:before,
@@ -4921,17 +4939,20 @@ figure.alignnone {
 .col-grid > .col-bottom {
   align-self: flex-end;
 }
-.col-grid > .col-3rd {
+.col-grid > .col-third {
   flex: none;
   width: 33.333333%;
 }
-.col-grid > .col-qrt {
+.col-grid > .col-quarter {
   flex: none;
   width: 25%;
 }
-.col-grid > .col-hlf {
+.col-grid > .col-half {
   flex: none;
   width: 50%;
+}
+.col-grid-fluid > .col {
+  flex: 0 1 auto;
 }
 .share-icons.addthis_toolbox .share-icon:before {
   font-size: 15px;
@@ -5027,11 +5048,6 @@ figure.alignnone {
     margin-top: 1em;
   }
 }
-@media (max-width: 767px) and (orientation:landscape) {
-  .img-section {
-    align-items: flex-start;
-  }
-}
 .sketch-box:before {
   content: '';
   display: block;
@@ -5116,6 +5132,11 @@ ul > li:nth-child(5n+5):before {
 }
 .home .what-we-do p {
   font-size: 1.0625rem;
+}
+@media (max-width: 767px) and (orientation:landscape) {
+  .home .what-we-do .img-section {
+    align-items: flex-start;
+  }
 }
 .home .read-more {
   font-size: 0.9375rem;
@@ -5403,7 +5424,7 @@ ul > li:nth-child(5n+5):before {
   }
 }
 .carousel .kid-info .name {
-  margin-top: 1rem;
+  margin-top: 1rem !important;
 }
 .carousel .kid-info .sponsor-btn {
   padding: 1.2em 0;
@@ -5436,7 +5457,7 @@ ul > li:nth-child(5n+5):before {
     overflow: auto;
   }
   .carousel .kid-info .name {
-    margin-top: -0.3rem;
+    margin-top: -0.3rem !important;
   }
 }
 @media (min-width: 992px) {
@@ -5651,6 +5672,17 @@ ul > li:nth-child(5n+5):before {
 .sponsor-intro .container:after {
   content: none;
 }
+@media (max-width: 767px) {
+  .sponsor-intro .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 767px) {
+  .sponsor .sponsor-price-box {
+    margin: 1.5em 0 0;
+  }
+}
 .sponsor-story .girl-outside-school .copy {
   flex-grow: 2;
 }
@@ -5659,18 +5691,65 @@ ul > li:nth-child(5n+5):before {
     max-width: 380px;
   }
 }
+.sponsor-how-it-works {
+  background-position: 55% 100%;
+  background-size: auto 180px;
+}
+@media (max-width: 767px) {
+  .sponsor-how-it-works .col-grid {
+    display: block;
+    margin-left: 0;
+  }
+  .sponsor-how-it-works .col-grid > .col {
+    padding-left: 0;
+    flex: none;
+  }
+  .sponsor-how-it-works .col-grid > .col-3rd,
+  .sponsor-how-it-works .col-grid > .col-qrt,
+  .sponsor-how-it-works .col-grid > .col-hlf {
+    width: auto;
+  }
+  .sponsor-how-it-works .col + .col {
+    margin-top: 25px;
+  }
+}
 .sponsor-how-it-works h4 {
   margin-top: 2em;
   font-weight: 300;
   color: #206800;
 }
-@media (max-width: 767px) {
-  .sponsor-intro .container {
-    flex-direction: column;
-    align-items: center;
+.sponsor-how-it-works:after {
+  position: static;
+  transform: none;
+  top: auto;
+  bottom: 0;
+  background: transparent;
+}
+.sponsor-how-it-works:after {
+  height: 132px;
+}
+@media (min-width: 480px) {
+  .sponsor-how-it-works {
+    background-size: auto 240px;
   }
-  .sponsor .sponsor-price-box {
-    margin: 1.5em 0 0;
+  .sponsor-how-it-works:after {
+    height: 176px;
+  }
+}
+@media (min-width: 768px) {
+  .sponsor-how-it-works {
+    background-size: auto 300px;
+  }
+  .sponsor-how-it-works:after {
+    height: 220px;
+  }
+}
+@media (min-width: 1200px) {
+  .sponsor-how-it-works {
+    background-size: contain;
+  }
+  .sponsor-how-it-works:after {
+    height: 16.6vw;
   }
 }
 .sponsor-price-box {

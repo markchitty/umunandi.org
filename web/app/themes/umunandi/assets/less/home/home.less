@@ -1,5 +1,11 @@
 .home {
-  .what-we-do p { .bigger-text; }
+  .what-we-do {
+    p { .bigger-text; }
+
+    @media @mq-upto-sm and @mq-land { 
+      .img-section { align-items: flex-start; }
+    }
+  }
 
   .read-more {
     .smaller-text;

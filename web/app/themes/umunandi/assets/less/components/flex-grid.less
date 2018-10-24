@@ -14,14 +14,16 @@
     flex: 1 0;
     min-width: 0;
 
-    &-top    { align-self: flex-start; }
-    &-center { align-self: center; }
-    &-bottom { align-self: flex-end; }
+    &-top     { align-self: flex-start; }
+    &-center  { align-self: center; }
+    &-bottom  { align-self: flex-end; }
 
-    &-3rd    { flex: none; width: 33.333333%; }
-    &-qrt    { flex: none; width: 25%; }
-    &-hlf    { flex: none; width: 50%; }
+    &-third   { flex: none; width: 33.333333%; }
+    &-quarter { flex: none; width: 25%; }
+    &-half    { flex: none; width: 50%; }
   }
+
+  &-fluid > .col { flex: 0 1 auto; }
 }
 
 .no-grid() {

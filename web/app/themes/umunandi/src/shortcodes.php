@@ -49,6 +49,16 @@ function umunandi_shortcode_key_point($atts, $content) {
 add_shortcode('section', 'umunandi_shortcode_section');
 function umunandi_shortcode_section($atts, $content) {
   $atts = shortcode_atts(array('class' => '', 'style' => '', 'header' => null), $atts);
+  $html = str_get_html(do_shortcode($content));
+  
+  // Extract background image out of $content
+  if ($img = $html->find('img.bg-img', 0)) {
+    $img_src = $img->src;
+    $img->outertext = '';
+    $atts['style'] .= " background-image: url($img_src);";
+  }
+  $content = $html->save();
+
   ob_start();
   include(locate_template('templates/shortcodes/section.php'));
   return ob_get_clean();
@@ -91,5 +101,28 @@ add_shortcode('coffee_sketch', 'umunandi_shortcode_coffee_sketch');
 function umunandi_shortcode_coffee_sketch($atts, $content) {
   ob_start();
   include(locate_template('templates/shortcodes/coffee-sketch.php'));
+  return ob_get_clean();
+}
+
+// [columns]
+add_shortcode('columns', 'umunandi_shortcode_columns');
+function umunandi_shortcode_columns($atts, $content) {
+  $is_fluid = (array_key_exists('fluid', $atts));
+  $atts = shortcode_atts(array('class' => '', 'valign' => false), $atts);
+  if ($atts['valign']) $atts['class'] .= ' col-grid-' . $atts['valign'];
+  if ($is_fluid) $atts['class'] .= ' col-grid-fluid';
+  $content = do_shortcode($content);
+  ob_start();
+  printf('<div class="col-grid%s">%s</div>', $atts['class'], $content);
+  return ob_get_clean();
+}
+add_shortcode('col', 'umunandi_shortcode_col');
+function umunandi_shortcode_col($atts, $content) {
+  $atts = shortcode_atts(array('class' => '', 'valign' => false, 'width-fraction' => false), $atts);
+  if ($atts['width-fraction']) $atts['class'] .= ' col-' . $atts['width-fraction'];
+  if ($atts['valign']) $atts['class'] .= ' col-' . $atts['valign'];
+  $content = do_shortcode($content);
+  ob_start();
+  printf('<div class="col%s">%s</div>', $atts['class'], $content);
   return ob_get_clean();
 }
