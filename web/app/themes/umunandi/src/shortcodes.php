@@ -48,13 +48,27 @@ function umunandi_shortcode_key_point($atts, $content) {
   return ob_get_clean();
 }
 
+// [price_box]
+add_shortcode('price_box', 'umunandi_shortcode_price_box');
+function umunandi_shortcode_price_box($atts, $content) {
+  $atts = shortcode_atts(array('class' => ''), $atts);
+  ob_start();
+  printf('<div class="price-box %s">%s</div>', $atts['class'], $content);
+  return ob_get_clean();
+}
+add_shortcode('price', 'umunandi_shortcode_price');
+function umunandi_shortcode_price($atts, $content) {
+  $atts = shortcode_atts(array('currency' => '£', 'price' => 5, 'period' => 'month'), $atts);
+  ob_start();
+  include(locate_template('templates/shortcodes/price.php'));
+  return ob_get_clean();
+}
+
 // [section]
 add_shortcode('section', 'umunandi_shortcode_section');
 function umunandi_shortcode_section($atts, $content) {
   $atts = shortcode_atts(array('class' => '', 'style' => '', 'header' => null), $atts);
   $html = str_get_html(do_shortcode($content));
-  
-  // Extract background image out of $content
   if ($img = $html->find('img.bg-img', 0)) {
     $img_src = $img->src;
     $img->outertext = '';

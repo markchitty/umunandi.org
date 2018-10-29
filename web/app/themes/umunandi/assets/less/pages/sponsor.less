@@ -1,18 +1,12 @@
-.sponsor-intro .container {
-  display: flex;
-  align-items: flex-start;
-
-  &:before, &:after { content: none; }
-
+.sponsor-intro {
   @media @mq-upto-sm {
-    flex-direction: column;
-    align-items: center;
+    .col-grid {
+      .row-grid;
+    }
   }
 }
 
-.sponsor .sponsor-price-box {
-  @media @mq-upto-sm { margin: 1.5em 0 0; }
-}
+.sponsor-intro .coffee-box-container { flex-shrink: 0; }
 
 .sponsor-story {
   .girl-outside-school {
@@ -36,7 +30,7 @@
   }
 
   h4 {
-    margin-top: 2em;
+    margin-bottom: 1em;
     font-weight: 300;
     color: @brand-primary;
   }
@@ -61,5 +55,45 @@
   @media @mq-lg {
     &       { background-size: contain; }
     &:after { height: 16.6vw; }
+  }
+}
+
+.sponsor-prices {
+  .col { display: flex; }
+
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.hundred-percent {
+  .smaller-text;
+  margin: 3rem 0 0 0;
+  max-width: 40rem;
+  
+  .img  {
+    flex-shrink: 0;
+    padding-left: 0;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+      .pseudo-content(-5px);
+      border-radius: 50%;
+      background: @body-bg;
+      z-index: -1;
+    }
+
+    img { width: 6rem; }
+  }
+
+  .copy {
+    position: relative;
+    padding: 0.5rem 0.5rem 0.5rem 1.2rem;
+
+    .sketch-box;
+    &:before { left: -7rem; opacity: 0.3; }
   }
 }

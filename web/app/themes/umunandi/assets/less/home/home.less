@@ -1,22 +1,26 @@
 .home {
   .what-we-do {
-    p { .bigger-text; }
+    .bigger-text;
 
     @media @mq-upto-sm and @mq-land { 
       .img-section { align-items: flex-start; }
+    }
+
+    @media @mq-upto-sm {
+      .read-more {
+        display: block;
+        margin-top: 2em;
+        top: 0;
+        text-align: center;
+      }
     }
   }
 
   .read-more {
     .smaller-text;
-    background-size: 100% 0%;
     position: relative;
     top: 1em;
 
-    @media @mq-upto-sm {
-      margin-top: 2em;
-      top: 0;
-      text-align: center;
-    }
+    a { background-size: 100% 0%; }
   }
 }
