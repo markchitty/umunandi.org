@@ -1,5 +1,12 @@
 /* Umunandi custom styles */
-.intro { font-size: 1.2em; }
+.intro         { font-size: 1.2em; }
+.smaller-text  { font-size: 0.9em; }
+.smallest-text { font-size: 0.8em; }
+.bigger-text   { font-size: 1.1em; }
+.biggest-text  { font-size: 1.3em; }
+.special       { text-decoration: underline dotted blue; }
+.div           { outline: 1px dashed #ddd; }
+.round-img     { display: inline-block; border-radius: 50%; overflow: hidden; border: 3px solid; }
 
 /**
  * Updating this file with Bootstrap changes:

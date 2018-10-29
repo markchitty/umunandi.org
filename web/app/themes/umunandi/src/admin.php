@@ -44,7 +44,6 @@ function umunandi_page_attrs($post) {
   <input type="text" name="umunandi_page_bg_pos" id="umunandi_page_bg_pos" value="<?= $page_bg_pos ?>">
   <?php
 }
-
 add_action('save_post', 'umunandi_meta_box_save');
 function umunandi_meta_box_save($post_id) {
   // Bail if auto save, user can't edit this post, or invalid/missing nonce
@@ -67,10 +66,19 @@ function add_mce_formats($buttons) {
 add_filter('tiny_mce_before_init', 'mce_styles');
 function mce_styles($init_array) {
   $style_formats = array(
-    array('title' => 'intro', 'block' => 'p', 'classes' => 'intro')
+    array('title' => 'intro',          'block' => 'p',     'classes' => 'intro'),
+    array('title' => 'small',          'block' => 'p',     'classes' => 'smaller-text'),
+    array('title' => 'smallest',       'block' => 'p',     'classes' => 'smallest-text'),
+    array('title' => 'big',            'block' => 'p',     'classes' => 'bigger-text'),
+    array('title' => 'biggest',        'block' => 'p',     'classes' => 'biggest-text'),
+    array('title' => 'div',            'block' => 'div',   'classes' => 'div', 'wrapper' => true),
+    array('title' => 'round-img',      'block' => 'div',   'classes' => 'round-img'),
+    array('title' => 'sketch-circle',  'block' => 'div',   'classes' => 'sketch-circle'),
+    array('title' => 'special-block',  'block' => 'p',     'classes' => 'special'),
+    array('title' => 'special-inline', 'inline' => 'span', 'classes' => 'special'),
   );
   $init_array['style_formats'] = json_encode($style_formats);
-  // $init_array['cache_suffix'] = 'v=' . date('Ymd-His');  // Uncomment to refresh editor-styles.css 
+  $init_array['cache_suffix'] = 'v=' . date('Ymd-His');  // Uncomment to refresh editor-styles.css 
   return $init_array;
 }
 
@@ -95,11 +103,9 @@ function umunandi_disable_emojis() {
 	add_filter('tiny_mce_plugins', 'umunandi_disable_emojis_tinymce');
 	add_filter('wp_resource_hints', 'umunandi_disable_emojis_remove_dns_prefetch', 10, 2);
 }
-
 function umunandi_disable_emojis_tinymce($plugins) {
   return is_array($plugins) ? array_diff($plugins, array('wpemoji')) : array();
 }
-
 function umunandi_disable_emojis_remove_dns_prefetch($urls, $relation_type) {
 	if ('dns-prefetch' == $relation_type) {
 		$emoji_svg_url_bit = 'https://s.w.org/images/core/emoji/';
