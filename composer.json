@@ -59,7 +59,8 @@
     "wpackagist-plugin/litespeed-cache": "^2.1",
     "wpackagist-plugin/wp-optimize": "^2.2",
     "wp-sync-db/wp-sync-db": "*",
-    "wp-sync-db/wp-sync-db-media-files": "*"
+    "wp-sync-db/wp-sync-db-media-files": "*",
+    "wpackagist-plugin/enable-svg-uploads": "^2.0"
   },
   "might-use-plugins": {
     "wpackagist-plugin/jc-submenu": "~0.8",
