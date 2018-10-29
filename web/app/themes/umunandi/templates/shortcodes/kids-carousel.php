@@ -14,7 +14,7 @@
     <?php while($featured_kids->have_posts()) : $featured_kids->the_post(); ?>
       <div class="item <?= $featured_kids->current_post == 0 ? 'active' : '' ?>" id="<?= $post->post_name ?>">
         <div class="carousel-content">
-          <a href="/sponsor" class="kid-face">
+          <a href="/sponsor" class="round-img">
             <img src="<?= umunandi_get_image_src(get_field('head_shot'), 'square-300') ?>" alt="<?= get_the_title() ?>">
             <svg viewBox="0 0 100 100" class="progressometer">
               <use class="radial-bg" xlink:href="#circ-path" clip-path="url(#circ-clip)" filter="url(#blurry)"></use>

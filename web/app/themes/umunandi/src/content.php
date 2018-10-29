@@ -77,3 +77,10 @@ function umunandi_split_sentence($sentence, $line_count = 2) {
   $max_line_length = (strlen($sentence) / $line_count) + $av_word_length / 2;
   return explode("\n", wordwrap($sentence, $max_line_length));
 }
+
+// Add featured image sizes
+add_image_size('small', 300, 300, true); // width, height, crop
+add_filter('image_size_names_choose', 'umunandi_custom_img_sizes');
+function umunandi_custom_img_sizes($sizes) {
+  return array_merge($sizes, array('small' => 'Small'));
+}

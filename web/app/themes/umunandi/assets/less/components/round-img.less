@@ -1,0 +1,29 @@
+.round-img {
+  position: relative;
+  border-radius: 50%;
+  border: 0.33em solid rgba(0,0,0,0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transition: 0.3s;
+
+  &:after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    transition: all 0.3s;
+  }
+
+  &-contain img {
+    max-width: 70%;
+    max-height: 70%;
+    border-radius: 0;
+  }
+}

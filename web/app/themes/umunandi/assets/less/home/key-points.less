@@ -38,41 +38,29 @@
     color: inherit;
   }
 
-  &-img {
+  .round-img {
     width: 6.25rem;
     height: 6.25rem;
-    padding: 1rem;
-    border-radius: 50%;
     border: 4px solid rgba(255,255,255,0.4);
     background: rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: none;
     transition: 0.1s;
 
     @media @mq-upto-sm { margin-right: 18px; }
     @media @mq-sm      { margin-bottom: 24px; }
-
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      height: auto;
-    }
   }
 
-  &-title {
+  h3 {
     font-family: @font-family-nav;
     text-transform: uppercase;
   }
 
-  &-blurb {
+  &-words {
     .biggest-text;
     font-weight: 300;
     opacity: 0.9;
   }
 
-  &-read-more {
+  .read-more {
     margin-top: 1.5em;
     opacity: 0;
   }
@@ -91,12 +79,12 @@
   &:hover {
     &:before { opacity: 1; }
 
-    .key-point-img {
+    .round-img {
       background-color: @brand-primary;
       border-color: rgba(255,255,255,0.6);
     }
 
-    .key-point-read-more {
+    .read-more {
       opacity: 0.8;
     }
   }
