@@ -19,6 +19,10 @@ module.exports = function(grunt) {
         },
         options: {
           rootpath: '/app/themes/umunandi/assets/',
+          plugins: [
+            // new (require('less-plugin-autoprefix'))({ browsers: ["last 2 versions"] }),
+            require('less-plugin-glob')
+          ],
           compress: false,
           sourceMap: false,
           sourceMapFilename: 'assets/css/main.min.css.map',
