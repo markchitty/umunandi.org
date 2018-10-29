@@ -7,7 +7,7 @@
   img              { width: 100%; height: 100%; }
   &.object-fit img { object-fit: cover; }
   figure           { display: flex; flex-direction: column; }
-  figure img       { flex-grow: 1; }
+  figure img       { flex-grow: 1; height: auto; }
 
   @media @mq-sm, @mq-land {
     .copy { margin-top: -0.3em; }
@@ -20,7 +20,7 @@
   }
 
   @media @mq-upto-sm and @mq-port {
-    .no-grid();
-    .copy { margin-top: 1em; }
+    .row-grid;
+    .copy.col { margin-top: 1em; }
   }
 }

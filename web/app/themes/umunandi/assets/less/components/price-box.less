@@ -16,8 +16,14 @@
 
   @media @mq-md { padding: 1.5rem; }
 
+  &-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   h3, p, .price { margin: 0.6rem 0; }
-  > .special    { flex: 1; }
+  &-body        { flex: 1; }
   .btn          { margin-top: 1rem; }
 
   .round-img {
@@ -28,7 +34,7 @@
     &:after { opacity: 0.4; }
   }
 
-  .both-banana {
+  .both-banana.round-img {
     position: absolute;
     transform-origin: 80% 80%;
     transform: scale(0.3) translateX(50%);
@@ -38,10 +44,10 @@
   h3 {
     font-family: @font-family-base;
     font-weight: 600;
-    text-align: center;
     color: @brand-primary;
+    text-align: center;
 
-    .special {
+    .smaller {
       display: block;
       font-size: 75%;
       line-height: 1.4;
@@ -54,14 +60,15 @@
     line-height: 1;
     margin-bottom: 1em;
 
-    .period   { display: block; color: #999; }
-    .amount,
-    .currency { font-size: 300%; font-weight: 600; }
+    .period            { display: block; color: #999; }
+    .amount, .currency { font-size: 300%; font-weight: 600; }
   }
 
   &.primary {
-    box-shadow: 0px 16px 9px -9px rgba(0, 0, 0, 0.15);
-    transform: scale(1.02);
+    @media @mq-sm {
+      box-shadow: 0px 16px 9px -9px rgba(0, 0, 0, 0.15);
+      transform: scale(1.02);
+    }
   }
 
   &.primary, &:hover {
@@ -77,5 +84,41 @@
       opacity: 1;
       filter: invert(22%) sepia(100%) saturate(8) hue-rotate(69deg);
     }
+  }
+
+  @media @mq-upto-sm {
+    margin-top: 0;
+    padding: 1rem 0;
+
+    p:last-child { margin-bottom: 0; }
+    &-body       { padding: 0 1rem; }
+
+    & &-header {
+      flex-direction: row;
+      align-self: stretch;
+      margin: -1.5rem 0.7rem 0 -0.5rem;
+
+      > * { margin: 0; }
+      h3  { flex: 1; text-align: left; }
+    }
+
+    .round-img {
+      margin-right: 0.66rem;
+      width: 7.5rem;
+      border-width: 5px;
+      margin-top: 0;
+
+      &.both-banana {
+        transform-origin: 100% 100%;
+        transform: scale(0.33) translateX(15%);
+      }
+    }
+  }
+
+  @media @mq-upto-xs {
+    &-body     { padding: 0 0.6rem; }
+    .round-img { width: 6rem; }
+    .price     { font-size: 3.5vw; }
+    h3         { font-size: 6.6vw; }
   }
 }

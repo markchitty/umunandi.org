@@ -5097,6 +5097,69 @@ figure.alignnone {
     padding-left: 50px;
   }
 }
+.hundred-percent {
+  margin: 3rem auto 0;
+  max-width: 40rem;
+  font-size: 0.9375rem;
+}
+.hundred-percent .img {
+  flex-shrink: 0;
+  padding-left: 0;
+  margin-left: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.hundred-percent .img img {
+  width: 6rem;
+  height: 100%;
+}
+.hundred-percent .img:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  border-radius: 50%;
+  background: #fcfcfc;
+  z-index: -1;
+}
+.hundred-percent .copy {
+  position: relative;
+  padding: 0.5rem 0.5rem 0.5rem 1.2rem;
+}
+.hundred-percent .copy:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 10px solid;
+  border-image: url("/app/themes/umunandi/assets/img/box-drawn-thin-black.png") 9% stretch;
+  border-image-outset: 0.2 0.4 0.3;
+  pointer-events: none;
+}
+.hundred-percent .copy:before {
+  left: -6.6rem;
+  opacity: 0.3;
+}
+@media (max-width: 767px) {
+  .hundred-percent {
+    align-items: flex-start;
+  }
+  .hundred-percent .img {
+    margin: -0.8rem 0 0 -0.8rem;
+  }
+  .hundred-percent .copy {
+    padding-left: 0.5rem;
+  }
+  .hundred-percent .copy:before {
+    left: -5rem;
+  }
+}
 .img-section + .img-section {
   margin-top: 50px;
 }
@@ -5118,6 +5181,7 @@ figure.alignnone {
 }
 .img-section figure img {
   flex-grow: 1;
+  height: auto;
 }
 @media (min-width: 768px), (orientation:landscape) {
   .img-section .copy {
@@ -5144,6 +5208,9 @@ figure.alignnone {
   .img-section {
     display: block;
     margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .img-section > .col {
     padding-left: 0;
@@ -5154,7 +5221,13 @@ figure.alignnone {
   .img-section > .col-hlf {
     width: auto;
   }
-  .img-section .copy {
+  .img-section > .col {
+    flex: 1;
+  }
+  .img-section .col + .col {
+    margin-top: 25px;
+  }
+  .img-section .copy.col {
     margin-top: 1em;
   }
 }
@@ -5177,12 +5250,17 @@ figure.alignnone {
     padding: 1.5rem;
   }
 }
+.price-box-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .price-box h3,
 .price-box p,
 .price-box .price {
   margin: 0.6rem 0;
 }
-.price-box > .special {
+.price-box-body {
   flex: 1;
 }
 .price-box .btn {
@@ -5196,7 +5274,7 @@ figure.alignnone {
 .price-box .round-img:after {
   opacity: 0.4;
 }
-.price-box .both-banana {
+.price-box .both-banana.round-img {
   position: absolute;
   transform-origin: 80% 80%;
   transform: scale(0.3) translateX(50%);
@@ -5205,10 +5283,10 @@ figure.alignnone {
 .price-box h3 {
   font-family: 'Quicksand', 'Open Sans', sans-serif;
   font-weight: 600;
-  text-align: center;
   color: #206800;
+  text-align: center;
 }
-.price-box h3 .special {
+.price-box h3 .smaller {
   display: block;
   font-size: 75%;
   line-height: 1.4;
@@ -5228,9 +5306,11 @@ figure.alignnone {
   font-size: 300%;
   font-weight: 600;
 }
-.price-box.primary {
-  box-shadow: 0px 16px 9px -9px rgba(0, 0, 0, 0.15);
-  transform: scale(1.02);
+@media (min-width: 768px) {
+  .price-box.primary {
+    box-shadow: 0px 16px 9px -9px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+  }
 }
 .price-box.primary:before,
 .price-box:hover:before {
@@ -5333,6 +5413,54 @@ fieldset[disabled] .price-box:hover .btn.focus {
   opacity: 1;
   filter: invert(22%) sepia(100%) saturate(8) hue-rotate(69deg);
 }
+@media (max-width: 767px) {
+  .price-box {
+    margin-top: 0;
+    padding: 1rem 0;
+  }
+  .price-box p:last-child {
+    margin-bottom: 0;
+  }
+  .price-box-body {
+    padding: 0 1rem;
+  }
+  .price-box .price-box-header {
+    flex-direction: row;
+    align-self: stretch;
+    margin: -1.5rem 0.7rem 0 -0.5rem;
+  }
+  .price-box .price-box-header > * {
+    margin: 0;
+  }
+  .price-box .price-box-header h3 {
+    flex: 1;
+    text-align: left;
+  }
+  .price-box .round-img {
+    margin-right: 0.66rem;
+    width: 7.5rem;
+    border-width: 5px;
+    margin-top: 0;
+  }
+  .price-box .round-img.both-banana {
+    transform-origin: 100% 100%;
+    transform: scale(0.33) translateX(15%);
+  }
+}
+@media (max-width: 480px) {
+  .price-box-body {
+    padding: 0 0.6rem;
+  }
+  .price-box .round-img {
+    width: 6rem;
+  }
+  .price-box .price {
+    font-size: 3.5vw;
+  }
+  .price-box h3 {
+    font-size: 6.6vw;
+  }
+}
 .progressometer {
   position: absolute;
   top: 0;
@@ -5366,6 +5494,7 @@ fieldset[disabled] .price-box:hover .btn.focus {
   align-items: center;
   justify-content: center;
   flex: none;
+  overflow: hidden;
   transition: 0.3s;
 }
 .round-img:after {
@@ -5428,6 +5557,9 @@ fieldset[disabled] .price-box:hover .btn.focus {
   border-image: url("/app/themes/umunandi/assets/img/box-drawn-thin-black.png") 9% stretch;
   border-image-outset: 0.2 0.4 0.3;
   pointer-events: none;
+}
+.sketch-circle {
+  overflow: visible;
 }
 .sketch-circle:after {
   content: '';
@@ -5752,6 +5884,7 @@ ul > li:nth-child(5n+5):before {
   }
 }
 .home-page-header .tagline h2 {
+  line-height: 1.3;
   font-weight: 500;
   font-size: 6vh;
 }
@@ -6087,6 +6220,16 @@ ul > li:nth-child(5n+5):before {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 2px;
 }
+.sponsor-intro .coffee-box-container {
+  flex-shrink: 0;
+}
+.sponsor-story .girl-outside-school .copy {
+  flex-grow: 2;
+}
+.sponsor-prices .price-boxes .col {
+  display: flex;
+  order: 3;
+}
 @media (max-width: 767px) {
   .sponsor-intro .col-grid {
     display: block;
@@ -6110,26 +6253,16 @@ ul > li:nth-child(5n+5):before {
   .sponsor-intro .col-grid .col + .col {
     margin-top: 25px;
   }
-}
-.sponsor-intro .coffee-box-container {
-  flex-shrink: 0;
-}
-.sponsor-story .girl-outside-school .copy {
-  flex-grow: 2;
-}
-@media (max-width: 767px) {
-  .sponsor-story .girl-outside-school .img-container img {
+  .sponsor-story .img img {
     max-width: 380px;
   }
-}
-.sponsor-how-it-works {
-  background-position: 55% 100%;
-  background-size: auto 180px;
-}
-@media (max-width: 767px) {
   .sponsor-how-it-works .col-grid {
     display: block;
     margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: flex-start;
   }
   .sponsor-how-it-works .col-grid > .col {
     padding-left: 0;
@@ -6140,9 +6273,42 @@ ul > li:nth-child(5n+5):before {
   .sponsor-how-it-works .col-grid > .col-hlf {
     width: auto;
   }
-  .sponsor-how-it-works .col + .col {
+  .sponsor-how-it-works .col-grid > .col {
+    flex: 1;
+  }
+  .sponsor-how-it-works .col-grid .col + .col {
     margin-top: 25px;
   }
+  .sponsor-prices .price-boxes {
+    display: block;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sponsor-prices .price-boxes > .col {
+    padding-left: 0;
+    flex: none;
+  }
+  .sponsor-prices .price-boxes > .col-3rd,
+  .sponsor-prices .price-boxes > .col-qrt,
+  .sponsor-prices .price-boxes > .col-hlf {
+    width: auto;
+  }
+  .sponsor-prices .price-boxes > .col {
+    flex: 1;
+  }
+  .sponsor-prices .price-boxes .col + .col {
+    margin-top: 25px;
+  }
+  .sponsor-prices .price-boxes .col.primary {
+    order: 1;
+    margin: 0 0 25px;
+  }
+}
+.sponsor-how-it-works {
+  background-position: 55% 100%;
+  background-size: auto 180px;
 }
 .sponsor-how-it-works h4 {
   margin-bottom: 1em;
@@ -6182,59 +6348,4 @@ ul > li:nth-child(5n+5):before {
   .sponsor-how-it-works:after {
     height: 16.6vw;
   }
-}
-.sponsor-prices .col {
-  display: flex;
-}
-.sponsor-prices .section-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.hundred-percent {
-  font-size: 0.9375rem;
-  margin: 3rem 0 0 0;
-  max-width: 40rem;
-}
-.hundred-percent .img {
-  flex-shrink: 0;
-  padding-left: 0;
-  position: relative;
-  z-index: 1;
-}
-.hundred-percent .img:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  bottom: -5px;
-  left: -5px;
-  border-radius: 50%;
-  background: #fcfcfc;
-  z-index: -1;
-}
-.hundred-percent .img img {
-  width: 6rem;
-}
-.hundred-percent .copy {
-  position: relative;
-  padding: 0.5rem 0.5rem 0.5rem 1.2rem;
-}
-.hundred-percent .copy:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 10px solid;
-  border-image: url("/app/themes/umunandi/assets/img/box-drawn-thin-black.png") 9% stretch;
-  border-image-outset: 0.2 0.4 0.3;
-  pointer-events: none;
-}
-.hundred-percent .copy:before {
-  left: -7rem;
-  opacity: 0.3;
 }
