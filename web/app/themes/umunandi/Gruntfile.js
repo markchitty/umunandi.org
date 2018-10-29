@@ -15,14 +15,11 @@ module.exports = function(grunt) {
     less: {
       dist: {
         files: {
-          'assets/css/main.min.css': [
-            'assets/less/app.less'
-          ]
+          'assets/css/main.min.css': 'assets/less/app.less'
         },
         options: {
+          rootpath: '/app/themes/umunandi/assets/',
           compress: false,
-          // LESS source map
-          // To enable, set sourceMap to true and update sourceMapRootpath based on your install
           sourceMap: false,
           sourceMapFilename: 'assets/css/main.min.css.map',
           sourceMapRootpath: '/app/themes/umunandi/'

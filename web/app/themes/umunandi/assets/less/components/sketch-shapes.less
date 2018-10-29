@@ -2,7 +2,7 @@
   &:before {
     .pseudo-content(0);
     border: 10px solid;
-    border-image: url("@{base-url}/img/box-drawn-thin-black.png") 9% stretch;
+    border-image: url("img/box-drawn-thin-black.png") 9% stretch;
     border-image-outset: 0.2 0.4 0.3;
     pointer-events: none;
   }
@@ -10,8 +10,8 @@
 
 .sketch-circle {
   &:after {
-    .pseudo-content(0);
-    background: url("@{base-url}/img/sketch-circle-thin.png") no-repeat;
+    .pseudo-content(-5px);
+    background: url("img/sketch-circle-thin.png") no-repeat;
     background-size: contain;
     pointer-events: none;
   }
