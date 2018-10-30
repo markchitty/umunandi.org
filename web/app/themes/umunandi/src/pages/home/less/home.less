@@ -1,0 +1,46 @@
+.home {
+
+  .key-points {
+    color: #fff;
+    background-color: #555;
+    background-position: 50% 20%;
+
+    .section-header { display: none; }
+    
+    .section-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @media @mq-sm { 
+        flex-direction: row;
+        padding: 1.5rem 0 0 0;
+      }
+    }
+  }
+
+  .what-we-do {
+    .bigger-text;
+
+    @media @mq-upto-sm and @mq-land { 
+      .img-section { align-items: flex-start; }
+    }
+
+    @media @mq-upto-sm {
+      .read-more {
+        display: block;
+        margin-top: 2em;
+        top: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  .read-more {
+    .smaller-text;
+    position: relative;
+    top: 1em;
+
+    a { background-size: 100% 0%; }
+  }
+}

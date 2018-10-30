@@ -8,17 +8,17 @@ module.exports = function(grunt) {
       },
       all: [
         'Gruntfile.js',
-        'assets/js/**/*.js',
-        '!assets/js/scripts.min.js'
+        'src/**/*.js'
       ]
     },
     less: {
       dist: {
         files: {
-          'assets/css/main.min.css': 'assets/less/app.less'
+          'assets/css/main.min.css': 'src/core/main.less'
         },
         options: {
           rootpath: '/app/themes/umunandi/assets/',
+          paths: ['src', 'vendor'],
           plugins: [
             // new (require('less-plugin-autoprefix'))({ browsers: ["last 2 versions"] }),
             require('less-plugin-glob')
@@ -34,20 +34,11 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/js/scripts.min.js': [
-            // 'assets/js/plugins/bootstrap/alert.js',
-            // 'assets/js/plugins/bootstrap/button.js',
-            // 'assets/js/plugins/bootstrap/dropdown.js',
-            // 'assets/js/plugins/bootstrap/modal.js',
-            // 'assets/js/plugins/bootstrap/tooltip.js',
-            // 'assets/js/plugins/bootstrap/popover.js',
-            // 'assets/js/plugins/bootstrap/tab.js',
-            // 'assets/js/plugins/bootstrap/scrollspy.js',
-            // 'assets/js/plugins/bootstrap/collapse.js',
-            'assets/js/plugins/bootstrap/carousel.js',
-            'assets/js/plugins/bootstrap/transition.js',
-            'assets/js/plugins/bootstrap/affix.js',
-            'assets/js/plugins/*.js',
-            'assets/js/src/*.js'
+            'vendor/bootstrap/js/carousel.js',
+            'vendor/bootstrap/js/transition.js',
+            'vendor/bootstrap/js/affix.js',
+            'vendor/js/plugins/*.js',
+            'src/**/*.js'
           ]
         },
         options: {
@@ -59,7 +50,7 @@ module.exports = function(grunt) {
     },
     version: {
       options: {
-        file: 'lib/roots/scripts.php',
+        file: 'vendor/roots/scripts.php',
         css: 'assets/css/main.min.css',
         cssHandle: 'roots_main',
         js: 'assets/js/scripts.min.js',
@@ -68,33 +59,24 @@ module.exports = function(grunt) {
     },
     watch: {
       less: {
-        files: [
-          'assets/less/**/*.less',
-          'assets/less/bootstrap/*.less'
-        ],
+        files: ['src/**/*.less'],
         tasks: ['less', 'version'],
       },
       js: {
-        files: [
-          '<%= jshint.all %>'
-        ],
+        files: ['<%= jshint.all %>'],
         tasks: [/*'jshint',*/ 'concat', 'version'],
         options: { livereload: true }
       },
       php: {
         files: [
-          'templates/**/*.php',
-          'lib/*.php',
-          'src/*.php',
+          'src/**/*.php',
           '*.php',
           '!lib/roots/scripts.php'
         ],
         options: { livereload: true }
       },
       livereload: {
-        files: [
-          'assets/css/main.min.css',
-        ],
+        files: ['assets/css/main.min.css'],
         options: { livereload: true }
       }
     },

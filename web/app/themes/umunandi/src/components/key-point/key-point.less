@@ -1,0 +1,72 @@
+.key-point {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 32px 12px;
+  text-decoration: none !important;
+  z-index: 0;
+  
+  @media @mq-sm {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 340px;
+    padding: 32px;
+  }
+  
+  &, &:hover, &:focus {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .round-img {
+    width: 6.25rem;
+    height: 6.25rem;
+    border: 4px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.1);
+    transition: 0.1s;
+
+    @media @mq-upto-sm { margin-right: 18px; }
+    @media @mq-sm      { margin-bottom: 24px; }
+  }
+
+  h3 {
+    font-family: @font-family-nav;
+    text-transform: uppercase;
+  }
+
+  &-words {
+    .biggest-text;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+
+  .read-more {
+    margin-top: 1.5em;
+    opacity: 0;
+  }
+
+  &:before {
+    .pseudo-content(0);
+    background-color: rgba(255,255,255,0.1);
+    border: 10px solid transparent;
+    border-image: url("img/box-sketched.svg") 5% 3% 6% 3% stretch;
+    border-image-outset: 0.4;
+    z-index: -1;
+    opacity: 0;
+    transition: 0.1s;
+  }
+
+  &:hover {
+    &:before { opacity: 1; }
+
+    .round-img {
+      background-color: @brand-primary;
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .read-more {
+      opacity: 0.8;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+// Import all styles in the order specified
+
+@import "core/less/*.less";
+@import "components/**/*.less";
+
+// not using the all paths glob '**' in order to avoid nav styles
+@import "layout/less/*.less";
+
+// nav.less includes all the other nav styles in a specific order
+@import "layout/nav/less/nav.less";
+
+@import "pages/**/*.less";
+
+// ====================  Debug  =====================
+// div, header, a { outline: 1px solid rgba(240,50,50,0.4); }
+// .filler        { width: 500px; height: 1500px; background: #bde; }
