@@ -12,8 +12,13 @@
 
   <div class="footer-footer">
     <div class="container">
-      <span class="copy">&copy; <?= date('Y'); ?> <?php bloginfo('name'); ?></span>
-      <span class="charity-number"><?= get_option('widget_text')[3]['title'] ?></span>
+      <div class="col-grid">
+        <div class="col copyright">
+          <span>&copy; <?= date('Y'); ?> <?php bloginfo('name'); ?></span>
+          <span class="charity-number"><?= get_option('widget_text')[3]['title'] ?></span>
+        </div>
+        <div class="col designed-by"><a href="#"><?= get_option('widget_text')[4]['title'] ?></a></div>
+      </div>
     </div>
   </div>
 

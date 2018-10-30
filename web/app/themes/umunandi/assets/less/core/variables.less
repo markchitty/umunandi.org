@@ -1,30 +1,3 @@
-// Typography
-@font-family-base             : 'Quicksand', 'Open Sans', sans-serif;
-@font-size-base               : 16px;
-@line-height-base             : 1.4;
-@font-family-title            : 'Raleway', 'Open Sans', sans-serif;
-@font-family-nav              : 'Nunito', 'Open Sans', sans-serif;
-
-// Colours
-@body-bg                      : #fcfcfc;
-@footer-bg                    : #444;
-@uGreen                       : #206800;
-@uGreenLite                   : lighten(desaturate(@uGreen, 10%), 5%);
-@offWhite                     : #ffe;
-@buff                         : #f7f1e8;
-@brand-primary                : @uGreen;
-@nav-link-color               : #888;
-@nav-link-hover-color         : #444;
-@nav-link-hover-bg            : transparent;
-@link-hover-color             : darken(@link-color, 5%);
-@header-text-color            : #574838;
-@btn-primary-border           : @brand-primary;
-
-// Components
-@btn-border-width             : 2px;
-@btn-default-border           : @uGreenLite;
-@navbar-border-radius         : 0;
-
 // Layout
 @navbar-height                : 60px;
 @navbar-logo-height           : 38px;
@@ -35,6 +8,39 @@
 @section-padding-lg           : @section-padding * 1.5;
 @padding-base-vertical        : 5px;
 @padding-small-vertical       : 4px;
+
+// Typography
+@font-family-base             : 'Quicksand', 'Open Sans', sans-serif;
+@font-family-title            : 'Raleway', 'Open Sans', sans-serif;
+@font-family-nav              : 'Nunito', 'Open Sans', sans-serif;
+@font-size-base               : 16px;
+@line-height-base             : 1.4;
+
+// Colours
+@uGreen                       : #206800;
+@uGreenLite                   : lighten(desaturate(@uGreen, 10%), 5%);
+@offWhite                     : #ffe;
+@buff                         : #f7f1e8;
+@brand-primary                : @uGreen;
+@body-bg                      : #fcfcfc;
+
+@nav-link-color               : #888;
+@nav-link-hover-color         : #444;
+@nav-link-hover-bg            : transparent;
+
+@header-text-color            : #574838;
+@link-hover-color             : darken(@link-color, 5%);
+
+@footer-bg                    : #444a44;
+@footer-text-color            : #bbb;
+@footer-text-color-warn       : #d99d26;
+@footer-text-color-dark       : #828882;
+
+// Components
+@btn-border-width             : 2px;
+@btn-default-border           : @uGreenLite;
+@btn-primary-border           : @brand-primary;
+@navbar-border-radius         : 0;
 
 // Media queries
 @mq-xs                        : ~"(min-width: @{screen-xs})";      // 480px  and up

@@ -1,0 +1,20 @@
+.mailchimp-form {
+  margin-top: @line-height-computed;
+  
+  .input-group .form-control { border: 0; }
+  
+  .submit-icon:before {
+    font-size: 19px;
+    line-height: 1;
+    padding-bottom: 1px;
+    vertical-align: bottom;
+  }
+
+  .response, div.mce_inline_error {
+    margin-top: @line-height-computed/2;
+    font-size: 85%;
+  }
+  
+  div.mce_inline_error,
+  #mce-error-response { color: @footer-text-color-warn; }
+}

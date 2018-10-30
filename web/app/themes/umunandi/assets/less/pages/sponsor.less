@@ -1,16 +1,13 @@
-.sponsor-intro .coffee-box-container      { flex-shrink: 0; }
-.sponsor-story .girl-outside-school .copy { flex-grow: 2; }
-.sponsor-prices .price-boxes .col         { display: flex; order: 3; }
+.sponsor-intro  .coffee-box-container       { flex-shrink: 0; }
+.sponsor-story  .girl-outside-school .copy  { flex-grow: 2; }
+.sponsor-prices .price-boxes .col           { display: flex; order: 3; }
 
 @media @mq-upto-sm {
-  .sponsor-intro .col-grid        { .row-grid; }
-  .sponsor-story .img img         { max-width: 380px; }
-  .sponsor-how-it-works .col-grid { .row-grid; align-items: flex-start; }
-
-  .sponsor-prices .price-boxes {
-    &            { .row-grid; }
-    .col.primary { order: 1; margin: 0 0 @section-padding/2; }
-  }
+  .sponsor-intro .col-grid                  { .row-grid; }
+  .sponsor-story .img img                   { max-width: 380px; }
+  .sponsor-how-it-works .col-grid           { .row-grid; align-items: flex-start; }
+  .sponsor-prices .price-boxes              { .row-grid; }
+  .sponsor-prices .price-boxes .col.primary { order: 1; margin: 0 0 @section-padding/2; }
 }
 
 .sponsor-how-it-works {
