@@ -19,6 +19,12 @@
     </div>
   </form>
 </div>
+
+<?php /*
+
+Replace this shoite with this
+https://css-tricks.com/form-validation-part-4-validating-mailchimp-subscribe-form/
+
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 <script type='text/javascript'>
   (function($) {
@@ -33,3 +39,4 @@
   }(jQuery));
   var $mcj = jQuery.noConflict(true);
 </script>
+*/ ?>

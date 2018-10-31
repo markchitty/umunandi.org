@@ -28,6 +28,24 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 .pseudo-content(@tb, @rl)       { .create-pseudo-content(@tb, @rl, @tb, @rl); }
 .pseudo-content(@tbrl)          { .create-pseudo-content(@tbrl, @tbrl, @tbrl, @tbrl); }
 
+// Bootstrap equal height columns (flexbox does this for you)
+.row.equal-height-cols {
+  @media @mq-sm {
+    display: table;
+    width: 100%;
+    .container > & { width: calc(~"100% +" @grid-gutter-width); }
+
+    [class*="col-"] {
+      float: none;
+      display: table-cell;
+      vertical-align: top;
+    }
+  }
+}
+
+// Globally remove last margins
+*:last-child { margin-bottom: 0; }
+
 .hidden() {
   position: absolute !important;
   top: -9999px !important;

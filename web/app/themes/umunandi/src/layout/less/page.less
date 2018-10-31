@@ -19,13 +19,14 @@
   display: flex;
 }
 
-footer { 
+footer {
   @media @mq-sm { height: @footer-height; }
 }
+
 .body {
   padding-bottom: 1px; // prevent collapsing margins screwing up these calc() heights
-  @media @mq-sm { min-height: calc(~"100vh - " @footer-height + @header-height-sm); }
-  @media @mq-lg { min-height: calc(~"100vh - " @footer-height + @header-height-lg); }
+  @media @mq-sm { min-height: calc(100vh ~"-" @footer-height - @header-height-sm); }
+  @media @mq-lg { min-height: calc(100vh ~"-" @footer-height - @header-height-lg); }
 }
 
 // Scrollto marker - ensures page scrolls to bottom of navbar when it's visible
@@ -35,21 +36,3 @@ footer {
     transform: translateY(-@navbar-height);
   }
 }
-
-// Equal height columns
-.row.equal-height-cols {
-  @media @mq-sm {
-    display: table;
-    width: 100%;
-    .container > & { width: calc(~"100% +" @grid-gutter-width); }
-
-    [class*="col-"] {
-      float: none;
-      display: table-cell;
-      vertical-align: top;
-    }
-  }
-}
-
-// Globally remove last margins
-*:last-child { margin-bottom: 0; }

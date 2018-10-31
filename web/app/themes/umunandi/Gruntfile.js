@@ -3,19 +3,12 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      all: [
-        'Gruntfile.js',
-        'src/**/*.js'
-      ]
+      options: { jshintrc: '.jshintrc' },
+      all: ['Gruntfile.js', 'src/**/*.js']
     },
     less: {
       dist: {
-        files: {
-          'assets/css/main.min.css': 'src/core/main.less'
-        },
+        files: { 'assets/css/main.min.css': 'src/core/main.less' },
         options: {
           rootpath: '/app/themes/umunandi/assets/',
           paths: ['src', 'vendor'],
