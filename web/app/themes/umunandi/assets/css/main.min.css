@@ -4738,7 +4738,7 @@ figure.alignnone {
 @media (min-width: 768px) {
   .price-box.primary {
     box-shadow: 0px 16px 9px -9px rgba(0, 0, 0, 0.15);
-    transform: scale(1.02);
+    transform: scale(1.06);
   }
 }
 .price-box.primary:before,

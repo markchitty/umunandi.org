@@ -43,11 +43,11 @@ module.exports = function(grunt) {
     },
     version: {
       options: {
-        file: 'vendor/roots/scripts.php',
+        file: 'src/core/styles-scripts.php',
         css: 'assets/css/main.min.css',
-        cssHandle: 'roots_main',
+        cssHandle: 'umunandi_css',
         js: 'assets/js/scripts.min.js',
-        jsHandle: 'roots_scripts'
+        jsHandle: 'umunandi_js'
       }
     },
     watch: {
