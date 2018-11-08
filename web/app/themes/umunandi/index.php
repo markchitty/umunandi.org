@@ -14,13 +14,13 @@
     <?php else : ?>
       <header class="header" style="<?= umunandi_featured_image_bg_style(is_page('test-page')) ?>">
         <?php do_action('get_header'); ?>
-        <?php get_template_part(sprintf('src/pages/%s/header', umunandi_get_template_type())); ?>
+        <?php umunandi_get_template('src/pages/', 'header'); ?>
       </header>
 
       <main role="main">
         <div class="body" role="document">
           <a name="body-top" class="body-top"></a>
-          <?php get_template_part(sprintf('src/pages/%s/body', umunandi_get_template_type())); ?>
+          <?php umunandi_get_template('src/pages/', 'body'); ?>
         </div>
       </main>
     <?php endif; ?>

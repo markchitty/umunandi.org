@@ -12,7 +12,7 @@ while ($front_page_sections->have_posts()) {
   $front_page_sections->the_post();
   $sect = array(
     'class'   => $post->post_name . ' ' . get_post_meta($post->ID, 'umunandi_page_class', true),
-    'style'   => umunandi_featured_image_bg_style(),
+    'style'   => umunandi_featured_image_bg_style(true),
     'header'  => get_the_title(),
     'content' => apply_filters('the_content', get_the_content()) // also parse shortcodes in the content
   );

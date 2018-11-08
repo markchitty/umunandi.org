@@ -20,3 +20,15 @@ function umunandi_get_template_type() {
   endif;
   return $template_type;
 }
+
+function umunandi_get_template($path, $name) {
+  global $post;
+  $custom_template = get_page_template_slug($post);
+  if ($name == 'body' && $custom_template) {
+    include $custom_template;
+  }
+  else {
+    $type = umunandi_get_template_type();
+    get_template_part("$path/$type/$name");
+  }
+}

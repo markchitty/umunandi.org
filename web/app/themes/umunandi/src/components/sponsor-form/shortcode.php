@@ -17,7 +17,7 @@ class Sponsor_Form_Shortcode {
   function shortcode($atts, $content) {
 		$nonce = wp_create_nonce(self::NONCE_ID);
     ob_start();
-    include 'form.tpl.php';
+    include 'form.php';
     return ob_get_clean();
   }
 
