@@ -1,44 +1,65 @@
+@price-box-gradient-bot: saturate(@buff, 8%);
+@price-box-gradient-top: saturate(darken(@buff, 2%), 10%);
 .price-box {
-  @gradient-bot: saturate(@buff, 8%);
-  @gradient-top: saturate(darken(@buff, 2%), 10%);
-
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to top, @gradient-bot, @gradient-top);
+  background: linear-gradient(to top, @price-box-gradient-bot, @price-box-gradient-top);
   margin-top: 20%;
   padding: 1rem;
   transition: 0.1s;
   cursor: pointer;
 
-  &:before { opacity: 0.2; }
+  @media @mq-md  { padding: 1.5rem; }
+  &:before       { opacity: 0.2; }
+  &-body         { flex: 1; }
+  .btn           { margin-top: 1rem; }
+  h3, p, &-price { margin: 0.6rem 0; }
 
-  @media @mq-md { padding: 1.5rem; }
-
-  &-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .primary & {
+    @media @mq-sm {
+      box-shadow: 0px 16px 9px -9px rgba(0, 0, 0, 0.15);
+      transform: scale(1.06);
+    }
   }
 
-  h3, p, .price { margin: 0.6rem 0; }
-  &-body        { flex: 1; }
-  .btn          { margin-top: 1rem; }
+  .primary &, &:hover {
+    &:before   { opacity: 0.5; }
+    .btn:hover { border-color: @btn-primary-border; }
+    .btn:extend(.btn-primary) {}
+  }
+
+  &:hover {
+    background: linear-gradient(to top,
+      lighten(@price-box-gradient-bot, 3%),
+      saturate(@price-box-gradient-top, 15%)
+    );
+
+    &:before { opacity: 1; .colorize; }
+  }
+}
+
+.price-box-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 
   .round-img {
     width: 80%;
-    border: 0.5rem solid @gradient-top;
     margin-top: -30%;
+    border: 1em solid @price-box-gradient-top;
+    font-size: 0.5rem;   // = border-width - means transform calcs stay in proportion
 
     &:after { opacity: 0.4; }
   }
 
   .both-banana.round-img {
     position: absolute;
-    transform-origin: 80% 80%;
-    transform: scale(0.3) translateX(50%);
-    border-width: 0;
+    transform-origin: calc(100% ~'-' 1em) calc(100% ~'-' 1em);
+    transform: scale(0.35) translate(30%, 8%);
+    border-color: transparent;
   }
 
   h3 {
@@ -54,71 +75,46 @@
       font-weight: 500;
     }
   }
+}
 
-  .price {
-    text-align: center;
-    line-height: 1;
-    margin-bottom: 1em;
+.price-box-price {
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 1em;
 
-    .period            { display: block; color: #999; }
-    .amount, .currency { font-size: 300%; font-weight: 600; }
-  }
+  .period            { display: block; color: #999; }
+  .amount, .currency { font-size: 300%; font-weight: 600; }
+}
 
-  &.primary {
-    @media @mq-sm {
-      box-shadow: 0px 16px 9px -9px rgba(0, 0, 0, 0.15);
-      transform: scale(1.06);
-    }
-  }
-
-  &.primary, &:hover {
-    &:before   { opacity: 0.5; }
-    .btn       { .btn-primary; }
-    .btn:hover { border-color: @btn-primary-border; }
-  }
-
-  &:hover {
-    background: linear-gradient(to top, lighten(@gradient-bot, 3%), saturate(@gradient-top, 15%));
-
-    &:before {
-      opacity: 1;
-      filter: invert(22%) sepia(100%) saturate(8) hue-rotate(69deg);
-    }
-  }
-
-  @media @mq-upto-sm {
+@media @mq-upto-sm {
+  .price-box {
     margin-top: 0;
     padding: 1rem 0;
 
     p:last-child { margin-bottom: 0; }
     &-body       { padding: 0 1rem; }
+  }
 
-    & &-header {
-      flex-direction: row;
-      align-self: stretch;
-      margin: -1.5rem 0.7rem 0 -0.5rem;
+  .price-box-header {
+    flex-direction: row;
+    align-self: stretch;
+    margin: -1.5rem 0.7rem 0 -0.5rem;
 
-      > * { margin: 0; }
-      h3  { flex: 1; text-align: left; }
-    }
+    > * { margin: 0; }
+    h3  { flex: 1; text-align: left; }
 
     .round-img {
+      margin-top: 0;
       margin-right: 0.66rem;
       width: 7.5rem;
-      border-width: 5px;
-      margin-top: 0;
-
-      &.both-banana {
-        transform-origin: 100% 100%;
-        transform: scale(0.33) translateX(15%);
-      }
+      font-size: 5px; // = border-width
     }
   }
+}
 
-  @media @mq-upto-xs {
-    &-body     { padding: 0 0.6rem; }
-    .round-img { width: 6rem; }
-    .price     { font-size: 3.5vw; }
-    h3         { font-size: 6.6vw; }
-  }
+@media @mq-upto-xs {
+  .price-box-body              { padding: 0 0.3rem; }
+  .price-box-header .round-img { width: 6rem; }
+  .price-box-header  h3        { font-size: 6.6vw; }
+  .price-box-price             { font-size: 3.5vw; }
 }

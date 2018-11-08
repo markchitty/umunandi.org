@@ -1,16 +1,25 @@
 <?php
+// [price_boxes]
+add_shortcode('price_boxes', 'umunandi_shortcode_price_boxes');
+function umunandi_shortcode_price_boxes($atts, $content) {
+  $atts = shortcode_atts(array('class' => ''), $atts);
+  ob_start();
+  printf('<div class="price-boxes col-grid %s">%s</div>', $atts['class'], $content);
+  return ob_get_clean();
+}
 
 // [price_box]
 add_shortcode('price_box', 'umunandi_shortcode_price_box');
 function umunandi_shortcode_price_box($atts, $content) {
   $defaults = array(
     'class' => '',
-    'title' => 'a child',
+    'product' => 'a child',
     'currency' => '£',
     'price' => 5,
     'period' => 'month',
   );
   $atts = shortcode_atts($defaults, $atts);
+  $atts['data'] = $atts['product'];
   $html = str_get_html(do_shortcode($content));
   
   // Extract all images out of $content

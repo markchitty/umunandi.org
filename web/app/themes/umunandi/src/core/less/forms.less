@@ -1,0 +1,45 @@
+/* Forms */
+
+.form-group        { margin-bottom: 1rem; }
+.form-group.error  { color: @error; }
+.input-container   { position: relative; }
+textarea           { resize: none; } // auto-resize handled in js
+
+.form-control {
+  border-color: #fff;
+  box-shadow: none;
+  font-size: inherit;
+
+  &:focus {
+    border-color: @u-green-light;
+    box-shadow: none;
+  }
+}
+
+label {
+  .smaller-text;
+  font-weight: normal;
+  margin-bottom: 0.15rem;
+}
+
+.input-msg {
+  .smallest-text;
+  margin-top: 0.15rem;
+}
+
+// Form input sketched border
+// Requires <span> element immediately after the <input> control:
+//
+// <div class="sketch-box-input input-container">
+//   <input class="form-control" ... >
+//   <span></span>
+// </div>
+
+.sketch-box-input {
+  > span:before                     { opacity: 0.3; }
+  .form-control:focus               { border-color: @input-bg; }
+  .form-control:focus + span:before { opacity: 0.8; .colorize; }
+  .error & > span:before            { opacity: 0.8; .colorize(-27deg) !important; }
+  .form-group:nth-child(even) &
+    > span:before                   { transform: scale(-1, -1); }
+}
