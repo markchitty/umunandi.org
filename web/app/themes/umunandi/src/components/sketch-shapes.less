@@ -2,7 +2,7 @@
   &:before {
     .pseudo-content(0);
     border: 10px solid;
-    border-image: url("img/box-drawn-thin-black.png") 9% stretch;
+    border-image: url("img/sketch-box-sq.png") 25 30 30 30 stretch;
     border-image-outset: 0.2 0.4 0.3;
     pointer-events: none;
   }
@@ -12,9 +12,24 @@
   overflow: visible;
 
   &:after {
-    .pseudo-content(-5px);
+    .pseudo-content(-3%);
     background: url("img/sketch-circle-thin.png") no-repeat;
     background-size: contain;
     pointer-events: none;
   }
 }
+
+// .sketch-box-input targets a child span, which must come after the <input>
+// it's sketching a box round. This is so that we can modify the sketch box
+// based on the <input>'s state using :focus, :hover, etc selectors.
+.sketch-box-input > span {
+  &:before {
+    .pseudo-content(0);
+    border: 10px solid;
+    border-image: url("img/sketch-box-wide-thin.png") 15 stretch;
+    border-image-outset: 0.3;
+    pointer-events: none;
+  }
+}
+
+.colorize(@hue-rotate: 69deg;) { filter: invert(22%) sepia(100%) saturate(8) hue-rotate(@hue-rotate); }
