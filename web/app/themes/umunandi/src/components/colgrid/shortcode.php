@@ -9,6 +9,8 @@ function umunandi_shortcode_colgrid($atts, $content) {
   printf('<div class="col-grid %s">%s</div>', $atts['class'], $content);
   return ob_get_clean();
 }
+
+// [col]
 add_shortcode('col', 'umunandi_shortcode_col');
 function umunandi_shortcode_col($atts, $content) {
   $atts = shortcode_atts(array('class' => '', 'container-class' => ''), $atts);

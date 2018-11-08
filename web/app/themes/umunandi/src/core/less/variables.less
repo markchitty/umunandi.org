@@ -17,11 +17,13 @@
 @line-height-base             : 1.4;
 
 // Colours
-@uGreen                       : #206800;
-@uGreenLite                   : lighten(desaturate(@uGreen, 10%), 5%);
-@offWhite                     : #ffe;
+@u-green                      : #206800;
+@u-green-light                : lighten(desaturate(@u-green, 10%), 5%);
+@off-white                    : #ffe;
 @buff                         : #f7f1e8;
-@brand-primary                : @uGreen;
+@brand-primary                : @u-green;
+@brand-danger                 : #a33;
+@error                        : @brand-danger;
 @body-bg                      : #fcfcfc;
 
 @nav-link-color               : #888;
@@ -30,6 +32,7 @@
 
 @header-text-color            : #574838;
 @link-hover-color             : darken(@link-color, 5%);
+@input-color-placeholder      : #ccc;
 
 @footer-bg                    : #444a44;
 @footer-text-color            : #bbb;
@@ -38,7 +41,7 @@
 
 // Components
 @btn-border-width             : 2px;
-@btn-default-border           : @uGreenLite;
+@btn-default-border           : @u-green-light;
 @btn-primary-border           : @brand-primary;
 @navbar-border-radius         : 0;
 

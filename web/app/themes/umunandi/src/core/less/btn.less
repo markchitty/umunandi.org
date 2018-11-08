@@ -6,19 +6,36 @@
   .transition(all 0.15s);
 
   &-default {
-    color: @uGreenLite;
+    color: @u-green-light;
     background: transparent;
   }
 
-  &:focus, &.focus {
-    &, &:active, &.active { .focus; }
+  &:focus, &.focus, &:active, &.active {
+    &, &:active, &.active {
+      .focus;
+    }
   }
 }
 
+.btn-focus-active(@color; @background; @border) {
+  color: @color;
+  background-color: darken(@background, 3%);
+  border-color: darken(@border, 3%);
+}
+
+.btn-primary {
+                 &:active,       &.active,
+  &:focus, &:focus:active, &:focus.active,
+  &.focus, &.focus:active, &.focus.active
+  {
+    .focus;
+    .btn-focus-active(#fff; @btn-primary-bg; @btn-primary-border)
+  }
+}
 
 .btn-hover() {
-  border-color: @uGreen;
-  background-color: @uGreen !important;
+  border-color: @brand-primary;
+  background-color: @brand-primary !important;
   color: #fff;
   text-decoration: none;
 }
