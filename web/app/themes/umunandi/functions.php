@@ -24,6 +24,5 @@ require_once 'vendor/simple_html_dom.php';
 require_once 'src/admin/admin.php';
 require_once 'src/core/content.php';
 require_once 'src/core/styles-scripts.php';
-require_once 'src/core/shortcodes.php';
 require_once 'src/core/template-loader.php';
 require_once 'src/layout/nav/nav-walker.php';

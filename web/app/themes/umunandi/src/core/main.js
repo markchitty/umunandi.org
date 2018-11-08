@@ -1,34 +1,60 @@
 /* ========================================================================
- * DOM-based Routing
- * Based on http://goo.gl/EUTi53 by Paul Irish
+ * umunandi.org main.js - Entry point script and module manager.
  *
- * Only fires on body classes that match. If a body class contains a dash,
- * replace the dash with an underscore when adding it to the object below.
- *
- * Google CDN, Latest jQuery
+ * We create a global 'umunandi' object which provides a namespace for all
+ * other script modules hang off. Modules are imported using the
+ * umunandi.import(pagename, func) method. This adds them to the umunandi
+ * namespace and associates them with the name of a specific site page.
+ * 
+ * When a page loads, loadEvents() calls all modules that are registered
+ * with a module name that matches any class in the <body> tag (dashes in
+ * class names are replaced by underscores). Based on http://goo.gl/EUTi53.
+ * 
+ * Grunt is responsible for concat'ing all the scripts in /src.
+ * 
+ * Example
+ * -------
+ * - In home.js
+ *   umunandi.import('home', function() { useful js stuff });
+ * 
+ * - In animations.js
+ *   umunandi.import('home', function() { cool animations });
+ * 
+ * - In home.php
+ *   <body class="page blue home"> ... </body>
+ * 
+ * When home.php loads, the script will run any functions with a module id
+ * of 'page', 'blue' or 'home'. This means the 'home' modules imported in 
+ * home.js and animations.js will both be called.
  * ======================================================================== */
 
-// Set up Umunandi global to hang everything else off
-var Umunandi = Umunandi || {};
+var Umunandi = function() {
+  this.globals = {};
+};
 
-(function($) {
-
-  var SCRIPT_UTIL = {
-    namespace : Umunandi,
-
-    loadEvents : function() {
-      SCRIPT_UTIL.fire('common');
-      $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
-        SCRIPT_UTIL.fire(classnm);
-      });
-    },
-
-    fire : function(funcname, args) {
-      if (typeof SCRIPT_UTIL.namespace[funcname] === 'function')
-        SCRIPT_UTIL.namespace[funcname](args);
-    }
+Umunandi.prototype.import = function(moduleId, func) {
+  if (this.hasOwnProperty(moduleId)) {
+    var prevFunc = this[moduleId];
+    this[moduleId] = function() {
+      prevFunc();
+      func();
+    };
   }
+  else this[moduleId] = func;
+}
 
-  $(document).ready(SCRIPT_UTIL.loadEvents);
+Umunandi.prototype.loadEvents = function() {
+  this.run('common');
+  var pageClasses = document.body.className.replace(/-/g, '_').split(/\s+/);
+  pageClasses.forEach(function(className) {
+    this.run(className);
+  }.bind(this));
+}
 
-})(jQuery);
+Umunandi.prototype.run = function(moduleId) {
+  if (typeof this[moduleId] === 'function') this[moduleId]();
+};
+
+var umunandi = new Umunandi();
+
+(function($) { $(document).ready(umunandi.loadEvents.bind(umunandi)); })(jQuery);

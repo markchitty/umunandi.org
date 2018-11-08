@@ -31,6 +31,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/js/scripts.min.js': [
+            'src/core/main.js',  // must be first
             'vendor/bootstrap/js/carousel.js',
             'vendor/bootstrap/js/transition.js',
             'vendor/bootstrap/js/affix.js',
@@ -69,15 +70,13 @@ module.exports = function(grunt) {
         options: { livereload: true }
       },
       php: {
-        files: [
-          'src/**/*.php',
-          '*.php',
-          '!lib/roots/scripts.php'
-        ],
+        files: ['src/**/*.php', '*.php', '!<%= version.options.file %>'],
+        tasks: [],
         options: { livereload: true }
       },
       livereload: {
         files: ['assets/css/main.min.css'],
+        tasks: [],
         options: { livereload: true }
       }
     },
@@ -89,15 +88,8 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load tasks
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-wp-version');
-
-  // Register tasks
+  // Load and register tasks
+  require('load-grunt-tasks')(grunt);
   grunt.registerTask('default', [
     'clean',
     'less',

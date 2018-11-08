@@ -1,6 +1,13 @@
 <?php
 define('IMG_ASSET_PATH', '/app/themes/umunandi/assets/img/');
-// define('GOOGLE_ANALYTICS_ID', '');
+
+// Load shortcodes
+$shortcode_files = dirname(__DIR__) . '/components/*/shortcode.php';
+foreach (glob($shortcode_files) as $file) require_once $file;
+
+// Enable shortcodes in text widget
+add_filter('widget_text', 'shortcode_unautop');
+add_filter('widget_text', 'do_shortcode');
 
 function umunandi_get_image_src($attach_id, $size) {
   return ($src = wp_get_attachment_image_src($attach_id, $size, false)) ? $src[0] : '';

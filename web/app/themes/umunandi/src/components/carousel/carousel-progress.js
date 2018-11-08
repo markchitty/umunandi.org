@@ -1,9 +1,5 @@
 // Extended carousel with All New Progress-o-meters (TM)
-
-// Umunandi global
-var Umunandi = Umunandi || {};
-
-(function (Umunandi) {
+(function () {
 
   // Carousel Progressometer Class
   // Supporting API for svg.progressometer
@@ -76,7 +72,6 @@ var Umunandi = Umunandi || {};
     }
   }
 
-  // export
-  Umunandi.CarouselProgress = CarouselProgress;
+  umunandi.import('CarouselProgress', CarouselProgress);
 
-})(Umunandi);
+})();
