@@ -18,6 +18,30 @@ function umunandi_acf_admin_head() {
   <?php
 }
 
+// Admin favicon
+add_action('login_head', 'umunandi_add_favicon');
+add_action('admin_head', 'umunandi_add_favicon');
+function umunandi_add_favicon() {
+ 	$favicon_url = get_stylesheet_directory_uri() . '/assets/img/favicon/admin-favicon.png';
+	printf('<link rel="shortcut icon" href="%s">', $favicon_url);
+}
+
+// Date column format
+add_filter('post_date_column_time' , 'umunandi_post_date_column_time', 10, 2);
+function umunandi_post_date_column_time($h_time, $post) {
+  return get_post_time('j M Y', false, $post);
+}
+
+// Admin custom scripts n styles
+add_action('admin_enqueue_scripts', 'umunandi_admin_scripts');
+function umunandi_admin_scripts() {
+	global $pagenow;
+	if ($pagenow == 'edit.php' && ($_GET['post_type'] == 'page' || $_GET['post_type'] == 'post')) {
+		wp_enqueue_script('umunandi-admin-js', get_template_directory_uri() . '/assets/js/admin.js', ['jquery']);
+		wp_enqueue_style('umunandi-admin-css', get_template_directory_uri() . '/assets/css/admin.css', []);
+	}
+}
+
 // Custom page attribute field
 add_action('page_attributes_misc_attributes', 'umunandi_page_attrs');
 function umunandi_page_attrs($post) {

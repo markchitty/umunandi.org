@@ -21,6 +21,10 @@ module.exports = function(grunt) {
           sourceMapFilename: 'assets/css/main.min.css.map',
           sourceMapRootpath: '/app/themes/umunandi/'
         }
+      },
+      admin: {
+        files: { 'assets/css/admin.css': 'src/admin/admin.less' },
+        options: { rootpath: '/app/themes/umunandi/assets/' }
       }
     },
     concat: {
@@ -31,7 +35,8 @@ module.exports = function(grunt) {
             'vendor/bootstrap/js/transition.js',
             'vendor/bootstrap/js/affix.js',
             'vendor/js/plugins/*.js',
-            'src/**/*.js'
+            'src/**/*.js',
+            '!src/admin/**'
           ]
         },
         options: {
@@ -39,6 +44,9 @@ module.exports = function(grunt) {
           // sourceMap: 'assets/js/scripts.min.js.map',
           // sourceMappingURL: '/app/themes/umunandi/assets/js/scripts.min.js.map'
         }
+      },
+      admin: {
+        files: { 'assets/js/admin.js': 'src/admin/**/*.js' }
       }
     },
     version: {

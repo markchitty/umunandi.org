@@ -1,0 +1,43 @@
+.pages.fixed,
+.posts.fixed {
+  table-layout: auto;
+}
+.pages .indenter,
+.posts .indenter {
+  display: inline-block;
+  width: 2em;
+}
+.pages .column-column-order,
+.posts .column-column-order {
+  text-align: center;
+}
+.pages tr:hover td,
+.posts tr:hover td,
+.pages tr:hover th,
+.posts tr:hover th {
+  background: #e8f2f7;
+}
+.pages .date,
+.posts .date {
+  white-space: nowrap;
+}
+.pages .date br,
+.posts .date br {
+  display: none;
+}
+.pages .date abbr,
+.posts .date abbr {
+  text-decoration: none;
+}
+.pages .date abbr:before,
+.posts .date abbr:before {
+  content: ' - ';
+}
+.pages td.column-title strong,
+.posts td.column-title strong,
+.pages td.plugin-title strong,
+.posts td.plugin-title strong {
+  float: left;
+  margin-right: 1em;
+  min-width: 25%;
+}
