@@ -2,38 +2,48 @@
 
 umunandi.define('common', function() {
 
-  // Globally limit javascript click actions
-  $('a[href="#"]').click(function(e) { e.preventDefault(); });  
+  // Track navbar position to control floating/fixed state
+  var navBar = {};
+  navBar.el = $('.js-main-nav');
+  navBar.refEl = $('.js-main-nav-position-ref');
+  navBar.height = navBar.el.height();
 
-  // Reset the screen to (0,0)
-  $.scrollTo(0);
+  function onResize() {
+    umunandi.screenSize.updateSizes();
+    navBar.refElTop = navBar.refEl.offset().top;
+  }
+  $(window).on('resize orientationchange', $.debounce(100, onResize));
+  onResize();
+
+  function onScroll() {
+    navBar.el.toggleClass('fixed', $(this).scrollTop() > navBar.refElTop);
+  }
+  $(document).on('scroll.umunandi', onScroll);
+  onScroll();
+
+  // Intercept scrollTo() calls - adjust the scroll end point to account for fixed navBar
+  $.Animation.prefilter(function(el, props, opts) {
+    if (el === window && 'scrollTop' in props && umunandi.screenSize.isAtLeastSm)
+      props.scrollTop -= navBar.height;
+  });
 
   // ScrollTo behaviour
   $('[data-scrollto]').off().on('click', function (e) {
     e.preventDefault();
-    $('.nav-toggle-checkbox').prop('checked', false); // Close the mobile menu
-    var $this = $(this);
-    var isNavBarVisible = umunandi.screenSize.isAtLeast('sm') && umunandi.globals.isNavFixed;
+    $('.nav-toggle-checkbox').prop('checked', false); // Close mobile menu
     var scrollOpts = {
-      duration: $this.data().scrollto,
-      offset: ($this.data().scrolloffset || 0) + (isNavBarVisible ? -60 : 0)
+      duration: parseInt(this.dataset.scrollto),
+      offset: parseInt(this.dataset.scrolloffset)
     };
-    $.scrollTo($this.data().scrollhref || $this.attr('href'), scrollOpts);
+    $.scrollTo(this.dataset.scrollhref || $(this).attr('href'), scrollOpts);
   });
 
-  
-  // Track navbar position to control floating/fixed state
-  var $navBar = $('.js-main-nav');
-  var $navBarRef = $('.js-main-nav-position-ref');
-  var navBarRefTop;
-  var onResize = function() { navBarRefTop = $navBarRef.offset().top; }
-  onResize();
+  // Reset the screen to (0,0)
+  $.scrollTo(0);
 
-  $(window).on('resize orientationchange', $.debounce(100, onResize));
-  $(document).scroll(function() {
-    umunandi.globals.isNavFixed = $(this).scrollTop() > navBarRefTop;
-    $navBar.toggleClass('fixed', umunandi.globals.isNavFixed); }
-  );
+  // Globally limit javascript click actions
+  $('a[href="#"]').click(function(e) { e.preventDefault(); });  
+
   // Autoresize textareas to fit content
   $('textarea').each(function () {
     this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px; overflow-y:hidden;');

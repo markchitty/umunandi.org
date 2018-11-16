@@ -5553,12 +5553,6 @@ figure.alignnone {
     min-height: calc(100vh - 300px - 540px);
   }
 }
-@media (min-width: 768px) {
-  .body-top {
-    display: block;
-    transform: translateY(-60px);
-  }
-}
 .main-nav {
   position: fixed;
   top: 0;

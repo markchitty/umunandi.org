@@ -28,11 +28,3 @@ footer {
   @media @mq-sm { min-height: calc(100vh ~"-" @footer-height - @header-height-sm); }
   @media @mq-lg { min-height: calc(100vh ~"-" @footer-height - @header-height-lg); }
 }
-
-// Scrollto marker - ensures page scrolls to bottom of navbar when it's visible
-.body-top {
-  @media @mq-sm {
-    display: block;
-    transform: translateY(-@navbar-height);
-  }
-}
