@@ -9,19 +9,6 @@ foreach (glob($shortcode_files) as $file) require_once $file;
 add_filter('widget_text', 'shortcode_unautop');
 add_filter('widget_text', 'do_shortcode');
 
-// Load templates = any .tpl.php file in /pages
-add_filter('theme_page_templates', 'umunandi_add_templates', 10, 4);
-function umunandi_add_templates($post_templates, $wp_theme, $post, $post_type) {
-  $template_files = dirname(__DIR__) . '/pages/**/*.tpl.php';
-  foreach (glob($template_files) as $file) {
-    // Template name regex copied from wp-includes/class-wp-theme.php::get_post_templates()
-    if (preg_match('|Template Name:(.*)$|mi', file_get_contents($file), $matches)) {
-      $post_templates[$file] = _cleanup_header_comment($matches[1]);
-    }
-  }
-  return $post_templates;
-}
-
 function umunandi_get_image_src($attach_id, $size) {
   return ($src = wp_get_attachment_image_src($attach_id, $size, false)) ? $src[0] : '';
 }
@@ -43,8 +30,10 @@ function umunandi_featured_image_bg_style($skipRandom = false) {
 }
 
 // Add custom page class into body tag classes
-add_filter('body_class', 'umunandi_body_class');
+// and remove the bazillion 'page-template*' classes
+add_filter('body_class', 'umunandi_body_class', 99);
 function umunandi_body_class($classes) {
+  $classes = array_filter($classes, function($cls) { return strpos($cls, 'page-template') !== 0; });
   global $post;
   $classes[] = get_post_meta($post->ID, 'umunandi_page_class', true);
   return $classes;
