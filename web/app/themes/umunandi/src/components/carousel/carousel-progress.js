@@ -1,5 +1,5 @@
 // Extended carousel with All New Progress-o-meters (TM)
-(function () {
+umunandi.define('home', 5, function () {
 
   // Carousel Progressometer Class
   // Supporting API for svg.progressometer
@@ -72,6 +72,6 @@
     }
   }
 
-  umunandi.import('CarouselProgress', CarouselProgress);
+  umunandi.CarouselProgress = CarouselProgress;
 
-})();
+});

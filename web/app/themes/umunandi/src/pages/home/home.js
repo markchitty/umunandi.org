@@ -1,5 +1,5 @@
 // Home page scripts
-umunandi.import('home', function () {
+umunandi.define('home', function () {
 
   // Carousel
   var carouselSlideInterval = 12000;

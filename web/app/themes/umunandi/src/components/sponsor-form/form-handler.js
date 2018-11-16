@@ -1,13 +1,5 @@
 // Sponsor form handler
-umunandi.import('sponsor', function () {
-
-	// Autoresize textareas to fit content
-	$('textarea').each(function() {
-		this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px; overflow-y:hidden;');
-	}).on('input', function() {
-		this.style.height = 'auto';
-		this.style.height = (this.scrollHeight) + 'px';
-	});
+umunandi.define('sponsor', function () {
 
 	// Construct sponsorship options list
  	var $sponsorOpts     = $('.sponsor-form .sponsor-options');
