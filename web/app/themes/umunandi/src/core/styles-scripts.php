@@ -23,7 +23,7 @@ class Umunandi_Styles_n_Scripts {
 
     // args: id, path, deps (array), ver, in-footer
     wp_enqueue_style('google_fonts', self::GOOGLE_FONTS_API . join('|', self::FONT_LIST));
-    wp_enqueue_style('umunandi_css', $dir . self::UMUNANDI_STYLES, false, 'd6a83c7168a95399714354c449d6dcff');
+    wp_enqueue_style('umunandi_css', $dir . self::UMUNANDI_STYLES, false, 'c33bc61fdb76f8eaf7231f277dfef94b');
 
     // Use jQuery from Google CDN
     if (!is_admin()) {

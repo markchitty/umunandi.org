@@ -3928,6 +3928,18 @@ label {
   font-size: 0.8125rem;
   margin-top: 0.15rem;
 }
+.form-error {
+  display: none;
+  color: #a33;
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(200, 100, 100, 0.1);
+  border-radius: 4px;
+}
+.form-error .reason {
+  font-size: 0.8125rem;
+  margin-top: 0.2rem;
+}
 .sketch-box-input > span:before {
   opacity: 0.3;
 }
@@ -4718,24 +4730,25 @@ figure.alignnone {
   }
 }
 .ellipsis.loader {
-  width: auto;
+  width: 1.9em;
   margin: 0;
   display: inline-flex;
   align-items: center;
 }
 .ellipsis span {
+  position: absolute;
   width: 0.3em;
   height: 0.3em;
-  margin-right: 0.5em;
+  left: 0;
   border-radius: 50%;
   background: #fff;
   animation: ellipsis1 0.6s linear infinite;
 }
-.ellipsis span:nth-child(1) {
-  position: absolute;
+.ellipsis span:nth-child(3) {
+  left: 0.8em;
 }
 .ellipsis span:nth-child(4) {
-  margin-right: 0;
+  left: 1.6em;
 }
 .ellipsis span:nth-child(n+5) {
   display: none;
@@ -4766,7 +4779,7 @@ figure.alignnone {
     transform: translateX(0) scale(1);
   }
   100% {
-    transform: translateX(0.8em) scale(1.5);
+    transform: translateX(0.8em) scale(1.6);
   }
 }
 @keyframes ellipsis-translate-shrink {

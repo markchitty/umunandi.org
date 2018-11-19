@@ -4,21 +4,23 @@ class Sponsor_Form_Shortcode {
 	const EMAIL_TO    = 'ruth@umunandi.org';
 	const EMAIL_ERR   = "Sorry, there was a problem at our end. Please try again. "
 	                  . "If it still doesn't work, send us a quick email at info@umunandi.org.";
-	const NONCE_ERR   = "Hmm, your request seems to have got a bit mangled. Can you try that again?";
-	const NONCE_ID    = 'umunandi_sponsor_sign_up';
+	const ACTION      = 'umunandi_sponsor_sign_up';
+	const NONCE_ID    = self::ACTION;
+	const NONCE_ERR   = "Sorry, that didn't work. Can you try again?";
 	const THANKS_PAGE = 'help/sponsor/thank-you-';
 
 	public function __construct() {
     add_shortcode('sponsor_form', array($this, 'shortcode'));
-		add_action('wp_ajax_nopriv_umunandi_sponsor_sign_up', array($this, 'sponsor_sign_up'));
-		add_action('wp_ajax_umunandi_sponsor_sign_up',        array($this, 'sponsor_sign_up'));
+		add_action('wp_ajax_nopriv_' . self::ACTION, array($this, 'sponsor_sign_up'));
+		add_action('wp_ajax_' . self::ACTION,        array($this, 'sponsor_sign_up'));
 	}
 
   function shortcode($atts, $content) {
 		$nonce = wp_create_nonce(self::NONCE_ID);
-    ob_start();
-    include 'form.php';
-    return ob_get_clean();
+		$action = self::ACTION;
+		ob_start();
+		include 'form.php';
+		return ob_get_clean();
   }
 
 	function sponsor_sign_up() {

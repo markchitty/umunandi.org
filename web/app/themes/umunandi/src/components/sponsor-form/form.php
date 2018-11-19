@@ -1,6 +1,9 @@
 <form novalidate class="sponsor-form"
+  action="<?= admin_url('admin-ajax.php') ?>"
   data-nonce="<?= $nonce ?>"
-  action="<?= admin_url('admin-ajax.php') ?>">
+  data-wp-action="<?= $action ?>"
+  data-error-generic="🧐 Something went wrong. Can you try that again?"
+  data-error-timeout="⏳ Looks like the network is a bit flaky. Can you try that again?">
   <div class="form-group sponsor-options-row">
     <div class="sponsor-options-label">
       <span>I would like to sponsor</span> 
@@ -50,6 +53,10 @@
       <textarea class="form-control" id="message" name="message" rows="3"></textarea>
       <span></span>
     </div>
+  </div>
+  <div class="form-error">
+    <div class="msg"></div>
+    <div class="reason"></div>
   </div>
   <button type="submit" class="btn btn-primary">
     <span class="words">Sign me up &nbsp; 👍🏻</span>
