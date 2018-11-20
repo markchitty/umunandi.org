@@ -43,6 +43,23 @@ function umunandi_admin_scripts() {
   wp_enqueue_style('umunandi-admin-css', get_template_directory_uri() . '/assets/css/admin.css', []);
 }
 
+// Default metabox visibility - hides admin page elements for new users
+add_filter('default_hidden_meta_boxes', 'umunandi_default_hidden_screen_options', 10, 2);
+function umunandi_default_hidden_screen_options($hidden, $screen) {
+  $hide_these = array(
+    'pageparentdiv',
+    'categorydiv',
+    'tagsdiv',
+    'postcustom',
+    'commentstatusdiv',
+    'commentsdiv',
+    'slugdiv',
+    'authordiv',
+    'trackbacksdiv',
+  );
+  return array_merge($hidden, $hide_these);
+}
+
 // Custom page attribute field
 add_action('page_attributes_misc_attributes', 'umunandi_page_attrs');
 function umunandi_page_attrs($post) {
