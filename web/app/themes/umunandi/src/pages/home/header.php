@@ -12,7 +12,7 @@
     <div class="featured-kids">
       <?php while($featured_kids->have_posts()) : $featured_kids->the_post(); ?>
       <div class="kid">
-        <a href=".body-top"
+        <a href=".kids-carousel"
           data-scrollto="750"
           data-scrolloffset="10"
           data-target=".js-kids-carousel"

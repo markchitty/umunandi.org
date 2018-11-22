@@ -46,13 +46,11 @@
     &:after  { height: @fuzzy-edge-height-lg * 0.6; }
   }
 
-  .section-top {
-    position: absolute;
-    display: block;
-    top: -@fuzzy-edge-height-sm;
-    
-    @media @mq-sm {
-      top: -@fuzzy-edge-height-sm - @navbar-height;
-    }
-  }
+  // Don't think we need this now we've got the scrollTo fix (64b3c) which takes account of
+  // the fixed navBar. Nevertheless, I'm gonna keep it hanging around for a bit just in case...
+  // .section-top {
+  //   position: absolute;
+  //   display: block;
+  //   top: -@fuzzy-edge-height-sm;
+  // }
 }

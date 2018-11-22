@@ -31,22 +31,22 @@
   // Hidden state
   .sub-menu {
     left: -99999px;
-    transform: translateY(0px);
+    transform: translateY(-12px);
     opacity: 0;
     transition: left 0s .2s, transform 0s .2s, opacity .2s; // mouse-leave timing
   }
   // Visible state
   &:hover > .sub-menu {
     left: 0;
-    transform: translateY(12px);
+    transform: translateY(0);
     opacity: 1;
     transition: left 0s, transform .2s, opacity .2s; // mouse-enter timing
   }
 
-  // Mouse-out buffer zone above & below menu
+  // Mouse-out buffer zone around drop-down menu
   // The z-index anim blocks menu item hover events whilst the menu is animating
   .sub-menu:after {
-    .pseudo-content(-20px, 0, -50px, 0);
+    .pseudo-content(0px, -30px, -50px, -30px);
     z-index: 0;
     transition: z-index 0s 0.2s;
   }

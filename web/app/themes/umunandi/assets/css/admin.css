@@ -52,6 +52,7 @@
 }
 #adminmenuwrap {
   float: none;
+  position: absolute;
   top: 32px;
   bottom: 0;
 }

@@ -15,7 +15,7 @@
     > a {
       position: relative;
       display: block;
-      padding: 3px 0 2px;
+      padding: 15px 0;
       background-color: transparent;
       font: 600 @font-size-base @font-family-nav;
       letter-spacing: 0.5px;
@@ -23,19 +23,16 @@
       text-decoration: none;
       transition: all 0.1s;
       
-      &.btn {
-        padding-left: @padding-base-horizontal;
-        padding-right: @padding-base-horizontal;
-      }
+      &.btn { padding: 3px @padding-base-horizontal 2px; }
     }
 
     .arc-svg {
       height: 4px;
       width: 100%;
       position: absolute;
-      bottom: -1px;
       left: 0;
       opacity: 0;
+      transform: translateY(1.3em);
       transition: 0.1s;
     }
   
