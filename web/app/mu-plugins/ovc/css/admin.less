@@ -1,0 +1,62 @@
+// OVC records
+.wp-admin.post-type-ovc {
+  .wp-list-table     { table-layout: auto; }
+  #screen-meta-links { display: none; }
+
+  #poststuff {
+    position: relative;
+    max-width: 1024px; 
+
+    #title {
+      border: 0;
+      border-bottom: 1px solid #ccc;
+      background-color: transparent !important;
+      box-shadow: none;
+      padding: 0 !important;
+      color: #333;
+      font-size: 30px !important;
+
+      &.new         { color: #ccc; }
+      &-prompt-text { display: none; }
+    }
+  }
+
+  #submitdiv {
+    position: absolute;
+    right: 0;
+    top: 1.6em;
+    min-width: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border: 0;
+
+    .handlediv, .hndle,
+    #minor-publishing           { display:none; }
+    #major-publishing-actions   { background-color: transparent; border: 0; padding: 0; }
+    #delete-action              { margin-right: 1em; }
+  }
+
+  [data-name=head_shot] .acf-image-uploader:not(.has-value) {
+    width: 200px;
+    height: 200px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    padding: 30px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+  
+    p { text-align: center; padding: 30px; line-height: 3; }
+  }
+
+  .acf-field .acf-input-wrap           { overflow: initial; }
+  .acf-postbox .acf-field .acf-label   { margin-bottom: 0.2em; }
+  .acf-postbox > .inside > .acf-field  { padding: 5px 15px; }
+  .acf-field-date-picker input         { height: 27px; }
+  .acf-hl > li                         { float: none; display: inline; }
+
+  .acf-postbox:nth-child(1) .acf-field { display: inline-block; }
+
+  [data-name=head_shot]                { float: left; }
+  [data-name=story]                    { display: block !important; }
+}
+
+// div, header, a              { outline: 1px solid rgba(240,50,50,0.4); }

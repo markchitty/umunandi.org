@@ -20,7 +20,7 @@
 .wp-admin.post-type-ovc #poststuff #title.new {
   color: #ccc;
 }
-.wp-admin.post-type-ovc #title-prompt-text {
+.wp-admin.post-type-ovc #poststuff #title-prompt-text {
   display: none;
 }
 .wp-admin.post-type-ovc #submitdiv {
@@ -45,47 +45,40 @@
 .wp-admin.post-type-ovc #submitdiv #delete-action {
   margin-right: 1em;
 }
-.wp-admin.post-type-ovc #acf_88 {
-  float: left;
-}
-.wp-admin.post-type-ovc #acf_68 {
-  margin-left: 330px;
-}
-.wp-admin.post-type-ovc #acf_89 {
-  clear: both;
-}
-.wp-admin.post-type-ovc #acf-last_name,
-.wp-admin.post-type-ovc #acf-born,
-.wp-admin.post-type-ovc #acf-first_name,
-.wp-admin.post-type-ovc #acf-sex {
-  display: inline-block;
-  width: 49%;
-}
-.wp-admin.post-type-ovc #acf-first_name,
-.wp-admin.post-type-ovc #acf-sex {
-  margin-right: 2%;
-}
-.wp-admin.post-type-ovc #acf-head_shot .no-image {
+.wp-admin.post-type-ovc [data-name=head_shot] .acf-image-uploader:not(.has-value) {
   width: 200px;
   height: 200px;
   border: 1px solid #ccc;
   padding: 30px;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
 }
-.wp-admin.post-type-ovc #acf-head_shot .no-image p {
+.wp-admin.post-type-ovc [data-name=head_shot] .acf-image-uploader:not(.has-value) p {
   text-align: center;
   padding: 30px;
   line-height: 3;
 }
-.acf_postbox p.label {
+.wp-admin.post-type-ovc .acf-field .acf-input-wrap {
+  overflow: initial;
+}
+.wp-admin.post-type-ovc .acf-postbox .acf-field .acf-label {
   margin-bottom: 0.2em;
 }
-.acf_postbox > .inside > .field {
-  padding: 5px 0;
+.wp-admin.post-type-ovc .acf-postbox > .inside > .acf-field {
+  padding: 5px 15px;
 }
-.acf-date_picker {
-  overflow: hidden;
-}
-.acf-date_picker input {
+.wp-admin.post-type-ovc .acf-field-date-picker input {
   height: 27px;
+}
+.wp-admin.post-type-ovc .acf-hl > li {
+  float: none;
+  display: inline;
+}
+.wp-admin.post-type-ovc .acf-postbox:nth-child(1) .acf-field {
+  display: inline-block;
+}
+.wp-admin.post-type-ovc [data-name=head_shot] {
+  float: left;
+}
+.wp-admin.post-type-ovc [data-name=story] {
+  display: block !important;
 }

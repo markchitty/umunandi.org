@@ -59,7 +59,7 @@ class OVC {
           if (defined('DOING_AJAX') && DOING_AJAX) return;
           if ($data['post_status'] == 'auto-draft') return $data;
           // ACF custom field keys: first_name = field_53eca02ad7a58, last_name = field_53eca050d7a59
-          $data['post_title']  = $postarr['fields']['field_53eca02ad7a58'] . ' ' . $postarr['fields']['field_53eca050d7a59'];
+          $data['post_title']  = $postarr['acf']['field_53eca02ad7a58'] . ' ' . $postarr['acf']['field_53eca050d7a59'];
           if ($data['post_status'] !== 'trash') $data['post_status'] = 'publish';
         }
         return $data;
@@ -85,8 +85,8 @@ class OVC {
       // Inject admin page custom styles
       add_action('admin_enqueue_scripts', 'ovc_admin_css');
       function ovc_admin_css() {
-          wp_enqueue_style('ovc-admin-css', plugins_url('css/admin.css', __FILE__));
-          wp_enqueue_script('ovc-admin-js', plugins_url('js/admin.js', __FILE__));
+        wp_enqueue_style('ovc-admin-css', plugins_url('css/admin.css', __FILE__));
+        wp_enqueue_script('ovc-admin-js', plugins_url('js/admin.js', __FILE__));
       }
 
     } // is_admin()

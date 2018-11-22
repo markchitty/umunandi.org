@@ -25,6 +25,15 @@ module.exports = function(grunt) {
       admin: {
         files: { 'assets/css/admin.css': 'src/admin/admin.less' },
         options: { rootpath: '/app/themes/umunandi/assets/' }
+      },
+      plugins: {
+        files: [{
+          expand: true,
+          cwd: '../../mu-plugins/',
+          src: '**/*.less',
+          dest: '../../mu-plugins/',
+          ext: '.css',
+        }]
       }
     },
     concat: {

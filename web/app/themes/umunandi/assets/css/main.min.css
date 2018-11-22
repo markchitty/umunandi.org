@@ -4940,9 +4940,6 @@ figure.alignnone {
   }
 }
 @media (max-width: 480px) {
-  .price-box-body {
-    padding: 0 0.3rem;
-  }
   .price-box-header .round-img {
     width: 6rem;
   }
@@ -5074,16 +5071,6 @@ figure.alignnone {
   }
   .fuzzy-edges:after {
     height: 18px;
-  }
-}
-.fuzzy-edges .section-top {
-  position: absolute;
-  display: block;
-  top: -15px;
-}
-@media (min-width: 768px) {
-  .fuzzy-edges .section-top {
-    top: -75px;
   }
 }
 .share-icons.addthis_toolbox .share-icon:before {
@@ -5696,7 +5683,7 @@ figure.alignnone {
   .main-nav-menu > li > a {
     position: relative;
     display: block;
-    padding: 3px 0 2px;
+    padding: 15px 0;
     background-color: transparent;
     font: 600 16px 'Nunito', 'Open Sans', sans-serif;
     letter-spacing: 0.5px;
@@ -5705,16 +5692,15 @@ figure.alignnone {
     transition: all 0.1s;
   }
   .main-nav-menu > li > a.btn {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 3px 12px 2px;
   }
   .main-nav-menu > li .arc-svg {
     height: 4px;
     width: 100%;
     position: absolute;
-    bottom: -1px;
     left: 0;
     opacity: 0;
+    transform: translateY(1.3em);
     transition: 0.1s;
   }
   .main-nav-menu > li:not(.link-btn) > a {
@@ -5834,13 +5820,13 @@ figure.alignnone {
   }
   .main-nav-menu > li .sub-menu {
     left: -99999px;
-    transform: translateY(0px);
+    transform: translateY(-12px);
     opacity: 0;
     transition: left 0s 0.2s, transform 0s 0.2s, opacity 0.2s;
   }
   .main-nav-menu > li:hover > .sub-menu {
     left: 0;
-    transform: translateY(12px);
+    transform: translateY(0);
     opacity: 1;
     transition: left 0s, transform 0.2s, opacity 0.2s;
   }
@@ -5848,10 +5834,10 @@ figure.alignnone {
     content: '';
     display: block;
     position: absolute;
-    top: -20px;
-    right: 0;
+    top: 0px;
+    right: -30px;
     bottom: -50px;
-    left: 0;
+    left: -30px;
     z-index: 0;
     transition: z-index 0s 0.2s;
   }
@@ -6153,7 +6139,7 @@ figure.alignnone {
   color: #574838;
 }
 .home-page-header .tagline {
-  top: 24%;
+  top: 26%;
   margin-top: 5px;
   text-align: left;
 }
@@ -6206,6 +6192,7 @@ figure.alignnone {
 @media (min-width: 768px) {
   .home .header {
     background-position-x: 83%;
+    height: 87vh;
   }
 }
 @media (min-width: 1200px) {
