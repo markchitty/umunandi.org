@@ -4313,10 +4313,15 @@ figure.alignnone {
   transform: scale(1.07);
 }
 .carousel .round-img {
-  width: 12rem;
+  width: 10rem;
 }
 .carousel-control {
-  height: 12rem;
+  height: 10rem;
+}
+.carousel .name {
+  text-align: center;
+  margin: 0.3rem 0 1rem;
+  font-size: 1.4rem;
 }
 .carousel .kid-info .story {
   text-align: left;
@@ -4325,9 +4330,6 @@ figure.alignnone {
   .carousel .kid-info .story {
     font-size: 1.0625rem;
   }
-}
-.carousel .kid-info .name {
-  margin-top: 1rem !important;
 }
 .carousel .kid-info .sponsor-btn {
   padding: 1.2em 0;
@@ -4351,22 +4353,30 @@ figure.alignnone {
   .carousel-inner {
     text-align: left;
   }
-  .carousel .round-img {
+  .carousel .kid-pic {
     float: left;
     margin-right: 1.2em;
+  }
+  .carousel .round-img {
+    width: 12rem;
+  }
+  .carousel-control {
+    height: 12rem;
   }
   .carousel .kid-info .story,
   .carousel .kid-info {
     overflow: auto;
   }
-  .carousel .kid-info .name {
-    margin-top: -0.3rem !important;
-  }
 }
 @media (min-width: 992px) {
+  .carousel .name {
+    font-size: 1.75em;
+  }
+  .carousel .kid-pic {
+    margin-right: 2rem;
+  }
   .carousel .round-img {
     width: 15rem;
-    margin-right: 2rem;
   }
   .carousel-control {
     height: 15rem;

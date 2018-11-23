@@ -9,7 +9,7 @@ temp/*
 
 # WordPress
 web/wp
-web/.htaccess
+web/.htaccess*
 .maintenance
 
 # WP-CLI

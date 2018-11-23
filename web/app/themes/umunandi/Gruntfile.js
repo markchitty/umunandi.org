@@ -99,12 +99,14 @@ module.exports = function(grunt) {
 
   // Load and register tasks
   require('load-grunt-tasks')(grunt);
+
   grunt.registerTask('default', [
     'clean',
     'less',
     'concat',
     'version'
   ]);
+
   grunt.registerTask('dev', [
     'watch'
   ]);

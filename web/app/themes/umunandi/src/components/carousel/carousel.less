@@ -56,12 +56,17 @@
     &:hover > img { transform: scale(1.07); }
   }
 
-  .round-img     { width: 12rem; }
-  &-control      { height: 12rem; }
+  .round-img     { width: 10rem; }
+  &-control      { height: 10rem; }
+
+  .name {
+    text-align: center;
+    margin: 0.3rem 0 1rem;
+    font-size: 1.4rem;
+  }
   
   .kid-info {
     .story       { text-align: left; @media @mq-xs { .bigger-text; } }
-    .name        { margin-top: 1rem !important; }
     .sponsor-btn { padding: 1.2em 0; }
     .btn         { padding: 0.4em 0.7em; .smaller-text; }
   }
@@ -74,16 +79,19 @@
 
     &           { padding-bottom: 60px; }
     &-inner     { text-align: left; }
-    .round-img  { float: left; margin-right: 1.2em; }
+    .kid-pic    { float: left; margin-right: 1.2em; }
+    .round-img  { width: 12rem; }
+    &-control   { height: 12rem; }
 
     .kid-info {
       .story, & { overflow: auto; }
-      .name     { margin-top: -0.3rem !important; }
     }
   }
 
   @media @mq-md {
-    .round-img  { width: 15rem; margin-right: 2rem; }
+    .name       { font-size: 1.75em; }
+    .kid-pic    { margin-right: 2rem; }
+    .round-img  { width: 15rem; }
     &-control   { height: 15rem; }
   }
 }
