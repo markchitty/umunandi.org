@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "111b46a0e8b63056e33494e9e4ac9689",
+    "content-hash": "958d65e7063e189fd09740d1fbbaf872",
     "packages": [
         {
             "name": "composer/installers",
@@ -406,26 +406,6 @@
             "type": "wordpress-plugin"
         },
         {
-            "name": "wpackagist-plugin/admin-collapse-subpages",
-            "version": "2.4",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/admin-collapse-subpages/",
-                "reference": "tags/2.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/admin-collapse-subpages.2.4.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/admin-collapse-subpages/"
-        },
-        {
             "name": "wpackagist-plugin/admin-menu-editor",
             "version": "1.8.5",
             "source": {
@@ -526,26 +506,6 @@
             "homepage": "https://wordpress.org/plugins/codepress-admin-columns/"
         },
         {
-            "name": "wpackagist-plugin/duplicate-post",
-            "version": "3.2.2",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/duplicate-post/",
-                "reference": "tags/3.2.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-post.3.2.2.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/duplicate-post/"
-        },
-        {
             "name": "wpackagist-plugin/enable-media-replace",
             "version": "3.2.7",
             "source": {
@@ -587,15 +547,15 @@
         },
         {
             "name": "wpackagist-plugin/litespeed-cache",
-            "version": "2.7.2",
+            "version": "2.7.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/litespeed-cache/",
-                "reference": "tags/2.7.2"
+                "reference": "tags/2.7.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/litespeed-cache.2.7.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/litespeed-cache.2.7.3.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -704,6 +664,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-mail-smtp/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-nested-pages",
+            "version": "3.0.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-nested-pages/",
+                "reference": "tags/3.0.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-nested-pages.3.0.6.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-nested-pages/"
         }
     ],
     "packages-dev": [],

@@ -1,36 +1,3 @@
-// Page/Post list compact view 
-.pages, .posts {
-	&.fixed              { table-layout: auto; }
-	.indenter            { display: inline-block; width: 2em; }
-	.column-column-order { text-align: center; }
-	tr:hover { td, th    { background: #e8f2f7; } }
-
-	.date {
-		&           { white-space: nowrap; }
-	  br          { display: none; }
-	  abbr        { text-decoration: none; }
-		abbr:before { content: ' - '; }
-	}
-
-	td.column-title, td.plugin-title {
-		strong {
-			float: left;
-			margin-right: 1em;
-			min-width: 25%;
-		}
-	}
-
-	.expand_link {
-		a {
-			margin: 0px 4px 0 0;
-			border: 1px solid;
-			width: 10px;
-			height: 10px;
-			font-size: 10px;
-			box-shadow: none;
-		}
-	}
-}
 
 #adminmenuwrap { float: none; position: fixed; top: 32px; bottom: 0; }
 #adminmenu     { height: 100%; }

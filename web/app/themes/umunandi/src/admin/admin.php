@@ -33,13 +33,9 @@ function umunandi_post_date_column_time($h_time, $post) {
   return get_post_time('j M Y', false, $post);
 }
 
-// Admin custom scripts n styles
+// Admin custom styles
 add_action('admin_enqueue_scripts', 'umunandi_admin_scripts');
 function umunandi_admin_scripts() {
-	global $pagenow;
-	if ($pagenow == 'edit.php' && ($_GET['post_type'] == 'page' || $_GET['post_type'] == 'post')) {
-		wp_enqueue_script('umunandi-admin-js', get_template_directory_uri() . '/assets/js/admin.js', ['jquery']);
-	}
   wp_enqueue_style('umunandi-admin-css', get_template_directory_uri() . '/assets/css/admin.css', []);
 }
 

@@ -45,7 +45,6 @@
     "vlucas/phpdotenv": "^2.0.1",
     "oscarotero/env": "^1.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "wpackagist-plugin/admin-collapse-subpages": "^2.3",
     "wpackagist-plugin/advanced-custom-fields": "^5",
     "wpackagist-plugin/akismet": "^4.0",
     "wpackagist-plugin/bootstrap-3-shortcodes": "^3.3",
@@ -61,7 +60,7 @@
     "wpackagist-plugin/enable-svg-uploads": "^2.0",
     "wpackagist-plugin/password-protected": "^2",
     "wpackagist-plugin/admin-menu-editor": "^1.8",
-    "wpackagist-plugin/duplicate-post": "^3.2"
+    "wpackagist-plugin/wp-nested-pages": "^3.0"
   },
   "might-use-plugins": {
     "wpackagist-plugin/post-tags-and-categories-for-pages": "^1.4",
