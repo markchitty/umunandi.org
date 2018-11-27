@@ -47,7 +47,7 @@ class Umunandi_Vcard_Widget extends WP_Widget {
     $title = empty($instance['title']) ? 'vCard' : $instance['title'];
     $title = apply_filters('widget_title', $title, $instance, $this->id_base);
     if ($instance['title']) {
-      $before_title .= "<a href=\"{$instance['title']}\">";
+      $before_title .= "<a href=\"{$instance['header_link']}\">";
       $after_title = '</a>' . $after_title;
     }
     if ($title) echo $before_title, $title, $after_title;
