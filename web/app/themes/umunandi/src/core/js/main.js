@@ -1,18 +1,17 @@
 /* ========================================================================
  * umunandi.org main.js - Entry point script and module manager.
  *
- * We create a global 'umunandi' object which provides a namespace for all
- * other script modules hang off. Modules are defined using the method
+ * A global 'umunandi' object provides a namespace for all other script
+ * modules hang off. Modules are defined using the method
  * umunandi.define(pagename, [priority], func). This adds them to the
  * umunandi namespace and associates them with the name of a specific page.
- * 
- * Default priority (if not specified) is 10. Modules are loaded in order
- * of ascending priority, e.g. a module with priority 2 is loaded before a
- * module of priority 1000.
  * 
  * When a page loads, load() calls all modules that are registered
  * with a module name that matches any class in the <body> tag (dashes in
  * class names are replaced by underscores). Based on http://goo.gl/EUTi53.
+ * 
+ * Modules are loaded in order of ascending priority. Default priority = 10.
+ * e.g. a module with priority 2 is loaded before a module of priority 1000.
  * 
  * Grunt is responsible for concat'ing all the scripts in /src.
  * 

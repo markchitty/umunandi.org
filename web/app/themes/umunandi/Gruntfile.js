@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     },
     less: {
       dist: {
-        files: { 'assets/css/main.min.css': 'src/core/main.less' },
+        files: { 'assets/css/main.min.css': 'src/core/less/main.less' },
         options: {
           rootpath: '/app/themes/umunandi/assets/',
           paths: ['src', 'vendor'],
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/js/scripts.min.js': [
-            'src/core/main.js',  // must be first
+            'src/core/js/main.js',  // must be first
             'vendor/bootstrap/js/carousel.js',
             'vendor/bootstrap/js/transition.js',
             'vendor/bootstrap/js/affix.js',

@@ -60,7 +60,8 @@
     "wpackagist-plugin/enable-svg-uploads": "^2.0",
     "wpackagist-plugin/password-protected": "^2",
     "wpackagist-plugin/admin-menu-editor": "^1.8",
-    "wpackagist-plugin/wp-nested-pages": "^3.0"
+    "wpackagist-plugin/wp-nested-pages": "^3.0",
+    "wpackagist-plugin/simple-301-redirects": "^1.07"
   },
   "might-use-plugins": {
     "wpackagist-plugin/post-tags-and-categories-for-pages": "^1.4",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "958d65e7063e189fd09740d1fbbaf872",
+    "content-hash": "e159c8f7894d8033a35a545e1d33ae0b",
     "packages": [
         {
             "name": "composer/installers",
@@ -604,6 +604,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/save-with-keyboard/"
+        },
+        {
+            "name": "wpackagist-plugin/simple-301-redirects",
+            "version": "1.07",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/simple-301-redirects/",
+                "reference": "tags/1.07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/simple-301-redirects.1.07.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/simple-301-redirects/"
         },
         {
             "name": "wpackagist-plugin/widget-css-classes",
