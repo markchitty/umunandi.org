@@ -55,9 +55,10 @@ module.exports = function(grunt) {
           // sourceMappingURL: '/app/themes/umunandi/assets/js/scripts.min.js.map'
         }
       },
-      admin: {
-        files: { 'assets/js/admin.js': 'src/admin/**/*.js' }
-      }
+      // Uncomment if/when any admin js is added
+      // admin: {
+      //   files: { 'assets/js/admin.js': 'src/admin/**/*.js' }
+      // }
     },
     version: {
       options: {

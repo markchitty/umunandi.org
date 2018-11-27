@@ -38,9 +38,6 @@ umunandi.define('common', function() {
     $.scrollTo(this.dataset.scrollhref || $(this).attr('href'), scrollOpts);
   });
 
-  // Reset the screen to (0,0)
-  $.scrollTo(0);
-
   // Globally limit javascript click actions
   $('a[href="#"]').click(function(e) { e.preventDefault(); });  
 

@@ -3,10 +3,14 @@
 @footer-height    : 300px;
 
 .container {
-  @media @mq-sm { max-width: @container-sm; }
-  @media @mq-md { max-width: @container-md; }
-  @media @mq-lg { max-width: @container-lg; }
+  .container-fixed();
+  @media @mq-sm { width: @container-sm; max-width: @container-sm; }
+  @media @mq-md { width: @container-md; max-width: @container-md; }
+  @media @mq-lg { width: @container-lg; max-width: @container-lg; }
+  &-fluid       { .container-fixed(); }
 }
+
+.row { .make-row(); }
 
 .header {
   @media @mq-upto-sm { min-height: 50vh; }
