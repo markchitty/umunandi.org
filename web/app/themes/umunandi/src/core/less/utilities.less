@@ -54,3 +54,10 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
   height: 0 !important;
   opacity: 0 !important;
 }
+
+.placeholder-color(@color) {
+  &::-webkit-input-placeholder { color: @color; }
+  &:-moz-placeholder           { color: @color; }
+  &::-moz-placeholder          { color: @color; }
+  &:-ms-input-placeholder      { color: @color; }
+}

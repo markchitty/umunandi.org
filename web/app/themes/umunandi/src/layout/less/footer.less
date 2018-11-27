@@ -2,6 +2,7 @@
   position: relative;
   color: @footer-text-color;
   background: @footer-bg;
+  line-height: 1.5;
 
   &:before {
     .pseudo-content(auto, 0, 100%, 0);
@@ -9,67 +10,37 @@
     background: url("img/edge-brushed-444a44.png") repeat-x 0 0;
   }
 
-  h3                 { .h6; margin: 0; }
-  h3, .menu > li > a { color: @footer-text-color-dark; }
   &-body             { position: relative; padding-top: 22px; }
   .widget            { margin-bottom: @line-height-computed; }
-  a                  { color: inherit; }
+  a                  { color: inherit; transition: all 0.1s; }
   a:hover            { color: lighten(@footer-text-color, 15%) !important; }
-  .btn               { color: @footer-bg; }
+  &-body a:hover     { text-decoration: none; }
+  h6, .menu > li > a { .h6; margin: 0; }
+  .sub-menu > li > a { padding: 0.2em 0; display: inline-block; }
+  .subscribe         { margin-top: 0.66em; max-width: 22em; }
+  .mailchimp-form    { margin-top: 0.2em; }
 
-  .vcard {
-    .org           { .sr-only; }
-    > *            { margin-bottom: 7px; }
-    .adr span, > * { display: block; }
-  }
-
-  .email:hover + span .btn,
-  .email:focus + span .btn,
-  .btn:focus, .btn:hover {
-    .btn-hover;
-  }
-
-  @media @mq-sm {
-    h3         { margin-bottom: 3px; }
-    .subscribe { padding-left: 0; text-align: right; }
-  }
-
-  @media @mq-upto-xs {
-    .subscribe br    { display: none; }
-    .mailchimp-form  { margin-top: @line-height-computed/2; }
-    .footer-contact  { width: 100%; }
-    .subscribe       { width: 100%; }
-    .vcard           { .row; }
-    .vcard > *       { .make-xs-column(6; @gutter: @grid-gutter-width); }
-  }
-}
-
-.footer-footer {
-  padding: @line-height-computed/2 0;
-  background-color: rgba(0,0,0,0.08);
-  color: @footer-text-color-dark;
-  font-size: 85%;
-
-  .charity-number {
+  .col.contact:before {
+    content: '';
     display: inline-block;
-    line-height: 1;
-    padding-left: @padding-base-horizontal;
-    margin-left: @padding-base-horizontal;
-    border-left: 1px solid darken(@footer-text-color, 30%);
+    width: 15em;
+    border-top: 1px solid;
+    margin: 1.5em 0 1em;
+    opacity: 0.2;
+
+    @media @mq-sm { display: none; }
   }
 
   @media @mq-upto-sm {
-    .col-grid { .row-grid; }
-    .col + .col { margin-top: 0.2rem !important; }
+    &-cols           { flex-direction: column; }
+    .col.about       { text-align: right; }
+    .col.contact     { text-align: center; }
+    .vcard           { margin-bottom: 1em; }
+    .subscribe       { margin-left: auto; margin-right: auto; }
   }
 
-  @media @mq-sm {
-    // Pin to the bottom
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-    .designed-by.col { order: 1; flex: 1; }
-    .copyright.col   { order: 2; text-align: right; }
+  @media @mq-upto-xs {
+    .tel        { display: block; }
+    .tel:before { display: none; }
   }
 }

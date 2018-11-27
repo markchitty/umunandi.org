@@ -1,8 +1,24 @@
 .mailchimp-form {
-  margin-top: @line-height-computed;
-  
-  .input-group .form-control { border: 0; }
-  
+  .email {
+    border: 0;
+    color: @footer-text-color;
+    .placeholder-color(@footer-text-color-dark);
+    transition: all 0.1s;
+  }
+
+  .email, .btn { background: lighten(@footer-bg, 8%); }
+
+  .email:focus, .email:hover {
+    color: @text-color;
+    background: #eee;
+  }
+
+  .email:hover + span .btn,
+  .email:focus + span .btn,
+  .btn:focus, .btn:hover {
+    .btn-hover;
+  }
+
   .submit-icon:before {
     font-size: 19px;
     line-height: 1;

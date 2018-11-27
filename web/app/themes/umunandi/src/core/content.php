@@ -1,14 +1,6 @@
 <?php
 define('IMG_ASSET_PATH', '/app/themes/umunandi/assets/img/');
 
-// Load shortcodes
-$shortcode_files = dirname(__DIR__) . '/components/*/shortcode.php';
-foreach (glob($shortcode_files) as $file) require_once $file;
-
-// Enable shortcodes in text widget
-add_filter('widget_text', 'shortcode_unautop');
-add_filter('widget_text', 'do_shortcode');
-
 function umunandi_get_image_src($attach_id, $size) {
   return ($src = wp_get_attachment_image_src($attach_id, $size, false)) ? $src[0] : '';
 }
@@ -21,7 +13,7 @@ function umunandi_featured_image_bg_style($skipRandom = false) {
   $bg_pos_style = 'background-position: %s;';
   $random_img   = $skipRandom ? '' : '//source.unsplash.com/1200x675/?people';
 
-  $bg_img = (wp_get_attachment_image_src(get_post_thumbnail_id(), 'full'));
+  $bg_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
   $bg_img = $bg_img ? wp_make_link_relative($bg_img[0]) : $random_img;
   $bg_style = sprintf($bg_img_style, $bg_img);
   $bg_pos = get_post_meta($post->ID, 'umunandi_page_bg_pos', true);
@@ -63,3 +55,8 @@ add_filter('image_size_names_choose', 'umunandi_custom_img_sizes');
 function umunandi_custom_img_sizes($sizes) {
   return array_merge($sizes, array('small' => 'Small'));
 }
+
+// Remove 'Private:' and 'Protected:' from private/protected pages and posts
+add_filter('private_title_format', 'simple_title_format');
+add_filter('protected_title_format', 'simple_title_format');
+function simple_title_format($content) { return '%s'; }

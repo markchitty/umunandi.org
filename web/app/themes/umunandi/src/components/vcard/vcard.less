@@ -1,0 +1,23 @@
+.vcard {
+  *:empty { display: none; }
+  .org    { .sr-only; }
+
+  .adr {
+    display: block;
+    margin-bottom: 7px;
+
+    span:not(:last-child):after { content: ', '; }
+  }
+
+  .tel:before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    top: 0.15em;
+    height: 1em;
+    border-left: 1px solid;
+    padding-left: 0.9em;
+    margin-left: 0.8em;
+    opacity: 0.5;
+  }
+}

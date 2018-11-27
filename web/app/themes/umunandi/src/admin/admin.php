@@ -56,6 +56,14 @@ function umunandi_default_hidden_screen_options($hidden, $screen) {
   return array_merge($hidden, $hide_these);
 }
 
+// Make internal links relative in posts/pages
+add_filter('post_link', 'internal_link_to_relative', 10, 3);
+add_filter('page_link', 'internal_link_to_relative', 10, 3);
+function internal_link_to_relative($url, $post) {
+  $is_page_or_post = is_int($post) || (is_object($post) && $post->post_type === 'post');
+  return $is_page_or_post ? wp_make_link_relative($url) : $url;
+}
+
 // Custom page attribute field
 add_action('page_attributes_misc_attributes', 'umunandi_page_attrs');
 function umunandi_page_attrs($post) {

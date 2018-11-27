@@ -1,0 +1,30 @@
+.footer-footer {
+  padding: @line-height-computed/2 0;
+  background-color: rgba(0,0,0,0.08);
+  color: @footer-text-color-dark;
+  font-size: 85%;
+  margin-top: 2em;
+
+  .charity-number {
+    display: inline-block;
+    line-height: 1;
+    padding-left: @padding-base-horizontal;
+    margin-left: @padding-base-horizontal;
+    border-left: 1px solid darken(@footer-text-color, 30%);
+  }
+
+  @media @mq-upto-sm {
+    .col-grid { .row-grid; }
+    .col + .col { margin-top: 0.2rem !important; }
+  }
+
+  @media @mq-sm {
+    // Pin to the bottom
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .designed-by.col { order: 1; flex: 1; }
+    .copyright.col   { order: 2; text-align: right; }
+  }
+}

@@ -4,9 +4,17 @@
 
   <div class="footer-body">
     <div class="container">
-      <div class="row">
-        <?php dynamic_sidebar('sidebar-footer'); ?>
+      <div class="col-grid footer-cols">
+        <div class="col nav">
+          <div class="col-grid">
+            <?php dynamic_sidebar('footer-nav'); ?>
+          </div>
+        </div>
+        <div class="col contact">
+          <?php dynamic_sidebar('footer-contact'); ?>
+        </div>
       </div>
+        
     </div>
   </div>
 
@@ -17,7 +25,7 @@
           <span>&copy; <?= date('Y'); ?> <?php bloginfo('name'); ?></span>
           <span class="charity-number"><?= get_option('widget_text')[3]['title'] ?></span>
         </div>
-        <div class="col designed-by"><a href="#"><?= get_option('widget_text')[4]['title'] ?></a></div>
+        <div class="col designed-by"><?= get_option('widget_text')[4]['text'] ?></div>
       </div>
     </div>
   </div>
