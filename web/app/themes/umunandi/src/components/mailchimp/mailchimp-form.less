@@ -1,4 +1,6 @@
 .mailchimp-form {
+  .email, .btn { background: lighten(@footer-bg, 8%); }
+
   .email {
     border: 0;
     color: @footer-text-color;
@@ -6,16 +8,15 @@
     transition: all 0.1s;
   }
 
-  .email, .btn { background: lighten(@footer-bg, 8%); }
-
-  .email:focus, .email:hover {
+  .input-group:hover .email,
+  .email:focus {
     color: @text-color;
     background: #eee;
   }
 
-  .email:hover + span .btn,
+  .input-group:hover .btn,
   .email:focus + span .btn,
-  .btn:focus, .btn:hover {
+  .btn:focus {
     .btn-hover;
   }
 

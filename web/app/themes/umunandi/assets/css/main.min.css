@@ -3632,6 +3632,16 @@ label {
 .form-group:nth-child(even) .sketch-box-input > span:before {
   transform: scale(-1, -1);
 }
+[class^="svgicon-"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+.svgicon-email {
+  top: 0.175em;
+}
 @font-face {
   font-family: 'umunandi';
   font-weight: normal;
@@ -4557,23 +4567,15 @@ ul > li:nth-child(5n+5):before {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+.vcard .postal-code {
+  white-space: nowrap;
+}
 .vcard .adr {
   display: block;
   margin-bottom: 7px;
 }
 .vcard .adr span:not(:last-child):after {
   content: ', ';
-}
-.vcard .tel:before {
-  content: '';
-  display: inline-block;
-  position: relative;
-  top: 0.15em;
-  height: 1em;
-  border-left: 1px solid;
-  padding-left: 0.9em;
-  margin-left: 0.8em;
-  opacity: 0.5;
 }
 .footer-footer {
   padding: 11px 0;
@@ -4704,6 +4706,9 @@ ul > li:nth-child(5n+5):before {
   padding: 0.2em 0;
   display: inline-block;
 }
+.footer .tel {
+  display: block;
+}
 .footer .subscribe {
   margin-top: 0.66em;
   max-width: 22em;
@@ -4711,9 +4716,9 @@ ul > li:nth-child(5n+5):before {
 .footer .mailchimp-form {
   margin-top: 0.2em;
 }
-.footer svg {
-  width: 1em;
-  height: 1em;
+.footer [class^=svgicon-] {
+  margin-right: 0.1em;
+  opacity: 0.8;
 }
 .footer .col.contact:before {
   content: '';
@@ -4726,6 +4731,12 @@ ul > li:nth-child(5n+5):before {
 @media (min-width: 768px) {
   .footer .col.contact:before {
     display: none;
+  }
+}
+@media (min-width: 480px) {
+  .footer .tel {
+    display: inline-block;
+    margin-left: 1em;
   }
 }
 @media (max-width: 767px) {
@@ -4744,14 +4755,6 @@ ul > li:nth-child(5n+5):before {
   .footer .subscribe {
     margin-left: auto;
     margin-right: auto;
-  }
-}
-@media (max-width: 480px) {
-  .footer .tel {
-    display: block;
-  }
-  .footer .tel:before {
-    display: none;
   }
 }
 .header {

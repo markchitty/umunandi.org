@@ -60,3 +60,7 @@ function umunandi_custom_img_sizes($sizes) {
 add_filter('private_title_format', 'simple_title_format');
 add_filter('protected_title_format', 'simple_title_format');
 function simple_title_format($content) { return '%s'; }
+
+function svg_icon($name) {
+  return file_get_contents(locate_template("src/components/icons/$name.svg"));
+}

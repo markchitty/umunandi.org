@@ -17,8 +17,10 @@
   &-body a:hover     { text-decoration: none; }
   h6, .menu > li > a { .h6; margin: 0; }
   .sub-menu > li > a { padding: 0.2em 0; display: inline-block; }
+  .tel               { display: block; }
   .subscribe         { margin-top: 0.66em; max-width: 22em; }
   .mailchimp-form    { margin-top: 0.2em; }
+  [class^=svgicon-]  { margin-right: 0.1em; opacity: 0.8; }
 
   .col.contact:before {
     content: '';
@@ -31,16 +33,15 @@
     @media @mq-sm { display: none; }
   }
 
+  @media @mq-xs {
+    .tel { display: inline-block; margin-left: 1em; }
+  }
+
   @media @mq-upto-sm {
     &-cols           { flex-direction: column; }
     .col.about       { text-align: right; }
     .col.contact     { text-align: center; }
     .vcard           { margin-bottom: 1em; }
     .subscribe       { margin-left: auto; margin-right: auto; }
-  }
-
-  @media @mq-upto-xs {
-    .tel        { display: block; }
-    .tel:before { display: none; }
   }
 }
