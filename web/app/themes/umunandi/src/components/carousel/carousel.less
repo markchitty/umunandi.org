@@ -66,9 +66,14 @@
   }
   
   .kid-info {
-    .story       { text-align: left; @media @mq-xs { .bigger-text; } }
     .sponsor-btn { padding: 1.2em 0; }
     .btn         { padding: 0.4em 0.7em; .smaller-text; }
+    
+    .story { 
+      text-align: left;
+      @media @mq-upto-xs { .smaller-text; }
+      @media @mq-xs      { .bigger-text; }
+    }
   }
 
   @media @mq-sm {

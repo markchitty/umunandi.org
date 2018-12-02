@@ -15,7 +15,7 @@
         <a href=".kids-carousel"
           data-scrollto="750"
           data-scrolloffset="10"
-          data-target=".js-kids-carousel"
+          data-target="#kids-carousel"
           data-slide-to="<?= $featured_kids->current_post ?>">
           <div class="round-img"><?= wp_get_attachment_image(get_field('head_shot'), 'small') ?></div>
           <div class="kid-name"><?php the_field('first_name') ?></div>

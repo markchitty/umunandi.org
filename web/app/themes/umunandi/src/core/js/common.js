@@ -52,4 +52,15 @@ umunandi.define('common', function() {
   // TODO : IE image cover fit polyfill
   // https://medium.com/@primozcigler/neat-trick-for-css-object-fit-fallback-on-edge-and-other-browsers-afbc53bbb2c3
 
+  // Normalise child heights
+  $(window).on('resize orientationchange', function () {
+    $('[data-normalise-height]').each(function() {
+      var items = $(this.dataset.normaliseHeight, this);
+      var maxH = 0;
+      items.css('min-height', '');
+      items.each(function () { if ($(this).height() > maxH) maxH = $(this).height(); });
+      items.each(function () { $(this).css('min-height', maxH + 'px'); });
+    })
+  }).resize();
+
 });
