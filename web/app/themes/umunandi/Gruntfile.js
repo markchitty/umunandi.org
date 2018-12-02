@@ -41,9 +41,10 @@ module.exports = function(grunt) {
         files: {
           'assets/js/scripts.min.js': [
             'src/core/js/main.js',  // must be first
-            'vendor/bootstrap/js/carousel.js',
-            'vendor/bootstrap/js/transition.js',
             'vendor/bootstrap/js/affix.js',
+            'vendor/bootstrap/js/carousel.js',
+            'vendor/bootstrap/js/modal.js',
+            'vendor/bootstrap/js/transition.js',
             'vendor/js/plugins/*.js',
             'src/**/*.js',
             '!src/admin/**'

@@ -23,6 +23,8 @@
     &-half    { flex: none; width: 50%; }
   }
 
+  &-wrap         { flex-wrap: wrap; }
+  &-wrap > .col  { flex: 0 0 auto; }
   &-fluid > .col { flex: 0 1 auto; }
 
   @media @mq-md {
@@ -43,7 +45,7 @@
   }
 }
 
-.row-grid() {
+.row-grid {
   .no-grid;
   display: flex;
   flex-direction: column;

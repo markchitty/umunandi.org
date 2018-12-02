@@ -1,0 +1,74 @@
+// Copied from bootstrap/less/modals.less and simplified
+
+// .modal           - container for all modally goodness
+// .modal-open      - body class for killing scroll
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal with bg and corners and shit
+// .modal-backdrop  - blanking layer over background + click target to close modal
+
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: @zindex-modal;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+
+  &.fade .modal-dialog {
+    transform: scale(0.7);
+    transition: transform 0.3s ease-out;
+  }
+  &.in .modal-dialog { transform: scale(1); }
+
+  &-open & {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.modal-open { overflow: hidden; }
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+
+.modal-content {
+  padding: @modal-inner-padding;
+  background-color: @modal-content-bg;
+  box-shadow: 0 9px 9px -5px rgba(0,0,0,0.2);
+  background-clip: padding-box;
+  outline: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: @zindex-modal-background;
+  background-color: @modal-backdrop-bg;
+
+  &.fade { .opacity(0); }
+  &.in   { .opacity(@modal-backdrop-opacity); }
+}
+
+@media @mq-sm {
+  .modal-dialog  { width: @modal-md; }
+  .modal-sm      { width: @modal-sm; }
+}
+
+@media @mq-md {
+  .modal-lg      { width: @modal-lg; }
+}
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}

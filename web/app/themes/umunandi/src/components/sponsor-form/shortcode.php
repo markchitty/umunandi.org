@@ -29,6 +29,10 @@ class Sponsor_Form_Shortcode {
 			wp_send_json_error(self::NONCE_ERR);
 		}
 
+		// TODO - Handle this with mailchimp API
+		// https://github.com/drewm/mailchimp-api/
+		// https://www.web-development-blog.com/archives/mailchimp-subscribe-contact-form/
+
 		// Email the submitted info
 		$name    = $data['firstName'] . ' ' . $data['lastName'];
 		$to      = self::EMAIL_TO;

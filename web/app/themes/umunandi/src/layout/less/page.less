@@ -3,11 +3,19 @@
 @footer-height    : 300px;
 
 .container {
-  .container-fixed();
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: @grid-gutter-width-sm/2;
+  padding-right: @grid-gutter-width-sm/2;
+
+  @media @mq-sm {
+    padding-left: @grid-gutter-width/2;
+    padding-right: @grid-gutter-width/2;
+  }
+
   @media @mq-sm { width: @container-sm; max-width: @container-sm; }
   @media @mq-md { width: @container-md; max-width: @container-md; }
   @media @mq-lg { width: @container-lg; max-width: @container-lg; }
-  &-fluid       { .container-fixed(); }
 }
 
 .row { .make-row(); }

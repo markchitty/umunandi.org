@@ -2,7 +2,7 @@
   position: relative;
   color: @footer-text-color;
   background: @footer-bg;
-  line-height: 1.5;
+  line-height: 1.6;
 
   &:before {
     .pseudo-content(auto, 0, 100%, 0);
@@ -18,19 +18,22 @@
   h6, .menu > li > a { .h6; margin: 0; }
   .sub-menu > li > a { padding: 0.2em 0; display: inline-block; }
   .tel               { display: block; }
-  .subscribe         { margin-top: 0.66em; max-width: 22em; }
+  .subscribe-widget  { margin-top: 0.66em; max-width: 22em; }
   .mailchimp-form    { margin-top: 0.2em; }
   [class^=svgicon-]  { margin-right: 0.1em; opacity: 0.8; }
 
-  .col.contact:before {
-    content: '';
-    display: inline-block;
-    width: 15em;
-    border-top: 1px solid;
-    margin: 1.5em 0 1em;
-    opacity: 0.2;
+  .vcard-widget,
+  .subscribe-widget {
+    &:before {
+      content: '';
+      display: block;
+      width: 15em;
+      border-top: 1px solid;
+      margin: 1.5em auto;
+      opacity: 0.2;
 
-    @media @mq-sm { display: none; }
+      @media @mq-sm { display: none; }
+    }
   }
 
   @media @mq-xs {
@@ -38,10 +41,11 @@
   }
 
   @media @mq-upto-sm {
-    &-cols           { flex-direction: column; }
-    .col.about       { text-align: right; }
-    .col.contact     { text-align: center; }
-    .vcard           { margin-bottom: 1em; }
-    .subscribe       { margin-left: auto; margin-right: auto; }
+    &-cols            { flex-direction: column; }
+    .col.about        { text-align: right; }
+    .col.contact      { text-align: center; }
+    .subscribe-widget { margin-left: auto; margin-right: auto; }
+    .vcard-widget     { margin-bottom: 1em; }
+    .vcard-widget h6  { margin-bottom: 0.4em; line-height: 1.2; }
   }
 }
