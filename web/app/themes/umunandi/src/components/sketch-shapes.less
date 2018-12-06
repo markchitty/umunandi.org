@@ -33,3 +33,27 @@
 }
 
 .colorize(@hue-rotate: 69deg;) { filter: invert(22%) sepia(100%) saturate(8) hue-rotate(@hue-rotate); }
+
+// Close 'X'
+.x {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  opacity: 0.3;
+
+  &:hover { opacity: 0.8; }
+
+  &:before, &:after {
+    content: ' ';
+    position: absolute;
+    height: 70%;
+    width: 2px;
+    background-color: #333;
+  }
+
+  &:before { transform: rotate(45deg); }
+  &:after { transform: rotate(-45deg); }
+}

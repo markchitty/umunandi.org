@@ -2,65 +2,39 @@
 
 umunandi.define('common', function() {
 
-  // Track navbar position to control floating/fixed state
-  var navBar = {};
-  navBar.el = $('.js-main-nav');
-  navBar.refEl = $('.js-main-nav-position-ref');
-  navBar.height = navBar.el.height();
+  // Normalise child heights, limited to < this elem's height
+  // Use min-height to work out which item is tallest, then use height to fix the item
+  // heights as .prev and .next are absolutely positioned and therefore need abs height.
+  umunandi.normaliseHeights = function(elems) {
+    $(elems).each(function() {
+      var params = $(this).data('normaliseHeights');
+      var selector = typeof params === 'object' ? params.elements : params;
+      var items = $(selector, this);
+      if (items.length === 0 || $(this).height() === 0) return; // Bail if no items or elem height = 0
 
-  function onResize() {
-    umunandi.screenSize.updateSizes();
-    navBar.refElTop = navBar.refEl.offset().top;
+      var maxH = 0;
+      items.css({ 'min-height': '', 'height': '' }); // reset all heights
+      items.each(function () { maxH = Math.max(maxH, $(this).outerHeight()); });
+      if (maxH > 0) {
+        items.css(params.minHeight ? 'min-height' : 'height', maxH + 'px');
+        items.css(params.minHeight ? 'min-height' : 'height', $(this).innerHeight() + 'px');
+      }
+    });
   }
-  $(window).on('resize orientationchange', $.debounce(100, onResize));
-  onResize();
 
-  function onScroll() {
-    navBar.el.toggleClass('fixed', $(this).scrollTop() > navBar.refElTop);
+  // Show that a container is scrollable
+  umunandi.isScrollable = function(selector) {
+    $(selector).each(function() {
+      $(this).toggleClass('can-scroll', this.scrollHeight - $(this).innerHeight() > 2);
+    });
   }
-  $(document).on('scroll.umunandi', onScroll);
-  onScroll();
 
-  // Intercept scrollTo() calls - adjust the scroll end point to account for fixed navBar
-  $.Animation.prefilter(function(el, props, opts) {
-    if (el === window && 'scrollTop' in props && umunandi.screenSize.isAtLeastSm)
-      props.scrollTop -= navBar.height;
-  });
-
-  // ScrollTo behaviour
-  $('[data-scrollto]').off().on('click', function (e) {
-    e.preventDefault();
-    $('.nav-toggle-checkbox').prop('checked', false); // Close mobile menu
-    var scrollOpts = {
-      duration: parseInt(this.dataset.scrollto),
-      offset: parseInt(this.dataset.scrolloffset)
-    };
-    $.scrollTo(this.dataset.scrollhref || $(this).attr('href'), scrollOpts);
-  });
-
-  // Globally limit javascript click actions
-  $('a[href="#"]').click(function(e) { e.preventDefault(); });  
-
-  // Autoresize textareas to fit content
-  $('textarea').each(function () {
-    this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px; overflow-y:hidden;');
-  }).on('input', function () {
-    this.style.height = 'auto';
-    this.style.height = (this.scrollHeight) + 'px';
-  });
+  $(window).on('resize orientationchange', function () {
+    umunandi.normaliseHeights('[data-normalise-heights]');
+    umunandi.isScrollable('[data-is-scrollable]');
+  }).resize();
 
   // TODO : IE image cover fit polyfill
   // https://medium.com/@primozcigler/neat-trick-for-css-object-fit-fallback-on-edge-and-other-browsers-afbc53bbb2c3
-
-  // Normalise child heights
-  $(window).on('resize orientationchange', function () {
-    $('[data-normalise-height]').each(function() {
-      var items = $(this.dataset.normaliseHeight, this);
-      var maxH = 0;
-      items.css('min-height', '');
-      items.each(function () { if ($(this).height() > maxH) maxH = $(this).height(); });
-      items.each(function () { $(this).css('min-height', maxH + 'px'); });
-    })
-  }).resize();
 
 });

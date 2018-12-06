@@ -33,14 +33,15 @@
 
 var Umunandi = function() {
   this.globals = {};
+  this.pageScripts = {};
 };
 
 Umunandi.prototype.define = function(moduleId, priority, func) {
   func = typeof priority === 'function' ? priority : func;
   priority = isNaN(priority) ? 10 : priority;
-  this[moduleId] = this[moduleId] || [];
-  this[moduleId].push({ priority: priority, func: func });
-  this[moduleId].sort(function(a, b) { return a.priority - b.priority; });
+  this.pageScripts[moduleId] = this.pageScripts[moduleId] || [];
+  this.pageScripts[moduleId].push({ priority: priority, func: func });
+  this.pageScripts[moduleId].sort(function(a, b) { return a.priority - b.priority; });
 }
 
 Umunandi.prototype.load = function() {
@@ -52,9 +53,9 @@ Umunandi.prototype.load = function() {
 }
 
 Umunandi.prototype.run = function(moduleId) {
-  if (!Array.isArray(this[moduleId])) return;
-  // console.log('Running modules', moduleId, this[moduleId]);
-  this[moduleId].forEach(function(module) { module.func(); });
+  if (!Array.isArray(this.pageScripts[moduleId])) return;
+  // console.log('Running modules', moduleId, this.pageScripts[moduleId]);
+  this.pageScripts[moduleId].forEach(function(module) { module.func(); });
 };
 
 var umunandi = new Umunandi();
