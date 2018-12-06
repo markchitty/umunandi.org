@@ -2,8 +2,9 @@
   id="<?= $atts['id'] ?>"
   data-ride="carousel"
   data-interval="<?= $atts['autoplay'] ?>">
+
   <div class="carousel-container container">
-    <div class="carousel-inner" data-normalise-height=".item">
+    <div class="carousel-inner" data-normalise-heights='.item'>
 
       <?php while($carousel_items->have_posts()) : $carousel_items->the_post(); ?>
       <div class="item <?= $carousel_items->current_post == 0 ? 'active' : '' ?>"
@@ -15,6 +16,7 @@
       <?php endwhile; ?>
 
     </div>
+    <?php if ($atts['indicator_template']) include $atts['indicator_template']; ?>
   </div>
 
   <a class="carousel-control left " href="#<?= $atts['id'] ?>"
@@ -22,5 +24,4 @@
   <a class="carousel-control right" href="#<?= $atts['id'] ?>"
     data-slide="next"><span class="icon-arrow-right3"></span></a>
 
-  <?php if ($atts['indicator_template']) include $atts['indicator_template']; ?>
 </div>

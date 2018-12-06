@@ -1,0 +1,44 @@
+.kids-carousel {
+  .section-content {
+    max-width: none;
+    width: auto;
+    padding: 0;
+  }
+
+  .name {
+    text-align: center;
+    margin: 0.3rem 0 1rem;
+    font-size: 1.4rem;
+  }
+  
+  .kid-info {
+    .sponsor-btn { padding: 1.2em 0; text-align: center; }
+    .btn         { padding: 0.4em 0.7em; .smaller-text; }
+    
+    .story { 
+      text-align: left;
+      @media @mq-upto-xs { .smaller-text; }
+      @media @mq-xs      { .bigger-text; }
+    }
+  }
+
+  .kid-pic               { text-align: center; }
+  .round-img:hover > img { transform: scale(1.07); }
+  .round-img             { width: 10rem; }
+  .carousel-control      { height: 10rem; }
+
+  @media @mq-sm {
+    .round-img           { width: 12rem; }
+    .carousel-control    { height: 12rem; }
+    .kid-pic             { float: left; margin-right: 1.2em; }
+    .kid-info,
+    .kid-info .story     { overflow: auto; }
+  }
+
+  @media @mq-md {
+    .round-img           { width: 15rem; }
+    .carousel-control    { height: 15rem; }
+    .name                { font-size: 1.75em; }
+    .kid-pic             { margin-right: 2rem; }
+  }
+}

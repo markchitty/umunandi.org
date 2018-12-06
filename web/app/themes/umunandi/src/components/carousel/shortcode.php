@@ -30,13 +30,13 @@ function umunandi_shortcode_carousel($atts) {
     'id'                 => 'carousel-' . substr(bin2hex(random_bytes(16)), 0, 6),
     'post_type'          => 'attachment',
     'items'              => null,
-    'item_template'      => 'item-image',
-    'indicator_template' => 'indicators',
+    'item_template'      => 'item-image.php',
+    'indicator_template' => 'indicators.php',
     'autoplay'           => '',
   ), $atts);
   $atts['indicator_template'] = $atts['indicator_template'] === 'false' || !$atts['indicator_template']
                               ? false
-                              : $atts['indicator_template'] . '.php';
+                              : get_template_directory() . '/' . $atts['indicator_template'];
 
   switch ($atts['items']) {
 
@@ -61,7 +61,7 @@ function umunandi_shortcode_carousel($atts) {
 
   // Using 'eval()' here (shock, horror) to avoid repeatedly
   // include-ing item_template inside the carousel loop
-  $item_template_file = file_get_contents(__DIR__ . '/' . $atts['item_template'] . '.php');
+  $item_template_file = file_get_contents(get_template_directory() . '/' . $atts['item_template']);
   $item_template = function () use ($item_template_file) {
     eval(' ?>' . $item_template_file . '<?php ');
   };
