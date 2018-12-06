@@ -49,6 +49,12 @@ function umunandi_shortcode_carousel($atts) {
       $carousel_items = $OVCs->featured_kids();
       break;
 
+    // Special case - people biogs
+    case 'umunandi_people':
+      global $umunandi_people;
+      $carousel_items = $umunandi_people->get_people();
+      break;
+
     // Default behaviour - list of ids
     default:
       $query_args = array(

@@ -1,0 +1,49 @@
+.people-modal {
+  .modal-dialog {
+    flex: none !important;
+    max-width: @container-lg - @grid-gutter-width;
+    
+    &             { width: 90vw; max-height: 95vh; }
+    @media @mq-sm { width: 80vw; max-height: 90vh; }
+  }
+
+  .modal-content {
+    border-radius: 2px;
+    padding: @grid-gutter-width-sm/2;
+
+    &:before {
+      border-width: 17px;
+      opacity: 0.7;
+    }
+
+    @media @mq-xs { padding: @grid-gutter-width-sm * 2/3; }
+    @media @mq-sm { padding: @grid-gutter-width-sm; .sketch-box; }
+    @media @mq-md { padding: @grid-gutter-width; }
+  }
+
+  /*
+  MODAL CONTENT OVERFLOW
+  The modal content needs to scroll when its natural height > .modal-dialog's max-
+  height. This is tricky though because we have to constrain the modal content height
+  to match the height of .modal-dialog, and .modal-dialog is way up in the DOM tree...
+
+  SOLUTION
+  Set display:flex on all elems from .modal-dialog down to the parent of the content
+  that needs to scroll. This uses flexbox's align-items:stretch behaviour to expand
+  each <div> to fill the height/width of its parent flexbox. We also have to use
+  min-width:0 at various points to prevent children overflowing their parent container.
+  Why? A flex item won't shrink if it has an intrinsic width/height - see
+  https://stackoverflow.com/a/21541021/3521489.
+  
+  The other rule that took AGES to figure out was height:100% on .carousel-container.
+  It has flex-direction:column so it needs the height:100% to prevent it spilling out
+  of the top/bottom of its parent - see https://stackoverflow.com/q/24632208/3521489.
+  */
+  div[class^=modal],
+  div[class^=carousel],
+  .item.active,
+  .item.next, .item.prev     { display: flex; flex: 1; }
+  .modal-content, .carousel  { min-width: 0; }
+  .carousel-container        { flex-direction: column; height: 100%; }
+  .carousel .item            { flex: 1; }
+}

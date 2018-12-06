@@ -22,6 +22,7 @@ function umunandi_shortcode_modal($atts, $content) {
     'backdrop' => true,
   ), $atts);
   if ($atts['backdrop'] === 'false' || !$atts['backdrop']) $atts['backdrop'] = '';
+  $content = do_shortcode($content);
 
   ob_start();
   include 'modal.php';

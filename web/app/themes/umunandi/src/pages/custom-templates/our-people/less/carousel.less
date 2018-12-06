@@ -1,0 +1,48 @@
+.people-carousel {
+  @media @mq-sm       { align-items: center; }
+  .carousel-container { padding: 0; }
+
+  .carousel-control {
+    &                 { opacity: 0.4; height: 11rem; }
+    &:hover, &:focus  { opacity: 0.7; }
+    > span            { padding: @grid-gutter-width/2; position: absolute; }
+    &.left  > span    { left:  -@grid-gutter-width/2; }
+    &.right > span    { right: -@grid-gutter-width/2; }
+
+    @media @mq-sm {
+      &.left  > span  { left: auto; right: @grid-gutter-width-sm; }
+      &.right > span  { right: auto; left: @grid-gutter-width-sm; }
+      &               { color: #fff; }
+    }
+
+    @media @mq-md {
+      &.left  > span  { right: @grid-gutter-width; }
+      &.right > span  { left:  @grid-gutter-width; }
+    }
+  }
+
+  .carousel-indicators {
+    margin-top: @grid-gutter-width-sm/2;
+
+    @media @mq-upto-xs {
+      .round-img { display: none; }
+    }
+
+    @media @mq-xs {
+      margin-top: @grid-gutter-width-sm;
+
+      li {
+        width:  1.8rem;
+        height: 1.8rem;
+        margin: 0 0.3rem;
+        border-radius: 50%;
+        background: none;
+        opacity: 0.5;
+
+        &.active   { opacity: 1; }
+      }
+    }
+
+    @media @mq-md { position: relative; top: 10px; }
+  }
+}

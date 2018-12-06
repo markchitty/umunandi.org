@@ -2,6 +2,7 @@
 
 // .modal           - container for all modally goodness
 // .modal-open      - body class for killing scroll
+// .modal-init      - shows the modal offscreen w/out transitions or backdrop - used for sizing calcs
 // .modal-dialog    - positioning shell for the actual modal
 // .modal-content   - actual modal with bg and corners and shit
 // .modal-backdrop  - blanking layer over background + click target to close modal
@@ -20,17 +21,31 @@
     transition: transform 0.3s ease-out;
   }
   &.in .modal-dialog { transform: scale(1); }
-
-  &-open & {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
 }
 
-.modal-open { overflow: hidden; }
+.show-modal() {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal-open {
+  &      { overflow: hidden; }
+  .modal { .show-modal; }
+}
+
+.modal-init {
+  .show-modal;
+  opacity: 1 !important;
+  transform: translateX(-9999px);
+
+  .modal-dialog {
+    transform: scale(1) !important;
+    transition: none !important;
+  }
+}
 
 .modal-dialog {
   position: relative;
