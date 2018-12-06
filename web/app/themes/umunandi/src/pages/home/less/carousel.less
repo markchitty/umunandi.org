@@ -31,8 +31,10 @@
     .round-img           { width: 12rem; }
     .carousel-control    { height: 12rem; }
     .kid-pic             { float: left; margin-right: 1.2em; }
-    .kid-info,
-    .kid-info .story     { overflow: auto; }
+    .kid-info {
+      &, & .story        { overflow: auto; }
+      .sponsor-btn       { text-align: left; }
+    }
   }
 
   @media @mq-md {

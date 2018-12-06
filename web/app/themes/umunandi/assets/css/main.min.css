@@ -5615,6 +5615,9 @@ ul > li:nth-child(5n+5):before {
   .kids-carousel .kid-info .story {
     overflow: auto;
   }
+  .kids-carousel .kid-info .sponsor-btn {
+    text-align: left;
+  }
 }
 @media (min-width: 992px) {
   .kids-carousel .round-img {
