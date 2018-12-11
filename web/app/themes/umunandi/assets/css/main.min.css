@@ -3861,6 +3861,23 @@ label {
   width: auto;
   margin: 10px;
 }
+.modal-dialog .close.x {
+  position: absolute;
+  right: 0;
+  margin: 1px;
+  font-size: 70%;
+}
+@media (min-width: 768px) {
+  .modal-dialog .close.x {
+    margin: 3px;
+    font-size: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .modal-dialog .close.x {
+    margin: 8px;
+  }
+}
 .modal-content {
   padding: 25px;
   background-color: #fff;
@@ -4558,6 +4575,9 @@ ul > li:nth-child(5n+5):before {
 .footer .sub-menu > li > a {
   padding: 0.2em 0;
   display: inline-block;
+}
+.footer .vcard {
+  line-height: 1.8;
 }
 .footer .tel {
   display: block;

@@ -19,25 +19,24 @@ umunandi.define('people', function () {
     $modal.removeClass('modal-init');
   }
 
-  function getIndexById($items, id) {
-    return $items.map(function (idx) { if (this.id === id) return idx; }).get(0);
+  function showPerson() {
+    if (!location.hash) return;
+    $carousel.carousel($(location.hash).index());
+    if (!($modal.data('bs.modal') && $modal.data('bs.modal').isShown)) $modal.modal('show');
   }
 
-  function onModalShow(e) {
-    if (e.relatedTarget) {
-      var slideIndex = getIndexById($carousel.find('.item'), e.relatedTarget.dataset.carouselId);
-      $carousel.carousel(slideIndex);
-    }
-  }
-
-  function onModalShown() {
-    $carousel.find('.carousel-control.right').focus();
+  function clearPerson() {
+    history.replaceState("", document.title, location.pathname + location.search);
   }
 
   $modal
-    .on('show.bs.modal', onModalShow)
-    .on('shown.bs.modal', onModalShown);
+    .on('shown.bs.modal', function() { $('.carousel-control.right').focus(); })
+    .on('hidden.bs.modal', clearPerson);
 
-  $(window).on('resize orientationchange', function () { modalInit(); }).resize();
+  $(window)
+    .on('resize orientationchange', modalInit)
+    .on('hashchange', showPerson)
+    .trigger('resize')
+    .trigger('hashchange');
 
 });

@@ -31,10 +31,8 @@
   overflow-y: auto;
 }
 
-.modal-open {
-  &      { overflow: hidden; }
-  .modal { .show-modal; }
-}
+.modal-open        { overflow: hidden; }
+.modal-open .modal { .show-modal; }
 
 .modal-init {
   .show-modal;
@@ -51,6 +49,16 @@
   position: relative;
   width: auto;
   margin: 10px;
+
+  .close.x {
+    position: absolute;
+    right: 0;
+    margin: 1px;
+    font-size: 70%;
+
+    @media @mq-sm { margin: 3px; font-size: 100%; }
+    @media @mq-md { margin: 8px; }
+  }
 }
 
 .modal-content {

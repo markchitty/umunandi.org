@@ -17,9 +17,7 @@ ob_start();
     <?php while ($group['people']->have_posts()) : $group['people']->the_post(); ?>
     <div class="col">
       <div class="person-card">
-        <a class="person-link" href="#" data-toggle="modal"
-          data-target="#people-modal"
-          data-carousel-id="<?= get_post_field('post_name') ?>">
+        <a class="person-link" href="#<?= get_post_field('post_name') ?>">
           <div class="img">
             <div class="round-img"><?= the_post_thumbnail() ?></div>
           </div>
