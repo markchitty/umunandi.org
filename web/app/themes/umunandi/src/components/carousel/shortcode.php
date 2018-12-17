@@ -36,7 +36,7 @@ function umunandi_shortcode_carousel($atts) {
   ), $atts);
   $atts['indicator_template'] = $atts['indicator_template'] === 'false' || !$atts['indicator_template']
                               ? false
-                              : get_template_directory() . '/' . $atts['indicator_template'];
+                              : $atts['indicator_template'];
 
   switch ($atts['items']) {
 
@@ -67,7 +67,8 @@ function umunandi_shortcode_carousel($atts) {
 
   // Using 'eval()' here (shock, horror) to avoid repeatedly
   // include-ing item_template inside the carousel loop
-  $item_template_file = file_get_contents(get_template_directory() . '/' . $atts['item_template']);
+  $item_template_file_path = file_exists($atts['item_template']) ? '' : get_template_directory() . '/';
+  $item_template_file = file_get_contents($item_template_file_path . $atts['item_template']);
   $item_template = function () use ($item_template_file) {
     eval(' ?>' . $item_template_file . '<?php ');
   };

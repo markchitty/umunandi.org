@@ -1,29 +1,42 @@
-<?php 
-class Sponsor_Form_Shortcode {
+<?php
+// Form shortcode
+
+class Umunandi_Form_Shortcode {
 
 	const EMAIL_TO    = 'ruth@umunandi.org';
 	const EMAIL_ERR   = "Sorry, there was a problem at our end. Please try again. "
 	                  . "If it still doesn't work, send us a quick email at info@umunandi.org.";
-	const ACTION      = 'umunandi_sponsor_sign_up';
-	const NONCE_ID    = self::ACTION;
 	const NONCE_ERR   = "Sorry, that didn't work. Can you try again?";
+	const ACTION      = 'umunandi_handle_form';
+	const NONCE_ID    = self::ACTION;
 	const THANKS_PAGE = 'help/sponsor/thank-you-';
 
 	public function __construct() {
-    add_shortcode('sponsor_form', array($this, 'shortcode'));
-		add_action('wp_ajax_nopriv_' . self::ACTION, array($this, 'sponsor_sign_up'));
-		add_action('wp_ajax_' . self::ACTION,        array($this, 'sponsor_sign_up'));
+    add_shortcode('form', array($this, 'shortcode'));
+		add_action('wp_ajax_nopriv_' . self::ACTION, array($this, 'handle_form'));
+		add_action('wp_ajax_' . self::ACTION,        array($this, 'handle_form'));
+
+		// Add 'form' class to body when a page contains a form, to hook form scripts
+		add_filter('body_class', array($this, 'body_class'));
 	}
 
   function shortcode($atts, $content) {
+	  extract(shortcode_atts(array('type' => 'contact', 'class' => ''), $atts));
 		$nonce = wp_create_nonce(self::NONCE_ID);
 		$action = self::ACTION;
+		$is_sponsor = $type === 'sponsor';
 		ob_start();
 		include 'form.php';
 		return ob_get_clean();
   }
 
-	function sponsor_sign_up() {
+	function body_class($classes) {
+    global $post;
+    if (isset($post->post_content) && has_shortcode($post->post_content, 'form')) $classes[] = 'form';
+    return $classes;
+	}
+
+	function handle_form() {
 		$data = $_POST;
 		if (!check_ajax_referer(self::NONCE_ID, 'nonce', false)) {
 			wp_send_json_error(self::NONCE_ERR);
@@ -53,4 +66,4 @@ class Sponsor_Form_Shortcode {
 	}
 }
 
-new Sponsor_Form_Shortcode();
+new Umunandi_Form_Shortcode();

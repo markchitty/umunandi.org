@@ -5,13 +5,8 @@
   font-size: 85%;
   margin-top: 2em;
 
-  .charity-number {
-    display: inline-block;
-    line-height: 1;
-    padding-left: @padding-base-horizontal;
-    margin-left: @padding-base-horizontal;
-    border-left: 1px solid darken(@footer-text-color, 30%);
-  }
+  .copyright.col  { text-align: center; }
+  .charity-number { display: block; }
 
   @media @mq-upto-sm {
     .col-grid { .row-grid; }
@@ -26,5 +21,15 @@
 
     .designed-by.col { order: 1; flex: 1; }
     .copyright.col   { order: 2; text-align: right; }
+  }
+
+  @media @mq-xs {
+    .charity-number {
+      display: inline-block;
+      line-height: 1;
+      padding-left: @padding-base-horizontal;
+      margin-left: @padding-base-horizontal;
+      border-left: 1px solid darken(@footer-text-color, 30%);
+    }
   }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e159c8f7894d8033a35a545e1d33ae0b",
+    "content-hash": "963eaab36af6c5c978816b8c57f2c62a",
     "packages": [
         {
             "name": "composer/installers",
@@ -644,6 +644,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/widget-css-classes/"
+        },
+        {
+            "name": "wpackagist-plugin/widget-shortcode",
+            "version": "0.3.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/widget-shortcode/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/widget-shortcode.zip?timestamp=1528129626",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/widget-shortcode/"
         },
         {
             "name": "wpackagist-plugin/wordfence",

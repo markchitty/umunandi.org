@@ -1,6 +1,22 @@
-@header-height-sm : 450px;
-@header-height-lg : 540px;
-@footer-height    : 300px;
+@header-height-xs   : 50vh;
+@header-height-land : 66vh;
+@header-height-sm   : 450px;
+@header-height-lg   : 540px;
+@footer-height      : 300px;
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  position: relative;
+  display: flex;
+}
+
+main { flex: 1; }
+.row { .make-row; }
 
 .container {
   margin-right: auto;
@@ -12,31 +28,31 @@
     padding-left: @grid-gutter-width/2;
     padding-right: @grid-gutter-width/2;
   }
-
-  @media @mq-sm { width: @container-sm; max-width: @container-sm; }
-  @media @mq-md { width: @container-md; max-width: @container-md; }
-  @media @mq-lg { width: @container-lg; max-width: @container-lg; }
 }
 
-.row { .make-row(); }
-
-.header {
-  @media @mq-upto-sm { min-height: 50vh; }
-  @media @mq-upto-sm
-     and @mq-land    { min-height: 66vh; }
-  @media @mq-sm      { height: @header-height-sm; }
-  @media @mq-lg      { height: @header-height-lg; }
-
-  position: relative;
-  display: flex;
+@media @mq-upto-sm {
+  .header { min-height: @header-height-xs; }
+  .body   { min-height: @header-height-xs; }
 }
 
-footer {
-  @media @mq-sm { height: @footer-height; }
+@media @mq-upto-sm and @mq-land {
+  .header { min-height: @header-height-land; }
+  .body   { min-height: @header-height-land; }
 }
 
-.body {
-  padding-bottom: 1px; // prevent collapsing margins screwing up these calc() heights
-  @media @mq-sm { min-height: calc(100vh ~"-" @footer-height - @header-height-sm); }
-  @media @mq-lg { min-height: calc(100vh ~"-" @footer-height - @header-height-lg); }
+@media @mq-sm {
+  .header    { height: @header-height-sm; }
+  .body      { min-height: @header-height-sm; }
+  footer     { height: @footer-height; }
+  .container { width: @container-sm; max-width: @container-sm; }
+}
+
+@media @mq-md {
+  .container { width: @container-md; max-width: @container-md; }
+}
+
+@media @mq-lg {
+  .header    { height: @header-height-lg; }
+  .body      { min-height: @header-height-lg; }
+  .container { width: @container-lg; max-width: @container-lg; }
 }

@@ -4,3 +4,51 @@
     background-color: #acdbfd;
   }
 }
+
+.contact-form {
+  margin-top: 2rem;
+}
+
+.contact-page-vcard {
+  .vcard-widget {
+    .sketch-box;
+    position: relative;
+    padding: 1rem 1.3rem;
+    background: lighten(@buff, 2%);
+
+    &:before {
+      opacity: 0.1;
+      border-width: 6px;
+    }
+  }
+
+  @media @mq-sm {
+    .vcard > * {
+      display: block;
+      position: relative;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: @line-height-base * 1rem;
+    }
+
+    .adr > * { display: block; }
+  }
+
+  .org, .widgettitle { display: none; }
+}
+
+@media @mq-upto-sm {
+  .contact-cols { .no-grid; }
+  .contact-form { margin-bottom: 2rem; }
+  .vcard-widget { text-align: center; line-height: 1.8; }
+
+  @media @mq-xs {
+    .vcard .tel { display: inline-block; margin-left: 1em; }
+  }
+}

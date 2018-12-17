@@ -1,0 +1,25 @@
+.default-form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .name-row {
+    .form-group        { margin-bottom: 1rem; }
+    @media @mq-xs {
+      &                { display: flex; }
+      > *              { flex: 1; }
+      > *:nth-child(2) { margin-left: 1rem; }
+    }
+  }
+
+  .btn {
+    width: 10em;
+    align-self: center;
+    margin-top: 1rem;
+    padding-top: 6px;
+
+    .loader             { display: none; }
+    &.submitted .words  { display: none; }
+    &.submitted .loader { display: inline-flex; }
+  }
+}

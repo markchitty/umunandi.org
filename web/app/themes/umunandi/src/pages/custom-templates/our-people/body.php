@@ -36,8 +36,8 @@ ob_start();
 [modal class="people-modal" id="people-modal"]
   [carousel class="people-carousel" id="people-carousel"
     items="umunandi_people"
-    item_template="src/pages/custom-templates/our-people/person.php"
-    indicator_template="src/pages/custom-templates/our-people/carousel-indicators.php"]
+    item_template="<?= __DIR__ ?>/person.php"
+    indicator_template="<?= __DIR__ ?>/carousel-indicators.php"]
 [/modal]
 
 <?php
