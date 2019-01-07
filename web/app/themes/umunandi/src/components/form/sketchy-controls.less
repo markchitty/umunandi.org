@@ -1,0 +1,89 @@
+// ===== Sketched borders for form controls =====
+
+.colorize(@hue-rotate: 69deg;) { filter: invert(22%) sepia(100%) saturate(8) hue-rotate(@hue-rotate); }
+
+// <input>, <textarea>, <select>
+// Requires a <span> element immediately after the <input> control so that
+// the <input>'s state - :focus, :hover, etc - modifies the sketch box, e.g:
+// <div class="sketch-box-input input-container">
+//   <input class="form-control" ... >
+//   <span></span>
+// </div>
+.sketch-box-input {
+  > span:before {
+    .pseudo-content(0);
+    border: 10px solid;
+    border-image: url("img/sketch-box-wide-thin.png") 15 stretch;
+    border-image-outset: 0.3;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .form-control:focus {
+    border-color: @input-bg;
+
+    + span:before {
+      opacity: 0.8;
+      .colorize;
+    }
+  }
+
+  .error > & > span:before {
+    opacity: 0.8;
+    .colorize(-27deg) !important;
+  }
+  
+  .form-group:nth-child(even) > & > span:before { transform: scale(-1, -1); }
+}
+
+// checkbox
+.sketch-box-checkbox {
+  position: relative;
+  padding-left: 1.5em;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    left: -9999px;
+  }
+
+  label:before,
+  label:after { .pseudo-content(0.25em, auto, auto, 0); }
+
+  label:after {
+    width: 1em;
+    height: 1em;
+    border: 4px solid;
+    border-image: url("img/sketch-box-small.png") 20 stretch;
+    border-image-outset: 0.2;
+    opacity: 0.4;
+  }
+
+  label:before {
+    font-size: 0.75em;
+    width: 1.33em;
+    height: 1.4em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.2em;
+    background: @input-bg;
+  }
+
+  input:focus {
+    + label:before {
+      outline: 1px dashed rgba(32, 104, 0, 0.5);
+      outline-offset: 1px;
+    }
+    + label:after {
+      opacity: 0.8;
+      .colorize;
+    }
+  }
+
+  input:checked + label:before {
+    background: @brand-primary;
+    content: '\2714'; // tick
+    color: #fff;
+  }
+}
