@@ -25,7 +25,13 @@ class Umunandi_People {
         ];
       }
     }
+
+    add_filter('the_title', array($this, 'non_wrapping_hyphens'));
 	}
+
+  public function non_wrapping_hyphens($title) {
+    return str_replace('-', '&#8209;', $title);
+  }
 
   public function get_people_grouped() {
     return $this->groups;
@@ -35,7 +41,7 @@ class Umunandi_People {
     $merged_posts = [];
     foreach ($this->groups as $group) {
       foreach ($group['people']->posts as $post) {
-        $post->parent_title = $group['title'];
+        $post->organisation = $group['title'];
         $post->country      = $group['country'];
       }
       $merged_posts = array_merge($merged_posts, $group['people']->posts);
