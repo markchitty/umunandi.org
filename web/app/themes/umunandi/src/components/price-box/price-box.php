@@ -1,11 +1,14 @@
 
 <div class="col <?= $atts['class'] ?>">
-  <div class="price-box sketch-box" data-product="<?= $atts['product'] ?>">
-    <div class="price-box-header" data-product="<?= $atts['product'] ?>" data-price="<?= $atts['price'] ?>">
+  <div class="price-box sketch-box">
+    <div class="price-box-header"
+      data-product-id="<?= $atts['product_id'] ?>"
+      data-product-name="<?= $atts['product_name'] ?>"
+      data-price="<?= $atts['price'] ?>">
       <?php foreach($atts['imgs'] as $img): ?>
       <div class="round-img sketch-circle <?= $img['class'] ?>"><?= $img['tag'] ?></div>
       <?php endforeach; ?>
-      <h3><span class="smaller">Sponsor</span> <?= $atts['product'] ?></h3>
+      <h3><span class="smaller">Sponsor</span> <?= $atts['product_name'] ?></h3>
       <div class="price-box-price">
         <?php // Annoying DOM syntax to avoid unwanted spaces ?>
         <span

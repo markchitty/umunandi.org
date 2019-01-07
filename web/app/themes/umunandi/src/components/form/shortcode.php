@@ -1,5 +1,16 @@
 <?php
-// Form shortcode
+use \DrewM\MailChimp\MailChimp;
+
+// Form shortcode : [form]
+// Parameters:
+// - name          : form_name
+// - template      : local file path to form template, relative to theme directory
+//                   e.g. src/pages/form-template
+// - response_page : wordpress path to response page. Supports form field substitution:
+//                   e.g. about/contact/thanks-{product}
+// - button_text   : submit button text
+// - button_icon   : submit button icon
+// - class         : css-classes
 
 class Umunandi_Form_Shortcode {
 
@@ -9,7 +20,6 @@ class Umunandi_Form_Shortcode {
 	const NONCE_ERR   = "Sorry, that didn't work. Can you try again?";
 	const ACTION      = 'umunandi_handle_form';
 	const NONCE_ID    = self::ACTION;
-	const THANKS_PAGE = 'help/sponsor/thank-you-';
 
 	public function __construct() {
     add_shortcode('form', array($this, 'shortcode'));
@@ -21,12 +31,21 @@ class Umunandi_Form_Shortcode {
 	}
 
   function shortcode($atts, $content) {
-	  extract(shortcode_atts(array('type' => 'contact', 'class' => ''), $atts));
+	  extract(shortcode_atts(array(
+			'name' => 'contact',
+			'template' => 'src/pages/contact/contact-form',
+			'response_page' => 'about/contact/thanks',
+			'button_text' => 'Submit',
+			'button_icon' => '▸',
+			'class' => ''
+		), $atts));
+
+		$template = get_template_directory() . "/$template.tpl.php";
 		$nonce = wp_create_nonce(self::NONCE_ID);
 		$action = self::ACTION;
-		$is_sponsor = $type === 'sponsor';
+
 		ob_start();
-		include 'form.php';
+		include 'form.tpl.php';
 		return ob_get_clean();
   }
 
@@ -49,14 +68,15 @@ class Umunandi_Form_Shortcode {
 		// Email the submitted info
 		$name    = $data['firstName'] . ' ' . $data['lastName'];
 		$to      = self::EMAIL_TO;
-		$subject = "New sponsorship enquiry - $name would like to sponsor {$data['product']}";
+		$subject = "New sponsorship enquiry - $name would like to sponsor {$data['productName']}";
 		$message = "Yay, we've just received a new sponsorship enquiry!\n\n";
 		$headers = array("Reply-to: $name<{$data['email']}>");
 		foreach ($data as $key=>$val) $message .= "$key : $val\n";
 		$result = wp_mail($to, $subject, $message, $headers);
 
+		// Send the response
 		if ($result) {
-			$response = get_page_by_path(self::THANKS_PAGE . array_pop(explode(' ', $data['product'])));
+			$response = get_page_by_path($this->substitute_variables($data['responsePage'], $data));
 			$content = apply_filters('the_content', $response->post_content);
 			wp_send_json_success($content);
 		}
@@ -64,6 +84,17 @@ class Umunandi_Form_Shortcode {
 			wp_send_json_error(self::EMAIL_ERR);
 		}
 	}
+
+	function substitute_variables($template, array $variables) {
+		return preg_replace_callback(
+			'|{(.*?)}|',
+    	function($match) use ($variables) {
+				return trim($variables[trim($match[1])]);
+			},
+			$template
+		);
+	}
+
 }
 
 new Umunandi_Form_Shortcode();

@@ -3391,6 +3391,17 @@ label {
   margin-top: 0.2rem;
 }
 .sketch-box-input > span:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 10px solid;
+  border-image: url("/app/themes/umunandi/assets/img/sketch-box-wide-thin.png") 15 stretch;
+  border-image-outset: 0.3;
+  pointer-events: none;
   opacity: 0.3;
 }
 .sketch-box-input .form-control:focus {
@@ -3400,12 +3411,62 @@ label {
   opacity: 0.8;
   filter: invert(22%) sepia(100%) saturate(8) hue-rotate(69deg);
 }
-.error .sketch-box-input > span:before {
+.error > .sketch-box-input > span:before {
   opacity: 0.8;
   filter: invert(22%) sepia(100%) saturate(8) hue-rotate(-27deg) !important;
 }
-.form-group:nth-child(even) .sketch-box-input > span:before {
+.form-group:nth-child(even) > .sketch-box-input > span:before {
   transform: scale(-1, -1);
+}
+.sketch-box-checkbox {
+  position: relative;
+  padding-left: 1.5em;
+}
+.sketch-box-checkbox input {
+  position: absolute;
+  opacity: 0;
+  left: -9999px;
+}
+.sketch-box-checkbox label:before,
+.sketch-box-checkbox label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0.25em;
+  right: auto;
+  bottom: auto;
+  left: 0;
+}
+.sketch-box-checkbox label:after {
+  width: 1em;
+  height: 1em;
+  border: 4px solid;
+  border-image: url("/app/themes/umunandi/assets/img/sketch-box-small.png") 20 stretch;
+  border-image-outset: 0.2;
+  opacity: 0.4;
+}
+.sketch-box-checkbox label:before {
+  font-size: 0.75em;
+  width: 1.33em;
+  height: 1.4em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.2em;
+  background: #fff;
+}
+.sketch-box-checkbox input:focus + label:before {
+  outline: 1px dashed rgba(32, 104, 0, 0.5);
+  outline-offset: 1px;
+}
+.sketch-box-checkbox input:focus + label:after {
+  opacity: 0.8;
+  filter: invert(22%) sepia(100%) saturate(8) hue-rotate(69deg);
+}
+.sketch-box-checkbox input:checked + label:before {
+  background: #206800;
+  content: '\2714';
+  color: #fff;
 }
 [class^="svgicon-"] {
   display: inline-block;
@@ -4276,19 +4337,6 @@ label {
   left: -3%;
   background: url("/app/themes/umunandi/assets/img/sketch-circle-thin.png") no-repeat;
   background-size: contain;
-  pointer-events: none;
-}
-.sketch-box-input > span:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 10px solid;
-  border-image: url("/app/themes/umunandi/assets/img/sketch-box-wide-thin.png") 15 stretch;
-  border-image-outset: 0.3;
   pointer-events: none;
 }
 .x {
@@ -5178,9 +5226,6 @@ main {
   background-image: none;
   background-color: #acdbfd;
 }
-.contact-form {
-  margin-top: 2rem;
-}
 .contact-page-vcard .vcard-widget {
   position: relative;
   padding: 1rem 1.3rem;
@@ -5424,7 +5469,12 @@ main {
   line-height: 1.3;
 }
 .person-card .title {
-  margin: -0.3rem 0 0rem;
+  margin: -0.2rem 0 0rem;
+}
+.person-card .org {
+  text-transform: uppercase;
+  color: #999;
+  font-size: 90%;
 }
 .person-card .round-img {
   width: 100%;
@@ -5446,6 +5496,7 @@ main {
 @media (min-width: 768px) {
   .people-section .people-group {
     margin-left: -3rem;
+    padding: 0 3rem;
   }
   .people-section .people-group > .col {
     padding-left: 3rem;
@@ -5515,6 +5566,7 @@ main {
   .person-profile .person-card .country-flag {
     display: block;
     font-size: 3rem;
+    margin-bottom: -0.7rem;
   }
   .person-profile .person-card .round-img {
     width: 100%;
@@ -6001,7 +6053,7 @@ main {
 .sponsor-options-price {
   font-size: 0.9375rem;
 }
-.sponsor-options-product,
+.sponsor-options-product-name,
 .sponsor-options-price .amount,
 .sponsor-options-price .currency {
   font-weight: bold;
@@ -6017,6 +6069,9 @@ main {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+.sponsor-form .newsletter {
+  display: none;
 }
 .sponsor-form .price-box-header {
   margin: 0;

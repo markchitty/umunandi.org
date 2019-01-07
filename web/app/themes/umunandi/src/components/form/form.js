@@ -28,13 +28,16 @@ umunandi.define('form', function() {
   // Submission
   $form.on('submit', function (evt) {
     evt.preventDefault();
+
     $('.form-error').hide();
     $(':input', this).each(function (i, elem) { validateField(elem); });
     if (!this.checkValidity()) return false;
+
     var formData = {
-      name: this.name,
+      formName: this.name,
       action: this.dataset.wpAction,
-      nonce: this.dataset.nonce
+      nonce: this.dataset.nonce,
+      responsePage: this.dataset.responsePage
     };
     $form.serializeArray().map(function (field) { formData[field['name']] = field['value']; });
     $form.find('button').toggleClass('submitted', true).prop('disabled', true);

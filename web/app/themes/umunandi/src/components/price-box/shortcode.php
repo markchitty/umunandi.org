@@ -13,13 +13,13 @@ add_shortcode('price_box', 'umunandi_shortcode_price_box');
 function umunandi_shortcode_price_box($atts, $content) {
   $defaults = array(
     'class' => '',
-    'product' => 'a child',
+    'product_name' => 'a child',
+    'product_id' => 'child',
     'currency' => '£',
     'price' => 5,
     'period' => 'month',
   );
   $atts = shortcode_atts($defaults, $atts);
-  $atts['data'] = $atts['product'];
   $html = str_get_html(do_shortcode($content));
   
   // Extract all images out of $content
