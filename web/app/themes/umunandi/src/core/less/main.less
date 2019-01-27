@@ -1,7 +1,7 @@
 // Import all styles in the order specified
-
+// excluding any admin styles
 @import "core/less/*.less";
-@import "components/**/*.less";
+@import "components/**/!(*admin).less";
 
 // not using the all paths glob '**' in order to avoid nav styles
 @import "layout/less/*.less";
