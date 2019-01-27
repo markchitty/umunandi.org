@@ -1,13 +1,6 @@
 <?php
 require_once 'editor.php';
 
-// Debug util
-function ulog() {
-  $formatted_args = array_map(function($arg) { return print_r($arg, true); }, func_get_args());
-  $func_name = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,2)[1]['function'];
-  error_log($func_name . ': ' . join(', ', $formatted_args));
-}
-
 // Advanced Custom Forms styles
 add_action('acf/input/admin_head', 'umunandi_acf_admin_head');
 function umunandi_acf_admin_head() {

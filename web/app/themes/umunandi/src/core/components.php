@@ -7,6 +7,10 @@ foreach (glob($shortcode_files) as $file) require_once $file;
 $widget_files = dirname(__DIR__) . '/components/*/widget.php';
 foreach (glob($widget_files) as $file) require_once $file;
 
+// Load other components
+$components = dirname(__DIR__) . '/components/*/component.php';
+foreach (glob($components) as $file) require_once $file;
+
 // Enable shortcodes in text widget
 add_filter('widget_text', 'shortcode_unautop');
 add_filter('widget_text', 'do_shortcode');

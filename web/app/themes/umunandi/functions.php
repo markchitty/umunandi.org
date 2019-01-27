@@ -26,4 +26,5 @@ require_once 'src/core/content.php';
 require_once 'src/core/components.php';
 require_once 'src/core/styles-scripts.php';
 require_once 'src/core/template-loader.php';
+require_once 'src/core/utils.php';
 require_once 'src/layout/nav/nav-walker.php';
