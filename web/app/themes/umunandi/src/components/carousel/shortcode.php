@@ -45,8 +45,7 @@ function umunandi_shortcode_carousel($atts) {
 
     // Special case - featured OVCs
     case 'featured-ovcs':
-      global $OVCs;
-      $carousel_items = $OVCs->featured_kids();
+      $carousel_items = OVC::featured_kids();
       break;
 
     // Special case - people biogs

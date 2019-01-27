@@ -59,7 +59,7 @@ class OVC {
           if (defined('DOING_AJAX') && DOING_AJAX) return;
           if ($data['post_status'] == 'auto-draft') return $data;
           // ACF custom field keys: first_name = field_53eca02ad7a58, last_name = field_53eca050d7a59
-          $data['post_title']  = $postarr['acf']['field_53eca02ad7a58'] . ' ' . $postarr['acf']['field_53eca050d7a59'];
+          $data['post_title'] = $postarr['acf']['field_53eca02ad7a58'] . ' ' . $postarr['acf']['field_53eca050d7a59'];
           if ($data['post_status'] !== 'trash') $data['post_status'] = 'publish';
         }
         return $data;
@@ -74,13 +74,11 @@ class OVC {
       }
 
       // Force OVC edit screen to single column layout
-      add_filter('screen_layout_columns', 'ovc_set_single_screen_layout_column');
-      function ovc_set_single_screen_layout_column($columns) {
+      add_filter('get_user_option_screen_layout_ovc', function() { return 1; });
+      add_filter('screen_layout_columns', function($columns) {
         $columns['ovc'] = 1;
         return $columns;
-      }
-      add_filter('get_user_option_screen_layout_ovc', 'ovc_screen_layout');
-      function ovc_screen_layout() { return 1; }
+      });
 
       // Inject admin page custom styles
       add_action('admin_enqueue_scripts', 'ovc_admin_css');
@@ -89,30 +87,26 @@ class OVC {
         wp_enqueue_script('ovc-admin-js', plugins_url('js/admin.js', __FILE__));
       }
 
-    } // is_admin()
+    }
+  }
 
-  } // __construct()
-
+  private static $featured_kids;
 
   // Return a Loop of featured OVCs
-  private $featured_kids;
-  public function featured_kids() {
-    if (isset($this->featured_kids)) {
-      $this->featured_kids->rewind_posts();
+  public static function featured_kids() {
+    if (isset(self::$featured_kids)) {
+      self::$featured_kids->rewind_posts();
     }
     else {
-      $this->featured_kids = new WP_Query(array(
+      self::$featured_kids = new WP_Query(array(
         'post_type'    => 'ovc',
         'meta_key'     => 'featured',
         'meta_value'   => '1'
       ));
     }
-    return $this->featured_kids;
+    return self::$featured_kids;
   }
 
-} // class()
+}
 
-// Instantiate the plugin
-// Remember to use the 'global' keyword when referencing $OVCs
-global $OVCs;
-$OVCs = new OVC();
+new OVC();

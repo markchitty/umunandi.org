@@ -8,7 +8,7 @@
       </a>
     </div>
 
-    <?php global $OVCs; $featured_kids = $OVCs->featured_kids(); ?>
+    <?php $featured_kids = OVC::featured_kids(); ?>
     <div class="featured-kids">
       <?php while($featured_kids->have_posts()) : $featured_kids->the_post(); ?>
       <div class="kid">
@@ -27,14 +27,6 @@
     <div class="scroll-down">
       <a href=".body-top" data-scrollto="750" data-scrolloffset="10"><span class="icon-arrow-down"></span></a>
     </div>
-
-    <?php /* 
-    <div class="explainer">
-      <div class="term">umunandi</div>
-      <div class="said">| uh &bull; muh  &bull; nan &bull; dee |</div>
-      <div class="transl">my friend</div>
-    </div>
-    */ ?>
 
   </div>
 </header>
