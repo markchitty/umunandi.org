@@ -1,0 +1,32 @@
+// *** Email Template Custom Post Type ***
+
+// == Edit form styles ==
+
+// Email fields group id - this may change if the DB is upgraded or 
+// migrated or something, in which case we'll need to pick up the
+// new ACF form group guid and replace it here. 
+#acf-group_5c49f6c1ca261 {
+  .acf-field {
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: center;
+  }
+ 
+  .acf-input { flex: 1; }
+  .acf-label { min-width: 6rem; }
+  .acf-label, label { margin: 0; }
+  .email-to  { margin-top: 12px; }
+}
+
+// == Template list ==
+
+// Hide '- Private' suffix
+.type-email_template .title > strong { font-size: 0; }
+
+// Render html <tag>s literally
+xmp {
+  font-family: inherit;
+  white-space: inherit;
+  margin: 0;
+}

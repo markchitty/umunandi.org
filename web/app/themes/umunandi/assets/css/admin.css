@@ -1,3 +1,30 @@
+#acf-group_5c49f6c1ca261 .acf-field {
+  display: flex;
+  padding-top: 0;
+  padding-bottom: 0;
+  align-items: center;
+}
+#acf-group_5c49f6c1ca261 .acf-input {
+  flex: 1;
+}
+#acf-group_5c49f6c1ca261 .acf-label {
+  min-width: 6rem;
+}
+#acf-group_5c49f6c1ca261 .acf-label,
+#acf-group_5c49f6c1ca261 label {
+  margin: 0;
+}
+#acf-group_5c49f6c1ca261 .email-to {
+  margin-top: 12px;
+}
+.type-email_template .title > strong {
+  font-size: 0;
+}
+xmp {
+  font-family: inherit;
+  white-space: inherit;
+  margin: 0;
+}
 #adminmenuwrap {
   float: none;
   position: fixed;
