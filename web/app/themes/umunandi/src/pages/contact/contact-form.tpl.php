@@ -44,9 +44,11 @@
   </div>
 </div>
 
+<?php /* Add this back in when we wire up the MailChimp API
 <div class="form-group newsletter">
   <div class="sketch-box-checkbox">
     <input type="checkbox" id="newsletter">
     <label for="newsletter">Subscribe to the Umunandi newsletter</label>
   </div>
 </div>
+*/ ?>

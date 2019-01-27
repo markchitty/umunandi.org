@@ -1,9 +1,8 @@
-<form novalidate class="umunandi-form default-form <?= $name ?>-form <?= $class ?>"
-  name="<?= $name ?>"
+<form novalidate class="umunandi-form default-form <?= $form_name ?>-form <?= $class ?>"
+  name="<?= $form_name ?>"
   action="<?= admin_url('admin-ajax.php') ?>"
   data-nonce="<?= $nonce ?>"
   data-wp-action="<?= $action ?>"
-  data-response-page="<?= $response_page ?>"
   data-error-generic="🧐 Something went wrong. Can you refresh the page and try again?"
   data-error-timeout="⏳ Looks like the network is a bit flaky. Can you try that again?">
 

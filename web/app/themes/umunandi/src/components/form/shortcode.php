@@ -1,99 +1,119 @@
 <?php
 use \DrewM\MailChimp\MailChimp;
 
-// Form shortcode : [form]
-// Parameters:
-// - name          : form_name
-// - template      : local file path to form template, relative to theme directory
-//                   e.g. src/pages/form-template
-// - response_page : wordpress path to response page. Supports form field substitution:
-//                   e.g. about/contact/thanks-{product}
-// - button_text   : submit button text
-// - button_icon   : submit button icon
-// - class         : css-classes
+/**
+ * Form shortcode : [form]
+ * @param form_name        : One of the forms defined in forms-config.ini
+ * @param button_text      : Submit button text
+ * @param button_icon      : Submit button icon
+ * @param class            : CSS classes
+
+ * Every form must have an entry in forms.ini specifying:
+ * - template      - the form fields that make up the form
+ * - response_page - shown to the user after the form is succesfully submitted
+ * - user_email    - sent to the user when the form is submitted
+ * - admin_email   - sent to the admin when the form is submitted
+ */
 
 class Umunandi_Form_Shortcode {
 
-	const EMAIL_TO    = 'ruth@umunandi.org';
-	const EMAIL_ERR   = "Sorry, there was a problem at our end. Please try again. "
-	                  . "If it still doesn't work, send us a quick email at info@umunandi.org.";
-	const NONCE_ERR   = "Sorry, that didn't work. Can you try again?";
-	const ACTION      = 'umunandi_handle_form';
-	const NONCE_ID    = self::ACTION;
+  const ACTION   = 'umunandi_handle_form';
+  const NONCE_ID = self::ACTION;
+  private static $config;
 
-	public function __construct() {
+  public function __construct() {
+    // Read in forms.ini config
+    self::$config = new Config_Lite(__DIR__ . '/forms.ini');
+  
     add_shortcode('form', array($this, 'shortcode'));
-		add_action('wp_ajax_nopriv_' . self::ACTION, array($this, 'handle_form'));
-		add_action('wp_ajax_' . self::ACTION,        array($this, 'handle_form'));
+    add_action('wp_ajax_nopriv_' . self::ACTION, array($this, 'handle_form'));
+    add_action('wp_ajax_' . self::ACTION,        array($this, 'handle_form'));
 
-		// Add 'form' class to body when a page contains a form, to hook form scripts
-		add_filter('body_class', array($this, 'body_class'));
-	}
-
-  function shortcode($atts, $content) {
-	  extract(shortcode_atts(array(
-			'name' => 'contact',
-			'template' => 'src/pages/contact/contact-form',
-			'response_page' => 'about/contact/thanks',
-			'button_text' => 'Submit',
-			'button_icon' => '▸',
-			'class' => ''
-		), $atts));
-
-		$template = get_template_directory() . "/$template.tpl.php";
-		$nonce = wp_create_nonce(self::NONCE_ID);
-		$action = self::ACTION;
-
-		ob_start();
-		include 'form.tpl.php';
-		return ob_get_clean();
+    // Add 'form' class to body when a page contains a form, to hook form scripts
+    add_filter('body_class', function($classes) {
+      global $post;
+      if (isset($post->post_content) && has_shortcode($post->post_content, 'form')) $classes[] = 'form';
+      return $classes;
+    });
   }
 
-	function body_class($classes) {
-    global $post;
-    if (isset($post->post_content) && has_shortcode($post->post_content, 'form')) $classes[] = 'form';
-    return $classes;
-	}
+  function shortcode($atts, $content) {
+    extract(shortcode_atts(array(
+      'form_name' => 'contact',
+      'button_text' => 'Submit',
+      'button_icon' => '▸',
+      'class' => ''
+    ), $atts));
 
-	function handle_form() {
-		$data = $_POST;
-		if (!check_ajax_referer(self::NONCE_ID, 'nonce', false)) {
-			wp_send_json_error(self::NONCE_ERR);
-		}
+    // Read this form's config
+    $form_config = $this->get_form_config($form_name);
+    if (!$form_config) return $this->err_msg('form_not_defined', $form_name);
 
-		// TODO - Handle this with mailchimp API
-		// https://github.com/drewm/mailchimp-api/
-		// https://www.web-development-blog.com/archives/mailchimp-subscribe-contact-form/
+    // Write out the form
+    $template = get_template_directory() . "/" . $form_config['template'];
+    $nonce = wp_create_nonce(self::NONCE_ID);
+    $action = self::ACTION;
 
-		// Email the submitted info
-		$name    = $data['firstName'] . ' ' . $data['lastName'];
-		$to      = self::EMAIL_TO;
-		$subject = "New sponsorship enquiry - $name would like to sponsor {$data['productName']}";
-		$message = "Yay, we've just received a new sponsorship enquiry!\n\n";
-		$headers = array("Reply-to: $name<{$data['email']}>");
-		foreach ($data as $key=>$val) $message .= "$key : $val\n";
-		$result = wp_mail($to, $subject, $message, $headers);
+    ob_start();
+    include 'form.tpl.php';
+    return ob_get_clean();
+  }
 
-		// Send the response
-		if ($result) {
-			$response = get_page_by_path($this->substitute_variables($data['responsePage'], $data));
-			$content = apply_filters('the_content', $response->post_content);
-			wp_send_json_success($content);
-		}
-		else {
-			wp_send_json_error(self::EMAIL_ERR);
-		}
-	}
+  function handle_form() {
+    $data = array_map('stripslashes', $_POST);
+    $data['fullName'] = "{$data['firstName']} {$data['lastName']}";
+    if ($data['message'] === '') $data['message'] = $this->err_msg('no_message');
 
-	function substitute_variables($template, array $variables) {
-		return preg_replace_callback(
-			'|{(.*?)}|',
-    	function($match) use ($variables) {
-				return trim($variables[trim($match[1])]);
-			},
-			$template
-		);
-	}
+    // Get the form config, using the formName from the POST request
+    $form_config = $this->get_form_config($data['formName'], $data);
+
+    // Check errors
+    $default_err = $this->err_msg('default', get_option('admin_email'));
+    if (!$form_config) return $this->send_err($default_err, "Unknown form: {$data['formName']}");
+    if (!check_ajax_referer(self::NONCE_ID, 'nonce', false)) $this->send_err($default_err, 'Mismatched nonce');
+
+    // Email the user and the admin
+    try {
+      $this->send_email('admin', $form_config, $data);
+      $this->send_email('user',  $form_config, $data);
+    }
+    catch (Exception $e) {
+      $this->send_err($default_err, $e->getMessage());
+      return;
+    }
+
+    // Send a response back to the web page
+    $response = get_page_by_path(umunandi_substitute_params($form_config['response_page'], $data));
+    $content = apply_filters('the_content', $response->post_content);
+    wp_send_json_success($content);
+
+    // TODO - Handle this with mailchimp API
+    // https://github.com/drewm/mailchimp-api/
+    // https://www.web-development-blog.com/archives/mailchimp-subscribe-contact-form/
+  }
+
+  function get_form_config($form_name, $data = []) {
+    if (!self::$config->hasSection($form_name)) return false;
+    $config = self::$config->getSection($form_name);
+    return umunandi_substitute_params($config, $data);
+  }
+
+  function send_email($to, $form_config, $data) {
+    $email_config = Umunandi_Email_Template::get_template($form_config["{$to}_email"]);
+    $email_config['from'] = get_option('blogname') . ' <' . get_option('admin_email') . '>';
+    $mailer = new Umunandi_Mailer(array_merge($email_config, $data));
+    $mailer->send();
+  }
+
+  function err_msg($err, $params = null) {
+    $err_msg = self::$config['errors'][$err];
+    return umunandi_substitute_params($err_msg, $params);
+  }
+
+  function send_err($msg, $code) {
+    wp_send_json_error(json_encode(['msg' => $msg, 'code' => $code]));
+    return false;
+  }
 
 }
 

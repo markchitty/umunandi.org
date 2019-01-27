@@ -23,7 +23,7 @@ class Umunandi_Styles_n_Scripts {
 
     // args: id, path, deps (array), ver, in-footer
     wp_enqueue_style('google_fonts', self::GOOGLE_FONTS_API . join('|', self::FONT_LIST));
-    wp_enqueue_style('umunandi_css', $dir . self::UMUNANDI_STYLES, false, '29698eee');
+    wp_enqueue_style('umunandi_css', $dir . self::UMUNANDI_STYLES, false, '65df6aeb');
 
     // Use jQuery from Google CDN
     if (!is_admin()) {
@@ -32,7 +32,7 @@ class Umunandi_Styles_n_Scripts {
     }
     wp_enqueue_script('modernizr', $dir . self::MODERNIZR);
     wp_enqueue_script('jquery');
-    wp_enqueue_script('umunandi_js', $dir . self::UMUNANDI_JS, null, '9e6ddde1', true);
+    wp_enqueue_script('umunandi_js', $dir . self::UMUNANDI_JS, null, 'fdc7b3c5', true);
     wp_enqueue_script('add_this', self::ADD_THIS_JS, false, false, true);
   }
 

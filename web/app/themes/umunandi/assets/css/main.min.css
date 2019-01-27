@@ -2888,7 +2888,7 @@ body {
   font-size: 1.1875rem;
 }
 p {
-  margin: 0 0 0.9em;
+  margin: 0 0 0.9rem;
 }
 p a:not(.btn) {
   text-decoration: none;
@@ -2913,6 +2913,7 @@ h4,
 h5,
 h6 {
   font-family: 'Raleway', 'Open Sans', sans-serif;
+  margin-bottom: 0.9rem;
 }
 .h1:first-child,
 .h2:first-child,
@@ -4224,6 +4225,7 @@ label {
   margin-bottom: 11px;
   font-size: 14px;
   font-family: 'Raleway', 'Open Sans', sans-serif;
+  margin-bottom: 0.9rem;
   font-weight: 300;
   font-size: inherit;
   line-height: 2;
@@ -4543,6 +4545,7 @@ ul > li:nth-child(5n+5):before {
   margin-bottom: 11px;
   font-size: 14px;
   font-family: 'Raleway', 'Open Sans', sans-serif;
+  margin-bottom: 0.9rem;
   font-weight: 300;
   font-size: inherit;
   line-height: 2;
