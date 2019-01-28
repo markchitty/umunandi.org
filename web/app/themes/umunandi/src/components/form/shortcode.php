@@ -23,7 +23,7 @@ class Umunandi_Form_Shortcode {
 
   public function __construct() {
     // Read in forms.ini config
-    self::$config = new Config_Lite(__DIR__ . '/forms.ini');
+    self::$config = parse_ini_file(__DIR__ . '/forms.ini', true);
   
     add_shortcode('form', array($this, 'shortcode'));
     add_action('wp_ajax_nopriv_' . self::ACTION, array($this, 'handle_form'));
@@ -93,8 +93,8 @@ class Umunandi_Form_Shortcode {
   }
 
   function get_form_config($form_name, $data = []) {
-    if (!self::$config->hasSection($form_name)) return false;
-    $config = self::$config->getSection($form_name);
+    if (!array_key_exists($form_name, self::$config)) return false;
+    $config = self::$config[$form_name];
     return umunandi_substitute_params($config, $data);
   }
 

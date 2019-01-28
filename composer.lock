@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0923c5b6b32b7b480eacce5376c3c6a",
+    "content-hash": "9742854a491b181cd986fba8dd4beee4",
     "packages": [
         {
             "name": "composer/installers",
@@ -318,35 +318,6 @@
                 "env"
             ],
             "time": "2017-07-17T20:41:59+00:00"
-        },
-        {
-            "name": "pear-pear.php.net/Config_Lite",
-            "version": "0.2.6",
-            "dist": {
-                "type": "file",
-                "url": "https://pear.php.net/get/Config_Lite-0.2.6.tgz",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "php": ">=5.2.0.0"
-            },
-            "replace": {
-                "pear-pear/config_lite": "== 0.2.6.0"
-            },
-            "type": "pear-library",
-            "autoload": {
-                "classmap": [
-                    ""
-                ]
-            },
-            "include-path": [
-                "/"
-            ],
-            "license": [
-                "lgpl"
-            ],
-            "description": "This package defines a class for config/settings text files in ini style.\n\t\tCurrently classes available are:\n\t\t* Config_Lite: a class with arrayaccess to handle ini style files\n\t\t* Config_Lite_Exception: Interface implemented by Exceptions"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -796,6 +767,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-nested-pages/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-security-audit-log",
+            "version": "3.3.0.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-security-audit-log/",
+                "reference": "tags/3.3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-security-audit-log.3.3.0.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-security-audit-log/"
         }
     ],
     "packages-dev": [],

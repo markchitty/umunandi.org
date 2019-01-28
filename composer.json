@@ -51,7 +51,6 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "wp-sync-db/wp-sync-db": "*",
     "wp-sync-db/wp-sync-db-media-files": "*",
-    "pear-pear.php.net/config_lite": "*",
     "drewm/mailchimp-api": "^2.5",
     "wpackagist-plugin/advanced-custom-fields": "^5",
     "wpackagist-plugin/akismet": "^4.0",
@@ -68,7 +67,8 @@
     "wpackagist-plugin/admin-menu-editor": "^1.8",
     "wpackagist-plugin/wp-nested-pages": "^3.0",
     "wpackagist-plugin/simple-301-redirects": "^1.07",
-    "wpackagist-plugin/widget-shortcode": "^0.3.3"
+    "wpackagist-plugin/widget-shortcode": "^0.3.3",
+    "wpackagist-plugin/wp-security-audit-log": "3.3.0.2"
   },
   "might-use-plugins": {
     "wpackagist-plugin/post-tags-and-categories-for-pages": "^1.4",
