@@ -1,6 +1,9 @@
 <?php
 require_once 'editor.php';
 
+// Switch off Gutenberg editor for now
+add_filter('use_block_editor_for_post', '__return_false');
+
 // Advanced Custom Forms styles
 add_action('acf/input/admin_head', 'umunandi_acf_admin_head');
 function umunandi_acf_admin_head() {

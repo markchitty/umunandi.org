@@ -50,28 +50,26 @@ $ npm install   // installs grunt
 $ grunt watch   // watch task dynamically recompiles less and js assets
 ```
 
-## Updating WordPress
-[Roots uses Composer](https://roots.io/using-composer-with-wordpress/) to manage dependencies such as WordPress plugins, and indeed WordPress itself. To update WordPress and/or plugins **don't** use the WordPress admin UI. Instead, edit *composer.json* and update the relevant version numbers for the dependencies you want to update. Once you've done that, log in to vvv ...
+## Updating WordPress / plugins
+[Roots uses Composer](https://roots.io/using-composer-with-wordpress/) to manage dependencies such as WordPress plugins, and indeed WordPress itself. To update WordPress and/or plugins **don't** use the WordPress admin UI update links. Instead:
 
-```
-$ cd vvv
-$ vagrant ssh       // Log in to the VM
-$ cd umunandi.test
-```
-... and then from the vvv vm:
-
-1. Backup the database (always backup the database) using [wp-cli](https://wp-cli.org/). (The */temp* folder is gitignore'd).  
-`$ wp db export temp/umunandi-db-yyyy-mm-dd.sql`
-
-1. Update WordPress - this will fetch the new version of WordPress you specified when you edited *composer.json*  
-`$ composer update johnpbloch/wordpress*`
-
+1. Backup the database from the WordPress admin UI (okay, I know I said don't use the admin UI, but we use it for backing up the DB okay?): *Settings > Migrate DB > Migrate > Local backup*.
+1. Edit *composer.json* and update the relevant version numbers for the dependencies you want to update.
+2. Log in to vvv  
+`$ cd vvv`  
+`$ vagrant ssh`  
+`$ cd umunandi.test`
+3. Run `composer update --dry-run` to show what packages will be updated without actually doing anything.
+1. To update WordPress run `$ composer update johnpbloch/wordpress*`
 1. Test <http://umunandi.test> is still working
-
-1. Update everything else (= plugins)  
-`$ composer update`
-
+1. To update plugins run `$ composer update wpackagist*`, or specify the name of the individual plugin(s) you want to update.
 1. Test <http://umunandi.test> is still working
+2. Other useful composer commands:  
+`$ composer list` - lists composer commands (kinda like --help)  
+`$ composer info` - lists all the installed packages  
+`$ composer require packagename` - Adds a package to composer.json and installs it  
+`$ composer remove packagename` - Removes a package from composer.json and uninstalls it
+
 
 
 ## Managed deployment
