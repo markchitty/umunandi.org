@@ -8,7 +8,7 @@ class Umunandi_Styles_n_Scripts {
   const ADD_THIS_JS         = '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53e8a2ee11f168c4';
   const MODERNIZR           = '/vendor/js/modernizr-custom.js';
   const UMUNANDI_JS         = '/assets/js/scripts.min.js';
-  const GOOGLE_ANALYTICS_ID = 'UAxxxxxx';
+  const GOOGLE_ANALYTICS_ID = 'UA-135437972-1';
 
   const FONT_LIST = array(
     'Quicksand:300,400,700',
@@ -43,13 +43,12 @@ class Umunandi_Styles_n_Scripts {
 
   function google_analytics() {
     if (!current_user_can('manage_options')) { ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= self::GOOGLE_ANALYTICS_ID ?>"></script>
     <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','<?= self::GOOGLE_ANALYTICS_ID ?>');ga('send','pageview');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', '<?= self::GOOGLE_ANALYTICS_ID ?>');
     </script>
     <?php }
   }
