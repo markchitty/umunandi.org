@@ -24,25 +24,37 @@ Follow the instructions at <https://github.com/Varying-Vagrant-Vagrants/VVV> and
 1. **Create project home** - Create a parent folder for the project and `cd` into it  
 `$ mkdir umunandi && $ cd umunandi`
 
-1. **Get umunandi.org** - Clone this repo into a new folder */umunandi.org*  
+1. **Get umunandi.org** - Clone this repo into a new folder *{project_home}/umunandi.org*  
 `$ git clone git://github.com/umunandi/umunandi.org umunandi.org`
 
-1. **Get VVV** - Clone Varying Vagrant Vagrants into */vvv* and checkout v1.4.1  
+1. **Get VVV** - Clone Varying Vagrant Vagrants into *{project_home}/vvv* and checkout v1.4.1  
 `$ git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv`  
 `$ cd vvv`  
 `$ git checkout tags/1.4.1 -b 1.4.1`
 
-1. **Configure dev env** - Run the `umunandi.config.sh` config script   
+1. **Configure dev VM** - Run the `umunandi.config.sh` config script   
 `$ ../umunandi.org/vvv-setup/umunandi.config.sh`  
-This prepares the VVV vm to create a new *umunandi.test* web site.
+This prepares the VVV vm so it will create a new *umunandi.test* web site when provisioned.
 
-1. **Provision dev machine** - Run:  
-`$ vagrant up`  
-This downloads the VM image and configures it (may take a few mins). The vagrant provisioning script will ask you for your password so that it can update your hosts file with local DNS entries for *umunandi.test*. To read more about vagrant and what it can do, run `vagrant` from the vvv directory.
+1. **Provision dev machine** - Run `$ vagrant up`. This does a bunch of clever VVV stuff including:
+   * Downloads the VirtualBox VM image (takes a few mins)
+   * Updates it with current packages
+   * Updates your local hosts file (provided you've installed *vagrant-hostsupdater*) - requires your pw
+   * Maps the relevant folders in your project into the VM
+   * Configures nginx with an umunandi.test website, including self-hosted SSL certs
+   * Imports the inital wp_umunandi database image
+   * Runs composer install
 
-1. Point your browser to <http://umunandi.test> to browse the website. The WordPress admin page is available at <http://umunandi.test/wp-admin>. You can login with [VVV's default credentials](https://varyingvagrantvagrants.org/docs/en-US/default-credentials/).
+1. The umunandi.test dev site is now up and running 🙂 but it's empty 😕. Next step is to need to grab the latest content and configuration by downloading the DB and media files from the staging site (staging.umunandi.org).
+   * Go to [MigrateDB](https://umunandi.test/wp/wp-admin/tools.php?page=wp-sync-db&wpsdb-profile=1) in the dev site WordPress admin pages (user: dev, pass: dev)
+   * Enter the staging site connection url (get this from the Umunandi web admin (me))
+   * Wait for the connection to be established
+   * Make sure the the 'Media files' option is ticked
+   * Click the *[Migrate DB & Save]* button
+   * Leave it to chug through downloading the staging site content
+   * You should now have an up to date dev site 👍🏼
 
-2. The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses *grunt* to build js and less/css assets. To install and run grunt:
+The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses *grunt* to build js and less/css assets. To install and run grunt:
 
 ```
 $ cd ./umunandi.org/web/app/themes/umunandi
@@ -76,7 +88,7 @@ $ grunt watch   // watch task dynamically recompiles less and js assets
 
 The production server hosts two environments, __production__ and __staging__. Deployment to the server is done [using git](http://toroid.org/ams/git-website-howto) for the code and [wp-sync-db plugin](https://github.com/wp-sync-db/wp-sync-db) for the database. Connect to the server using [ssh keys](http://smbjorklund.no/ssh-login-without-password-using-os-x) - this works for both terminal sessions and git.
 
-In addition to the steps below, the server also needs to have databases and subdomains set up. This is configured using the normal cPanel admin UI.
+In addition to the steps below, the server also needs to have databases and subdomains set up. This is configured using the normal cPanel admin UI. You can use phpMyAdmin to copy databases if necessary - useful when creating new environments for the first time.
 
 Everything on the server lives in _~/umunandi.org_:
 
@@ -102,7 +114,7 @@ Everything on the server lives in _~/umunandi.org_:
 * Push the staging branch:  
 `$ git push production staging` 
 
-* At this point the repo should now be on the server, but the _production_ and _staging_ directories are still empty as the git-hook that populates them is not in place on the server. To make the git-hook available, we copy the post-receive  script from the repo to _umunandi.org.git/hooks_ using _git archive_:  
+* At this point the repo should now be on the server, but the _staging_ directory is still empty as the git-hook that populates it is not in place on the server. To make the git-hook available, we copy the post-receive script from the repo to _umunandi.org.git/hooks_ using _git archive_:  
 `$ git archive staging deploy/post-receive | tar -x --strip-components=1 -C hooks/` 
 
 * Now push the staging branch from _dev_ again and the git-hook will checkout the repo into the _staging_ directory.  
@@ -123,7 +135,9 @@ The staging directory should now look like this:
     └ wp
 ```
 
-* Create the environment specific .env file. In _config/environments_ copy _.env.dev_ to _.env_ and then edit the new _.env_ file, setting the appropriate DB connection details, etc.
+* Create the environment specific .env file. In _config/environments_ copy _.env.dev_ to _.env_ and then edit the new _.env_ file, setting the appropriate DB connection details, etc. 
+
+* Add a new _.htaccess_ file to _~/umunandi.org/staging/web/_. The contents of this are file very environment specific so it's not included in the git repo. Maybe it should be...? Perhaps put a copy in _/config/environments/_?
 
 ### Deployment steps
 
