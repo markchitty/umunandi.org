@@ -45,15 +45,19 @@ This prepares the VVV vm so it will create a new *umunandi.test* web site when p
    * Imports the inital wp_umunandi database image
    * Runs composer install
 
-1. The umunandi.test dev site is now up and running 🙂 but it's empty 😕. Next step is to need to grab the latest content and configuration by downloading the DB and media files from the staging site (staging.umunandi.org).
-   * Go to [MigrateDB](https://umunandi.test/wp/wp-admin/tools.php?page=wp-sync-db&wpsdb-profile=1) in the dev site WordPress admin pages (user: dev, pass: dev)
-   * Enter the staging site connection url (get this from the Umunandi web admin (me))
+1. **Trust SSL cert** - The dev site is now up and running 🙂 - check it out at https://umunandi.test. The first thing you'll notice though is your browser complaining about an untrusted certificate. That's because the dev SSL cert is self-signed. To stop being pestered by this annoying warning, follow [these steps](http://www.robpeck.com/2010/10/google-chrome-mac-os-x-and-self-signed-ssl-certificates/) to trust the certificate (assuming you're on a Mac).
+
+1. **Update DB** - So, we have a working dev site, but it doesn't have any content 😕. To solve this, grab the latest content and configuration from the staging site (staging.umunandi.org):
+   * Login to the [dev site admin pages](https://umunandi.test/wp/wp-admin/tools.php?page=wp-sync-db&wpsdb-profile=1) (user: dev, pass: dev)
+   * Go to the [MigrateDB plugin settings](https://umunandi.test/wp/wp-admin/tools.php?page=wp-sync-db&wpsdb-profile=1) page
+   * Enter the staging site connection url (get this from the Umunandi web admin)
    * Wait for the connection to be established
    * Make sure the the 'Media files' option is ticked
    * Click the *[Migrate DB & Save]* button
    * Leave it to chug through downloading the staging site content
    * You should now have an up to date dev site 👍🏼
 
+## Front end tooling
 The Umunandi site is built as a WordPress theme based on [Roots](https://roots.io/). Roots uses *grunt* to build js and less/css assets. To install and run grunt:
 
 ```
